@@ -167,9 +167,11 @@ def svg_histograms(res: dict, path: Path, max_cells: int = 24) -> str:
     return path.name
 
 
-def md_table(rows: list[dict], cols: list[tuple[str, str]], digits: int = 4) -> str:
+def md_table(rows: list[dict], cols: list[tuple[str, str]], digits: int = 4, widths: list[int] | None = None) -> str:
+    """Pipe table; ``widths`` are relative column widths (dash counts, used by pandoc)."""
+    widths = widths or [max(3, len(h)) for _, h in cols]
     head = "| " + " | ".join(h for _, h in cols) + " |"
-    sep = "|" + "|".join("---" for _ in cols) + "|"
+    sep = "|" + "|".join("-" * max(3, w) for w in widths) + "|"
     body = ["| " + " | ".join(_fmt(r.get(k), digits) for k, _ in cols) + " |" for r in rows]
     return "\n".join([head, sep] + body)
 
@@ -198,11 +200,17 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
     if checks:
         failed = [c for c in checks if not c["passed"]]
         lines += [f"{len(checks)} checks, {len(checks) - len(failed)} passed, {len(failed)} failed.", ""]
-        crow = [{"id": c["id"], "name": c["name"], "cell": cell_label(c["cell"]) if "cell" in c else "all",
+        names = {}
+        for c in checks:
+            names.setdefault(c["id"], c["name"])
+        lines += [f"- {k}: {v}" for k, v in sorted(names.items())] + [""]
+        crow = [{"id": c["id"], "cell": (f"{c.get('variation', '')}: {cell_label(c['cell'])}, N={c['cell']['n_agents']}, {c['cell']['tie_rule']}"
+                                         if "cell" in c else "all"),
                  "rule": c.get("rule", ""), "passed": "pass" if c["passed"] else "FAIL",
                  "observed": c.get("observed"), "expected": c.get("expected")} for c in checks]
-        lines += [md_table(crow, [("id", "Check"), ("name", "Name"), ("cell", "Cell"), ("rule", "Rule"),
-                                  ("passed", "Result"), ("observed", "Observed"), ("expected", "Expected")]), ""]
+        lines += [md_table(crow, [("id", "Check"), ("cell", "Cell"), ("rule", "Rule"),
+                                  ("passed", "Result"), ("observed", "Observed"), ("expected", "Expected")],
+                           widths=[6, 40, 18, 7, 10, 10]), ""]
     else:
         lines += ["No verification checks were requested in this configuration.", ""]
     lines += ["## Failed cells", ""]
@@ -216,7 +224,8 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
         r["cell"] = f"{r['variation']}: q={r['q']:g}, {r['network']}, v={r['v']:g}, N={r['n_agents']}, {r['tie_rule']}"
     lines += [md_table(crow, [("cell", "Cell"), ("rule", "Rule"), ("n", "n"), ("delta_mean", "Delta"), ("ci_low", "CI low"),
                               ("ci_high", "CI high"), ("paired_sd", "paired SD"), ("seed_mean_sd", "seed SD"),
-                              ("p_holm", "p (Holm)"), ("projected_half_width_10000", "hw@10k")]), ""]
+                              ("p_holm", "p (Holm)"), ("projected_half_width_10000", "hw@10k")],
+                       widths=[34, 9, 6, 8, 8, 8, 8, 8, 8, 8]), ""]
     if figs.get("delta"):
         lines += [f"![Forest plot of paired accuracy differences with 95% intervals for every contrast in {res['run_id']}. "
                   f"Exploratory.]({figs['delta']})", "",
@@ -229,7 +238,8 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
     lines += [md_table(arow, [("cell", "Cell"), ("rule", "Rule"), ("n_episodes", "n"), ("accuracy_mean", "Accuracy"),
                               ("cascade_any_mean", "Cascade"), ("wrong_cascade_any_mean", "Wrong cascade"),
                               ("longest_wrong_run_mean", "Longest wrong run"), ("informative_share_mean", "Informative"),
-                              ("last_agent_accuracy_mean", "Last agent")], 3), ""]
+                              ("last_agent_accuracy_mean", "Last agent")], 3,
+                       widths=[34, 10, 6, 8, 8, 8, 8, 8, 8]), ""]
     if figs.get("hist"):
         lines += [f"![Small multiples of episode-accuracy histograms for each cell and rule in {res['run_id']}. Exploratory.]({figs['hist']})", "",
                   "*Figure: distribution of episode accuracy, share of episodes per bin of width 0.05; grey independent, blue Bayesian, "
@@ -241,7 +251,11 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
 def build_pdf(md_path: Path) -> Path:
     typ = md_path.with_suffix(".typ")
     pdf = md_path.with_suffix(".pdf")
-    subprocess.run([PANDOC, md_path.name, "-s", "-V", "mainfont=Libertinus Serif", "-V", "papersize=a4", "-o", typ.name],
+    subprocess.run([PANDOC, md_path.name, "-s", "-V", "mainfont=Libertinus Serif", "-V", "papersize=a4",
+                    "-V", "header-includes=#show figure: set block(breakable: true)",
+                    "-V", "header-includes=#show table: set text(size: 7.5pt)",
+                    "-V", "header-includes=#show table: set par(justify: false)",
+                    "-V", "header-includes=#show table.cell: set align(left)", "-o", typ.name],
                    cwd=md_path.parent, check=True)
     subprocess.run([TYPST_PYTHON, "-c", "import sys, typst; typst.compile(sys.argv[1], output=sys.argv[2], root=sys.argv[3])",
                     typ.name, pdf.name, "."], cwd=md_path.parent, check=True)
