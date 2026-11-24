@@ -14,9 +14,9 @@ and
 **Contributor:** The individual accepting this Agreement.
 
 The Agreement concerns contributions intentionally submitted
-for inclusion in HERD (research repository), planned at:
+for inclusion in HERD (research repository), at:
 
-https://github.com/mohamedbechirkefi/herd-research
+https://github.com/mohamedbechirkefi/herd-information-cascades
 
 ## 1. Ownership of contributions
 

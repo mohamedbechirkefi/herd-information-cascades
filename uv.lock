@@ -15,7 +15,7 @@ wheels = [
 ]
 
 [[package]]
-name = "herd-research"
+name = "herd-information-cascades"
 version = "0.0.0"
 source = { virtual = "." }
 dependencies = [
