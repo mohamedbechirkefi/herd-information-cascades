@@ -180,3 +180,18 @@ def test_result_reader_fails_closed(tmp_path):
     p.write_text(json.dumps(bad))
     with pytest.raises(SchemaError):
         read_result(p)
+
+
+def test_report_figure_captions_carry_the_run_label():
+    """M3 fix (2026-11-25): figure captions were hard-coded 'Exploratory.' even for confirmatory runs."""
+    from herd.report import build_markdown
+
+    res = run(copy.deepcopy(BASE)).result
+    figs = {"delta": "figures/delta.svg", "hist": "figures/accuracy_hist.svg"}
+    md = build_markdown(res, None, figs)
+    assert md.count(". Exploratory.](") == 2
+    conf = copy.deepcopy(res)
+    conf["label"] = "confirmatory"
+    md = build_markdown(conf, None, figs)
+    assert "Exploratory" not in md and "EXPLORATORY" not in md
+    assert md.count(". Confirmatory.](") == 2

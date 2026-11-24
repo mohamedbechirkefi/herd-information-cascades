@@ -8,9 +8,9 @@ Target: five focused development days (planning estimate). Status values: done, 
 | M0 Bootstrap and feasibility | none | P0 | 0.25 day | done (2026-11-24), pending the owner's review of scope and cost | none |
 | M1 Research and preregistration | M0 | P0 | 0.25 day | done (2026-11-24): M1 gate passed, protocols frozen v1.0 with the owner-approved amendments A-1 to A-5 (`research/freeze.json`) | full-text checks of BHW1992, CK2004, ER2010 remain open (literature, not the freeze) |
 | M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | done (2026-11-24) for the code, tests and tooling; proposals P-1 to P-6 answered and applied at the freeze | none |
-| M3 Experiments | M1 freeze, M2 | P0 | 1 day | planned, unblocked (frozen 2026-11-24) | scheduling by the coordinator (quiet machine for timing) |
-| M4 Interpretation | M3 | P0 | 1 day | planned | M3 |
-| M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M3 |
+| M3 Experiments | M1 freeze, M2 | P0 | 1 day | done (2026-11-25): EXP-002 and EXP-003 frozen matrices complete, reports written | none |
+| M4 Interpretation | M3 | P0 | 1 day | planned, unblocked | none |
+| M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M4 for final labels |
 | M6 Release candidate | M4, M5 | P0 | 0.25 day | planned | owner approval for any publication (G-PUBLIC) |
 
 ## M0 Bootstrap and feasibility
@@ -38,6 +38,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 - **Deliverables:** EXP-001 smoke and verification; EXP-002 and EXP-003 under the frozen protocols; raw machine-readable results, plots and uncertainty.
 - **11.6 additions:** individual reports generated as each experiment finishes; failed runs and deviations recorded; provenance captured at run time.
 - **Acceptance:** complete planned matrix or documented failure; no silently dropped runs.
+- **Status (2026-11-25):** met. Smoke run EXP-001-R005 on exploratory seeds (25/25 checks); EXP-002-R001 (48/48 contrasts, 61/61 checks, 0 failed cells) and EXP-003-R001 (72/72 contrasts, 89/89 checks, 0 failed cells) ran once each with the frozen configs at revision `50fbdb1`; no run failed or was dropped. 11.3 reports: `research/experiments/EXP-00N/report.md` (N = 1, 2, 3). Raw results and SHA-256 manifests committed. Post-run reporting-layer additions recorded in D-010.
 
 ## M4 Interpretation
 

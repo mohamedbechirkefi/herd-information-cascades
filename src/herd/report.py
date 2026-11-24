@@ -182,8 +182,8 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
     lines = [f"<!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->",
              f"# {res['run_id']} ({label}): generated run report", ""]
     if res["label"] == "exploratory":
-        lines += ["**EXPLORATORY RUN. Not evidence for any study hypothesis.** The study protocol is an unfrozen draft; "
-                  "these numbers serve planning and verification only (master prompt section 3).", ""]
+        lines += ["**EXPLORATORY RUN. Not evidence for any study hypothesis.** "
+                  "These numbers serve planning and verification only (master prompt section 3).", ""]
     lines += [f"- Experiment: {res['exp_id']}; run: {res['run_id']}; created (UTC): {res['created_utc']}",
               f"- Description: {res['config']['description']}",
               f"- Config SHA-256: `{res['config_sha256']}`",
@@ -230,7 +230,7 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
                        widths=[34, 9, 6, 8, 8, 8, 8, 8, 8, 8]), ""]
     if figs.get("delta"):
         lines += [f"![Forest plot of paired accuracy differences with 95% intervals for every contrast in {res['run_id']}. "
-                  f"Exploratory.]({figs['delta']})", "",
+                  f"{res['label'].capitalize()}.]({figs['delta']})", "",
                   f"*Figure: paired accuracy difference (proportion) against the independent baseline, points are means and bars "
                   f"95% normal intervals over episodes; the dashed line marks zero. Source: {res['run_id']}/result.json.*", ""]
     lines += ["## Arms", "", "Means over episodes with 95% intervals in the CSV table `tables/arms.csv`.", ""]
@@ -243,7 +243,7 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
                               ("last_agent_accuracy_mean", "Last agent")], 3,
                        widths=[34, 10, 6, 8, 8, 8, 8, 8, 8]), ""]
     if figs.get("hist"):
-        lines += [f"![Small multiples of episode-accuracy histograms for each cell and rule in {res['run_id']}. Exploratory.]({figs['hist']})", "",
+        lines += [f"![Small multiples of episode-accuracy histograms for each cell and rule in {res['run_id']}. {res['label'].capitalize()}.]({figs['hist']})", "",
                   "*Figure: distribution of episode accuracy, share of episodes per bin of width 0.05; grey independent, blue Bayesian, "
                   "orange imitation.*", ""]
     lines += ["## Metric definitions", ""] + [f"- `{k}`: {v}" for k, v in res["metric_definitions"].items()] + [""]

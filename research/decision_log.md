@@ -74,3 +74,14 @@ Each entry: id, date, decision, decided by, rationale, alternatives, consequence
 - **Rationale:** the first approval named these topics without choosing an option; this ratification makes the chosen options owner decisions.
 - **Alternatives:** keeping degenerate contrasts in the Holm family with p = 1; Bonferroni simultaneous intervals (not chosen).
 - **Consequences:** recorded as R-1 in the `ratifications` list of `research/freeze.json`. The choices are already in the frozen v1.0 text, so no protocol, config or code changed and every frozen hash is unchanged.
+
+## D-010 (2026-11-25): M3 execution; reporting-layer additions after the confirmatory runs
+
+- **Decided by:** the AI assistant, under the coordinator's M3 brief (the owner said "Start next" on 2026-11-25). No owner decision is needed: no protocol, config, seed, exclusion rule or estimate changed.
+- **Decision:**
+  1. Before the confirmatory runs, a smoke run EXP-001-R005 (the EXP-001 smoke matrix on exploratory seeds 100 and 101) was added as `experiments/EXP-001-R005.json` and committed (`50fbdb1`), so the confirmatory runs record a clean provenance revision.
+  2. EXP-002-R001 and EXP-003-R001 were run once each with the frozen configs, through the run gate; no rerun.
+  3. After the runs: (a) the generated run report's figure captions were hard-coded "Exploratory." and its exploratory banner claimed an unfrozen protocol; `src/herd/report.py` now uses the run label, with a test, and the run reports were regenerated from the unchanged `result.json` files. (b) The EXP-003 interpretation rule (protocol section 3) had no implementation; `src/herd/robustness.py` applies it mechanically to the frozen estimates and Holm p-values ("loses significance" = not Holm-significant in the variation's family, the protocol's A-4 definition), with a unit test on hand-built contrasts. (c) `src/herd/tables.py` prints the 11.3 report tables from `result.json`.
+  4. The confirmatory raw per-episode arrays (`results/raw/EXP-002-R001/`, `results/raw/EXP-003-R001/`; 2.5 MB and 3.8 MB) are committed, since each experiment's results total under 20 MB; `.gitignore` re-includes these two folders only. Their `run_manifest.json` still says `"committed": false`, as written at run time; the manifests are raw outputs and are not edited.
+- **Rationale:** the brief forbids adjusting analysis after seeing results; none of the additions changes an estimate, interval, p-value or decision rule. They are recorded here because they were written after confirmatory output existed.
+- **Consequences:** deviations sections of the EXP-002 and EXP-003 reports list these items.

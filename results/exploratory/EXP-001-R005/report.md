@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # EXP-001-R005 (EXPLORATORY): generated run report
 
-**EXPLORATORY RUN. Not evidence for any study hypothesis.** The study protocol is an unfrozen draft; these numbers serve planning and verification only (master prompt section 3).
+**EXPLORATORY RUN. Not evidence for any study hypothesis.** These numbers serve planning and verification only (master prompt section 3).
 
 - Experiment: EXP-001; run: EXP-001-R005; created (UTC): 2026-11-24T23:30:59Z
 - Description: M3 pre-confirmatory smoke run: the EXP-001 smoke matrix (study protocol section 7) on exploratory seeds 100-101, disjoint from the confirmatory seeds 0-9 (exploratory; metric and engine validation before EXP-002 and EXP-003)

@@ -148,3 +148,40 @@ M3, scheduled by the coordinator: run EXP-002 and EXP-003 under the frozen v1.0 
 ### Next action
 
 M3, scheduled by the coordinator: run EXP-002 and EXP-003 under the frozen v1.0 protocols.
+
+## 2026-11-25: Session M3 (confirmatory experiments)
+
+**Milestone:** M3, started on the owner's "Start next" (2026-11-25) under the coordinator's M3 brief. Gate met: complete planned matrices, no failed or dropped run.
+
+### Pre-run checks
+
+- `git status --porcelain`: empty at `eded9b8`. `shasum -a 256` of `research/protocol.md`, `research/experiments/EXP-00{1,2,3}/protocol.md`, `experiments/EXP-002.json`, `experiments/EXP-003.json` and `herd.provenance.config_hash` of both configs: all equal to `research/freeze.json`.
+- `../.tools/py/bin/uv sync --frozen --all-groups --all-extras`: "Audited 6 packages". No editable install (`import herd` fails without `PYTHONPATH=src`). `.venv/bin/python -m pytest -q`: 278 passed.
+- Data: synthetic only (`data/manifest.json`); nothing to rebuild.
+- Smoke run EXP-001-R005 (`experiments/EXP-001-R005.json`, smoke matrix on exploratory seeds 100 and 101): 25 checks, 0 failed, 0.05 s. Known-case metric and statistics tests (`tests/test_metrics_stats.py`, `tests/test_reference.py`): 132 passed. Journal J-0006. Committed as `50fbdb1`, the provenance revision of both confirmatory runs.
+
+### Confirmatory runs (one process, `nice -n 10`)
+
+- `PYTHONPATH=src nice -n 10 .venv/bin/python -m herd.cli run --config experiments/EXP-002.json`: "CONFIRMATORY run EXP-002-R001: 72 arms, 48 contrasts, 61 checks (0 failed), 0 failed cells; runtime 8.73 s"; exit 0. Journal J-0007.
+- `PYTHONPATH=src nice -n 10 .venv/bin/python -m herd.cli run --config experiments/EXP-003.json`: "CONFIRMATORY run EXP-003-R001: 108 arms, 72 contrasts, 89 checks (0 failed), 0 failed cells; runtime 19.47 s"; exit 0. Journal J-0008.
+- `herd.cli report --run` for both runs; `herd.robustness`: "72 comparisons: {'robust': 70, 'lost significance': 2}".
+
+### Results (frozen analysis)
+
+- EXP-002: Holm family 48 (no degenerate contrast); all 48 contrasts positive and Holm-significant; range +0.0059 [0.0048, 0.0070] to +0.1439 [0.1375, 0.1504]. H1 supported; the imitation directional expectation is contradicted.
+- EXP-003: 70 of 72 comparisons robust, none reverses sign; under coin ties the two contrasts at q = 0.55, window-3, v = 1 lose significance (Holm p 0.18): convention-dependent.
+- Reports: `research/experiments/EXP-001/report.md`, `EXP-002/report.md`, `EXP-003/report.md`. Claims CLM-001 to CLM-009. Limitations 8 to 11. Decision D-010.
+
+### Post-run additions (no estimate changed; D-010)
+
+- `src/herd/report.py`: figure captions now carry the run label (they said "Exploratory." for every run); test added; run reports regenerated.
+- `src/herd/robustness.py` (EXP-003 rule) and `src/herd/tables.py` (report tables), with tests.
+- Confirmatory raw arrays committed; `results/EXP-00N/SHA256SUMS` (`shasum -a 256 -c` passes for all 10 and 11 files).
+
+### Tests
+
+`.venv/bin/python -m pytest -q`: 281 passed (278 before plus 3 new).
+
+### Next action
+
+M4: evidence audit, manuscript synthesis with the EXP-003 caveat and the contradicted imitation expectation, second review pass challenging the preferred hypothesis.

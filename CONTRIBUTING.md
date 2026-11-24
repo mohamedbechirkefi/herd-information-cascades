@@ -46,3 +46,5 @@ Never commit an e-mail address, a name or any other personal identifier in code,
   - `PYTHONPATH=src uv run --frozen python -m herd.cli run --config experiments/<file>.json` (confirmatory configurations are refused while the protocol is unfrozen)
   - `PYTHONPATH=src uv run --frozen python -m herd.cli report --run results/exploratory/<run_id>` (needs pandoc and the typst Python package; `--no-pdf` skips the PDF; paths via `HERD_PANDOC` and `HERD_TYPST_PYTHON`)
   - `PYTHONPATH=src uv run --frozen python -m herd.cli test`
+  - `PYTHONPATH=src uv run --frozen python -m herd.robustness --reference results/EXP-002/EXP-002-R001 --sensitivity results/EXP-003/EXP-003-R001` (EXP-003 decision rule)
+  - `PYTHONPATH=src uv run --frozen python -m herd.tables contrasts|secondary --run <run dir>` (11.3 report tables)

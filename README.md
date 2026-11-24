@@ -13,7 +13,7 @@ Groups often act on what others did before them. Classic models show that this c
 
 ## What is implemented
 
-The simulation engine (`src/herd/`): the independent baseline, exact Bayesian social learning on complete and window-k networks, naive imitation, metrics, a seeded runner with versioned JSON results and run manifests, a report generator, and a command line. A pytest suite checks it against hand-computed examples, an exact rational enumeration oracle and an analytic cascade formula. Exploratory runs (EXP-001) are in `results/exploratory/`; they are planning measurements, not findings. See `roadmap.md`.
+The simulation engine (`src/herd/`): the independent baseline, exact Bayesian social learning on complete and window-k networks, naive imitation, metrics, a seeded runner with versioned JSON results and run manifests, a report generator, and a command line. A pytest suite checks it against hand-computed examples, an exact rational enumeration oracle and an analytic cascade formula. Exploratory runs (EXP-001) are in `results/exploratory/`; they are planning measurements, not findings. The confirmatory runs EXP-002 and EXP-003 (2026-11-25) are in `results/EXP-002/` and `results/EXP-003/`, with reports in `research/experiments/`; their interpretation (M4) is pending. See `roadmap.md`.
 
 ## Research navigation
 

@@ -2,7 +2,7 @@
 # Licence: HERD Source-Available Non-Commercial Research License v1.0 (custom licence, see LICENSE).
 # It is deliberately not given as an SPDX "license" field because it is not on the SPDX licence list.
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below. Status: unreleased research software; protocol frozen 2026-11-24, no results yet. Author: Mohamed Bechir Kefi, no affiliation. An AI system was used as a research and development assistant and is not an author."
+message: "If you use this work, please cite it as below. Status: unreleased research software; protocol frozen 2026-11-24, confirmatory runs completed 2026-11-25 (local, unpublished). Author: Mohamed Bechir Kefi, no affiliation. An AI system was used as a research and development assistant and is not an author."
 title: "HERD: when social information improves decisions and when it produces cascades of errors"
 type: software
 authors:
