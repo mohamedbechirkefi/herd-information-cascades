@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.1.0",
+  "project": "HERD",
+  "updated": "2026-11-24",
+  "policy": "Synthetic data only (decision D-002). No external dataset is downloaded, bundled or redistributed. Synthetic datasets are regenerated deterministically from the generator version, parameters and seed recorded per run.",
+  "synthetic_generators": [
+    {
+      "id": "herd-episode-generator",
+      "status": "planned (M2); not implemented",
+      "description": "Draws hidden state, private binary signals and visibility pattern per episode from numpy SeedSequence streams derived from (master seed, cell).",
+      "license": "LicenseRef-HERD-NC-Research-1.0 (generated outputs are covered by NOTICE.md)"
+    }
+  ],
+  "external_datasets": [],
+  "candidates_considered_not_used": [
+    {
+      "name": "Meta data set of 13 laboratory social-learning experiments (Weizsacker)",
+      "source_opened": "https://researchonline.lse.ac.uk/id/eprint/4945",
+      "accessed": "2026-11-24",
+      "license": "not stated on the record page (copyright notice of the author only); hosting location of the data not found",
+      "redistributable": "unknown",
+      "decision": "not used: human-subject data are outside the claims boundary and the rights are unclear. Any future use is a blocker for the owner."
+    },
+    {
+      "name": "Anderson and Holt (1997) laboratory cascade data",
+      "source_opened": "https://ideas.repec.org/a/aea/aecrev/v87y1997i5p847-62.html",
+      "accessed": "2026-11-24",
+      "license": "no data deposit or licence found in this session (unverified)",
+      "redistributable": "unknown",
+      "decision": "not used, for the same reasons."
+    }
+  ],
+  "fixtures": []
+}

@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0
+[project]
+name = "herd-research"
+version = "0.0.0"
+description = "HERD: when social information improves binary decisions and when it produces error cascades (simulation study)."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "numpy==2.3.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==8.4.2",
+]
+
+[tool.uv]
+# Only resolve releases published at least two weeks before the M0 session (2026-11-24).
+exclude-newer = "2026-11-10T00:00:00Z"
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

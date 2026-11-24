@@ -1,0 +1,60 @@
+<!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
+# HERD roadmap
+
+Target: five focused development days (planning estimate). Status values: done, in progress, planned, blocked. Nothing is marked done unless its acceptance criteria were checked.
+
+| Milestone | Depends on | Priority | Effort | Status | Blockers |
+|---|---|---|---|---|---|
+| M0 Bootstrap and feasibility | none | P0 | 0.25 day | done (2026-11-24), pending the owner's review of scope and cost | none |
+| M1 Research and preregistration | M0 | P0 | 0.25 day | in progress: draft protocols written; freeze pending | owner freeze (G-FREEZE); full-text checks of BHW1992, CK2004, ER2010 |
+| M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | planned | none |
+| M3 Experiments | M1 freeze, M2 | P0 | 1 day | planned | owner freeze |
+| M4 Interpretation | M3 | P0 | 1 day | planned | M3 |
+| M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M3 |
+| M6 Release candidate | M4, M5 | P0 | 0.25 day | planned | owner approval for any publication (G-PUBLIC) |
+
+## M0 Bootstrap and feasibility
+
+- **Deliverables:** control files (section 2 of the master prompt), feasibility audit, source and licence audit, budget, scope, exclusions and fallback; section 11.1 tree initialised.
+- **11.6 additions:** experiment registry, manuscript skeleton, per-experiment draft protocols; zero-cost local publication toolchain confirmed.
+- **Acceptance:** the owner can understand the question, the cost (zero) and the exclusions from `README.md`, `research/feasibility.md` and `research/protocol.md`; `uv.lock` exists; local commit made.
+
+## M1 Research and preregistration
+
+- **Deliverables:** evidence review, formal model, baselines, protocol, fixture manifest.
+- **11.6 additions:** freeze the confirmatory protocols (EXP-002, EXP-003) before execution, recording version and SHA-256 in the registry; EXP-001 remains exploratory.
+- **Acceptance:** the owner has frozen the protocols; hashes recorded; full texts of the key sources checked against the model details; exploratory results visibly separated.
+
+## M2 Core implementation
+
+- **Deliverables:** independent baseline first, then Bayesian (`complete`, then `window-k`) and imitation rules; episode generator with `SeedSequence` streams; metrics; experiment runner; CLI (`smoke`, `run`, `report`, `test`).
+- **11.6 additions:** versioned JSON result schema with validation, run manifests (runtime, peak memory, OS, CPU, package versions, git revision, config), report generators, all built alongside the core.
+- **Acceptance:** unit tests for likelihood calculations, the zero-information case and the independent baseline; analytic cascade anchor; exact enumeration reference for small $N$; complete-network equivalence test; invalid-input tests; all run with actual counts recorded.
+
+## M3 Experiments
+
+- **Deliverables:** EXP-001 smoke and verification; EXP-002 and EXP-003 under the frozen protocols; raw machine-readable results, plots and uncertainty.
+- **11.6 additions:** individual reports generated as each experiment finishes; failed runs and deviations recorded; provenance captured at run time.
+- **Acceptance:** complete planned matrix or documented failure; no silently dropped runs.
+
+## M4 Interpretation
+
+- **Deliverables:** confounder inspection, sensitivity analysis (EXP-003), expected versus observed, claims register, limitations.
+- **11.6 additions:** finish experiment reports and evidence audit; synthesise the manuscript, including contradictory results and the sensitivity analysis; second review pass that challenges the preferred hypothesis.
+- **Acceptance:** each numerical claim maps to result ID, config and figure; each external claim to a verified source; unsupported claims removed or qualified.
+
+## M5 Interactive experience
+
+- **Deliverables:** static page with an animated decision cascade and the accuracy distribution; playground with reset, seed and scenario controls; published results separated from sandbox runs.
+- **11.6 additions:** demo, paper, reports and articles use identical verified results, labels and scope.
+- **Acceptance:** offline after initial load, responsive, keyboard usable, reduced-motion option, no fabricated data, no runtime service.
+
+## M6 Release candidate
+
+- **Deliverables:** clean clone, locked install, tests, smoke reproduction, demo build, manifest and link checks, secret and licence scan, publication drafts.
+- **11.6 additions:** compile and visually inspect manuscript and report PDFs (pandoc to Typst); verify references, cross-links, equations and figures; owner review checklist.
+- **Acceptance:** actual command outputs recorded; verified facts only; the owner approves any publication. Nothing is pushed or published without approval.
+
+## Cut order if the five-day target is threatened
+
+EXP-003 horizon variation, then the `window-3` network, then demo polish. Controls, the tie-rule sensitivity and scientific reporting are never cut.

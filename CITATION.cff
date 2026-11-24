@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0
+# Licence: HERD Source-Available Non-Commercial Research License v1.0 (custom licence, see LICENSE).
+# It is deliberately not given as an SPDX "license" field because it is not on the SPDX licence list.
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below. Status: unreleased research software in development (M0); no results yet."
+title: "HERD: when social information improves decisions and when it produces cascades of errors"
+type: software
+authors:
+  - family-names: Kefi
+    given-names: Mohamed Bechir
+version: 0.0.0
+keywords:
+  - social learning
+  - information cascades
+  - herding
+  - simulation
+  - reproducibility

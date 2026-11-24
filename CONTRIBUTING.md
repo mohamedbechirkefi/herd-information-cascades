@@ -35,3 +35,9 @@ Mohamed Bechir Kefi is the project owner and lead maintainer, and the only perso
 ## 5. Privacy and disclosure
 
 Never commit an e-mail address, a name or any other personal identifier in code, logs, fixtures or results. Report security issues privately through GitHub's private vulnerability reporting.
+
+## 6. Development commands
+
+- Install the locked environment: `uv sync --frozen` (uv 0.9.5; Python 3.12).
+- Refresh the lockfile after an approved dependency change: `uv lock` (resolution is limited by `exclude-newer` in `pyproject.toml`).
+- Run the tests (once they exist, M2): `uv run pytest`.
