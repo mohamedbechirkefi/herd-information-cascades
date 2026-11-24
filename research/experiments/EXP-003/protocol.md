@@ -1,10 +1,10 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # EXP-003 protocol: sensitivity of the EXP-002 contrasts to the tie rule and the horizon
 
-- **Status:** DRAFT v0.1, 2026-11-24. Not frozen. Awaiting the owner's freeze (G-FREEZE). Not executed.
+- **Status:** FROZEN v1.0, 2026-11-24 (owner-approved, G-FREEZE). Draft v0.1 plus the amendments of section 8. Not yet run.
 - **Type:** confirmatory sensitivity analysis once frozen.
 - **Depends on:** EXP-002 (same engine revision and analysis code).
-- **Protocol hash:** recorded in `research/experiment_registry.csv` at freeze.
+- **Protocol hash:** recorded in `research/experiment_registry.csv` and `research/freeze.json`.
 
 ## 1. Precise question
 
@@ -22,10 +22,10 @@ Under coin-flip ties, which is the convention of BHW1992, an agent with a balanc
 
 ## 4. Design
 
-- Cells: $q \in \{0.55, 0.70\}$ $\times$ $G \in$ {complete, window-1, window-3} $\times$ $v \in \{1.0, 0.5\}$ = 12 cells, 3 rules.
+- Cells: $q \in \{0.55, 0.70\}$ $\times$ $G \in$ {complete, window-2, window-3} $\times$ $v \in \{1.0, 0.5\}$ = 12 cells, 3 rules.
 - Variations: V1 tie = coin, $N = 50$; V2 tie = own signal, $N = 10$; V3 tie = own signal, $N = 200$.
 - Seeds 0 to 9, 1,000 episodes per cell, common random numbers; the coin flips use a separate stream so the episode draws match EXP-002.
-- Estimand, metrics, uncertainty method (normal-approximation interval, bootstrap check, Holm over 24 contrasts per variation) and exclusion and stopping rules as in EXP-002.
+- Estimand, metrics, uncertainty method (normal-approximation interval, bootstrap check, Holm over the non-degenerate contrasts among the 24 of each variation, degenerate contrasts reported as exact comparisons) and exclusion and stopping rules as in EXP-002.
 
 ## 5. Sample size and budget
 
@@ -41,3 +41,13 @@ The coin-flip Bayesian decision tables become stochastic; the `window-k` recursi
 uv run python -m herd.cli run --config experiments/EXP-003.json
 uv run python -m herd.cli report --exp EXP-003
 ```
+
+## 8. Amendments before freeze (owner-approved 2026-11-24)
+
+Applied to draft v0.1 before the freeze; details and rationale in `research/protocol.md` section 11.
+
+- **A-1.** `window-1` replaced by `window-2` (section 4; `experiments/EXP-003.json`).
+- **A-2.** The complete-network equivalence is predicted for $q > 1/2$ and own-signal ties only; under coin ties (V1) the divergence is recorded as a diagnostic without prediction.
+- **A-3.** Within each variation, structurally degenerate (zero-variance) contrasts are excluded from the Holm family and reported as exact comparisons (section 4).
+- **A-4.** Holm-significance means a Holm-adjusted p-value below 0.05 within the variation's family; intervals are unadjusted 95% intervals.
+- **A-5.** Planned sample kept: seeds 0 to 9, 1,000 episodes per seed and cell.

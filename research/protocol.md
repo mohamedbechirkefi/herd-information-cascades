@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # HERD study protocol
 
-**Status: DRAFT v0.1 (2026-11-24). Not frozen. Awaiting the owner's review and freeze (G-FREEZE).** No confirmatory experiment may run under this draft. Any run before the freeze is exploratory and labelled as such.
+**Status: FROZEN v1.0 (2026-11-24), owner-approved under G-FREEZE.** Draft v0.1 plus the amendments of section 11, applied before the freeze. The SHA-256 of this file, of the confirmatory protocols and of the confirmatory configurations is recorded in `research/freeze.json` and `research/experiment_registry.csv`; any later change to this file is a dated amendment that makes a new study version. Runs made before the freeze (EXP-001-R001 to R004) are exploratory and labelled as such.
 
 Per-experiment protocols: `research/experiments/EXP-001/protocol.md` (smoke, exploratory), `research/experiments/EXP-002/protocol.md` (main comparison), `research/experiments/EXP-003/protocol.md` (sensitivity). Feasibility audit: `research/feasibility.md`.
 
@@ -20,22 +20,22 @@ Operational form: in a sequential binary decision task with a hidden state, priv
 - Visibility: each action is publicly recorded with probability $v$, independently of everything else. The record shows which positions are hidden, so the realised visibility pattern is common knowledge. Hidden actions are seen by no one.
 - Observation network $G$: agent $i$ observes the visible actions among the predecessor set $O_i$:
   - `complete`: $O_i = \{1, \dots, i-1\}$ (the setting of Bikhchandani, Hirshleifer and Welch, 1992);
-  - `window-k`: $O_i = \{i-k, \dots, i-1\} \cap \{1, \dots\}$, with $k \in \{1, 3\}$ ($k = 1$ is the single-predecessor setting studied by Celen and Kariv, 2004).
+  - `window-k`: $O_i = \{i-k, \dots, i-1\} \cap \{1, \dots\}$, with $k \in \{2, 3\}$. ($k = 1$, the single-predecessor setting studied by Celen and Kariv, 2004, is degenerate here and replaced by $k = 2$; amendment A-1.)
 - Decision rules (one rule per arm; populations are homogeneous within an arm):
   - **Independent (baseline):** $a_i = s_i$.
   - **Bayesian:** $a_i = \mathbb{1}[P(\theta = 1 \mid s_i, h_i) > 1/2]$, where $h_i$ is the observed history and all agents are commonly known to be Bayesian. Ties ($= 1/2$) follow the own signal (primary rule). Posteriors are computed exactly: for `complete`, by the public-belief recursion over visible actions; for `window-k`, by a forward recursion over the $2^{k}$ possible observed windows, $P(w_i \mid \theta)$, using the predecessors' deterministic decision tables. The likelihood ratio of one signal is $q/(1-q)$.
   - **Imitation (naive vote counting):** $a_i = \mathbb{1}[n_1 - n_0 + (2 s_i - 1) > 0]$, where $n_1, n_0$ count observed actions; ties follow the own signal. Every observed action is treated as one independent signal of the same precision as the agent's own, which is the naive inference error discussed by Eyster and Rabin (2010).
-- Analytic anchor (for verification, not a result): for Bayesian agents, `complete`, $v = 1$, own-signal tie rule, the probability that a cascade on the wrong action eventually starts is $(1-q)^2 / (q^2 + (1-q)^2)$, and the probability that no cascade has started after $2m$ agents is $(2q(1-q))^m$. These follow from the random walk of the public signal difference, which is absorbed at $\pm 2$. They are derived in this protocol and will be checked by a test (M2) and by EXP-001.
-- Pre-stated structural prediction (not a result): under `complete` with any $v$, the imitation rule and the Bayesian rule produce identical actions on every episode, because both act on their own signal while the observed lead is at most one and herd once it reaches two. Any difference in this setting indicates an implementation error. The two rules can differ under `window-k`.
+- Analytic anchor (for verification, not a result), defined for $q > 1/2$ only (amendment A-2): for Bayesian agents, `complete`, $v = 1$, own-signal tie rule, the probability that a cascade on the wrong action eventually starts is $(1-q)^2 / (q^2 + (1-q)^2)$, and the probability that no cascade has started after $2m$ agents is $(2q(1-q))^m$. These follow from the random walk of the public signal difference, which is absorbed at $\pm 2$. They are derived in this protocol and will be checked by a test (M2) and by EXP-001. At $q = 1/2$ the formula is not an anchor: every Bayesian comparison is a tie and no cascade forms.
+- Pre-stated structural prediction (not a result), for $q > 1/2$ only (amendment A-2): under `complete` with any $v$, the imitation rule and the Bayesian rule produce identical actions on every episode, because both act on their own signal while the observed lead is at most one and herd once it reaches two. Any difference in this setting indicates an implementation error. The two rules can differ under `window-k`. At $q = 1/2$ the prediction does not hold and is not made: every Bayesian comparison is a tie, so Bayesian agents follow their signal, while imitators still count observed actions and herd.
 
 ## 3. Hypotheses (EXP-002, primary)
 
 Let $\mathrm{Acc}_r(e)$ be the episode-level accuracy of rule $r$ in episode $e$ (definition in section 4) and $\Delta_r(c) = E[\mathrm{Acc}_r - \mathrm{Acc}_{\mathrm{ind}}]$ for cell $c = (q, G, v)$, estimated on matched episodes.
 
 - **H0:** $\Delta_r(c) = 0$ for every social rule $r \in \{\text{Bayesian}, \text{imitation}\}$ and every cell $c$.
-- **H1 (non-directional):** $\Delta_r(c) \neq 0$ for at least one $(r, c)$; the answer to the research question is the map of signs and magnitudes of $\Delta_r(c)$ over the grid, each with a Holm-adjusted 95% confidence interval.
+- **H1 (non-directional):** $\Delta_r(c) \neq 0$ for at least one $(r, c)$; the answer to the research question is the map of signs and magnitudes of $\Delta_r(c)$ over the grid. Each contrast is reported with its unadjusted 95% interval (magnitude) and its Holm-adjusted p-value (decision), as defined in section 5 (amendment A-4).
 - **Pre-stated directional expectations** (reported as expectations, tested by the same intervals): Bayesian $\Delta > 0$ in every cell with $q > 1/2$ (each Bayesian agent maximises its own expected accuracy given strictly more information); imitation $\Delta$ is non-positive in some `window-k` cells at low $q$. A Bayesian $\Delta$ significantly below zero contradicts theory and triggers the stopping rule for an implementation check before any interpretation.
-- **Disconfirmation:** H1 is not supported if every Holm-adjusted interval contains zero. The directional expectation for imitation is contradicted if imitation $\Delta$ is significantly positive in every cell.
+- **Disconfirmation:** H1 is not supported if no contrast is Holm-significant (section 5) and no structurally degenerate contrast has a non-zero exact difference. The directional expectation for imitation is contradicted if imitation $\Delta$ is significantly positive in every cell.
 
 ## 4. Operational definitions and metrics
 
@@ -54,10 +54,12 @@ All metrics are computed per episode, then averaged over episodes. Units are sta
 
 - **Experimental unit:** an episode, i.e. one draw of $(\theta, s_1..s_N, \text{visibility pattern})$ played out by $N$ agents. Episodes are independent.
 - **Matching (common random numbers):** within a seed and episode index, all three rules receive the same $\theta$, signals and visibility pattern. Comparisons are paired at the episode level.
-- **Factors (full matrix, EXP-002):** rule $\in$ {independent, Bayesian, imitation} $\times$ $q \in \{0.55, 0.60, 0.70, 0.80\}$ $\times$ $G \in$ {complete, window-1, window-3} $\times$ $v \in \{1.0, 0.5\}$ = 72 arms, 24 cells. $N = 50$.
+- **Factors (full matrix, EXP-002):** rule $\in$ {independent, Bayesian, imitation} $\times$ $q \in \{0.55, 0.60, 0.70, 0.80\}$ $\times$ $G \in$ {complete, window-2, window-3} $\times$ $v \in \{1.0, 0.5\}$ = 72 arms, 24 cells. $N = 50$.
 - **Seeds:** 10 independent master seeds (0 to 9), each producing 1,000 episodes per cell: 10,000 episodes per arm. Seeds are RNG streams and replication checks; per-seed means are reported. The inferential unit is the episode.
 - **Sample-size rationale:** episode accuracy lies in [0, 1], so a paired difference has standard deviation at most 1, and in practice at most about 0.5 for bimodal cascade outcomes. With 10,000 paired episodes the standard error is at most 0.005 at SD 0.5, giving a 95% half-width of about 0.01 (one accuracy point) before multiplicity adjustment. This is the smallest effect treated as practically meaningful. The cost estimate is in `research/feasibility.md`.
-- **Uncertainty method:** for each $(r, c)$, the mean paired difference with a normal-approximation 95% interval at the episode level, checked against a percentile bootstrap over episodes (2,000 resamples, fixed seed). Holm adjustment across the 48 primary contrasts (2 rules $\times$ 24 cells), with two-sided paired t-test p-values. Effect sizes are reported as absolute differences in accuracy points, with raw distributions (histograms of episode accuracy) for every arm.
+- **Uncertainty method:** for each $(r, c)$, the mean paired difference with a normal-approximation 95% interval at the episode level, checked against a percentile bootstrap over episodes (2,000 resamples, fixed seed). Holm adjustment across the 48 primary contrasts (2 rules $\times$ 24 cells), with two-sided paired t-test p-values, under the following two rules.
+  - *Zero-variance contrasts (amendment A-3).* A contrast is structurally degenerate if every paired difference is identical (paired SD exactly 0), so no t statistic exists. It is excluded from the Holm family and reported as an exact comparison (the exact value of $\Delta$, with no p-value and no interval). The Holm family of an experiment, or of an EXP-003 variation, is its non-degenerate contrasts; its size $m$ is reported. After amendment A-1, no degenerate contrast is expected in EXP-002.
+  - *Decision rule and intervals (amendment A-4).* A contrast is *Holm-significant* if it is in the Holm family and its Holm-adjusted two-sided p-value is below 0.05 (familywise error rate 0.05). The interval reported for every contrast is the unadjusted normal-approximation 95% interval at the episode level, with the bootstrap check; it describes magnitude and is not a simultaneous interval. No "Holm-adjusted interval" is computed or claimed: Holm's procedure adjusts p-values only. Effect sizes are reported as absolute differences in accuracy points, with raw distributions (histograms of episode accuracy) for every arm.
 - **Controls:** the independent rule is the baseline; the zero-information case $q = 1/2$ and the analytic anchor of section 2 are verification controls (EXP-001, tests).
 - **Compute budget:** fixed in advance at one local machine, single process allowed, wall-clock target under one hour for EXP-002; the actual runtime is recorded.
 
@@ -70,16 +72,16 @@ All metrics are computed per episode, then averaged over episodes. Units are sta
 
 ## 7. Smoke matrix (EXP-001, exploratory)
 
-Rules all three; $q \in \{0.5, 0.6, 0.8\}$; $G \in$ {complete, window-1}; $v = 1.0$; $N = 20$; 2 seeds $\times$ 200 episodes. Purpose: toolchain, schema, timing and verification checks only. Its numbers are never used as evidence for H1.
+Rules all three; $q \in \{0.5, 0.6, 0.8\}$; $G \in$ {complete, window-1}; $v = 1.0$; $N = 20$; 2 seeds $\times$ 200 episodes. This matrix was executed before the freeze (EXP-001-R001) and is kept as run; `window-1` stays in it only as an exploratory verification cell. The analytic-anchor check applies to $q \in \{0.6, 0.8\}$ and the complete-network equivalence check to $q > 1/2$ (amendment A-2). Purpose: toolchain, schema, timing and verification checks only. Its numbers are never used as evidence for H1.
 
 ## 8. Sensitivity analysis (EXP-003)
 
-The main interpretation could be invalidated if the sign of $\Delta$ depends on arbitrary modelling conventions. EXP-003 reruns the EXP-002 cells for $q \in \{0.55, 0.70\}$ with:
+The main interpretation could be invalidated if the sign of $\Delta$ depends on arbitrary modelling conventions. EXP-003 reruns the EXP-002 cells (networks complete, window-2, window-3) for $q \in \{0.55, 0.70\}$ with:
 
 1. **Tie rule:** ties broken by a fair coin instead of the own signal (the convention of Bikhchandani, Hirshleifer and Welch, 1992).
 2. **Horizon:** $N \in \{10, 200\}$ instead of 50, since averaging over agents weights early, informative actions differently.
 
-The main interpretation is considered fragile if any Holm-significant sign in EXP-002 reverses or loses significance under either variation; this is reported as a finding, not hidden.
+The main interpretation is considered fragile if any Holm-significant sign in EXP-002 reverses or loses significance under either variation; this is reported as a finding, not hidden. Holm-significance in each variation follows section 5 (family of the variation's non-degenerate contrasts).
 
 ## 9. Confounders and competing explanations
 
@@ -93,5 +95,19 @@ The main interpretation is considered fragile if any Holm-significant sign in EX
 Synthetic actors do not establish real human irrationality. The rules are stylised; the Bayesian rule assumes common knowledge of rationality and of the network. Results hold only within these assumptions.
 
 ## 11. Amendments
+
+### Amendments before freeze (owner-approved 2026-11-24)
+
+Proposals P-1 to P-6 (`research/amendment_proposals.md`) were answered by the owner on 2026-11-24 (`../_shared/owner-approvals-2026-11-24.md`, HERD section). They were applied to draft v0.1 before the freeze, and only these:
+
+- **A-1 (P-1). `window-1` replaced by `window-2`.** With binary signals and own-signal ties, `window-1` makes both social rules reproduce the independent baseline exactly, so its 16 contrasts are zero by construction. EXP-002 and EXP-003 use {complete, window-2, window-3}. Changed: sections 2, 5 and 8 here; EXP-002 sections 4 and 6; EXP-003 section 4; `experiments/EXP-002.json` and `experiments/EXP-003.json`; the fallback in `research/feasibility.md` section 8 becomes {complete, window-2}.
+- **A-2 (P-2, P-3). The analytic anchor and the complete-network equivalence are restricted to $q > 1/2$.** Changed: section 2 and section 7 here; EXP-001 checks 1 and 4 (check 1 applies to $q \in \{0.6, 0.8\}$ in the smoke matrix). The runner already applied both checks only for $q > 1/2$; no code change was needed.
+- **A-3 (P-4). Zero-variance contrasts.** Structurally degenerate contrasts are excluded from the Holm family and reported as exact comparisons (section 5). Changed: section 5 here; EXP-002 section 9; EXP-003 section 4; `src/herd/runner.py` (`apply_holm`) and the result schema (`p_holm` may be null; `holm_family` flag).
+- **A-4 (P-5). Meaning of "Holm-adjusted intervals".** The decision rule uses Holm-adjusted p-values; the reported intervals are unadjusted 95% intervals for magnitude; no simultaneous interval is claimed (section 5). Changed: sections 3 and 5 here; EXP-002 sections 4 and 9. No code change: the implementation already reported these quantities.
+- **A-5 (P-6). Planned sample kept.** 10 seeds $\times$ 1,000 episodes per cell, unchanged.
+
+The approval named the topics of A-3 and A-4 without choosing between the options listed in P-4 and P-5. The options written above were chosen by the AI assistant at the freeze, by the rule of master prompt section 11.3 item 8 (exact comparisons for deterministic results) and the existing implementation, before any confirmatory value was seen; neither depends on an observed value of the primary contrast.
+
+### Amendments after freeze
 
 None. Any amendment after the freeze will be dated, justified and kept separate from the frozen analysis.

@@ -100,3 +100,38 @@ def protocol_frozen(exp_id: str, root: Path = REPO_ROOT) -> tuple[bool, str]:
     if actual != recorded:
         return False, f"{exp_id} protocol file hash {actual} differs from the frozen hash {recorded}"
     return True, f"{exp_id} protocol frozen at {recorded}"
+
+
+FREEZE_RECORD = Path("research") / "freeze.json"
+
+
+def config_frozen(config: dict, root: Path = REPO_ROOT) -> tuple[bool, str]:
+    """A confirmatory configuration may run only if the freeze record (research/freeze.json) lists it.
+
+    The record must exist, the study protocol and the experiment protocol on disk must still have the
+    hashes it records, and the canonical SHA-256 of the configuration (sorted keys, compact separators)
+    must equal the hash recorded for one of the experiment's frozen configurations."""
+    path = root / FREEZE_RECORD
+    if not path.is_file():
+        return False, f"freeze record {FREEZE_RECORD} not found"
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return False, f"freeze record {FREEZE_RECORD} is not valid JSON ({exc})"
+    study = record.get("study_protocol") or {}
+    study_path = root / study.get("path", "")
+    if not SHA256_RE.match(study.get("sha256", "")) or not study_path.is_file():
+        return False, "freeze record has no valid study protocol entry"
+    if sha256_file(study_path) != study["sha256"]:
+        return False, f"study protocol {study['path']} differs from the frozen hash {study['sha256']}"
+    exp = (record.get("experiments") or {}).get(config["exp_id"])
+    if not exp:
+        return False, f"{config['exp_id']} is not in the freeze record"
+    proto = root / exp.get("protocol_path", "")
+    if not proto.is_file() or sha256_file(proto) != exp.get("protocol_sha256"):
+        return False, f"{config['exp_id']} protocol differs from the hash in the freeze record"
+    digest = config_hash(config)
+    frozen = {c.get("canonical_sha256") for c in exp.get("configs", [])}
+    if digest not in frozen:
+        return False, f"configuration hash {digest} is not a frozen {config['exp_id']} configuration"
+    return True, f"configuration {digest} frozen for {config['exp_id']}"

@@ -64,6 +64,7 @@ def contrast_rows(res: dict) -> list[dict]:
                      "delta_mean": c["mean"], "ci_low": c["ci_low"], "ci_high": c["ci_high"],
                      "boot_ci_low": c.get("boot_ci_low"), "boot_ci_high": c.get("boot_ci_high"),
                      "paired_sd": c["sd"], "p_value": c["p_value"], "p_holm": c["p_holm"], "degenerate": c["degenerate"],
+                     "holm_family": c.get("holm_family", True),
                      "n_seeds": len(seeds), "seed_mean_sd": seed_sd,
                      "projected_half_width_10000": Z95 * c["sd"] / math.sqrt(10000)})
     return rows
@@ -217,7 +218,8 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
     lines += [("None." if not res["failures"] else "\n".join(f"- {f['variation']} {cell_label(f['cell'])} seed {f['seed']}: {f['error']}" for f in res["failures"])), ""]
     lines += ["## Paired accuracy differences against the independent baseline", "",
               "Mean paired difference in episode accuracy (proportion of agents correct), normal-approximation 95% interval at the "
-              "episode level, Holm adjustment within each variation. `seed SD` is the standard deviation of the per-seed mean "
+              "episode level, Holm adjustment within each variation over its non-degenerate contrasts; a degenerate contrast (zero "
+              "paired variance) is an exact comparison outside the Holm family and shows `n/a` as its Holm p-value. `seed SD` is the standard deviation of the per-seed mean "
               "differences; `hw@10k` is the 95% half-width that the observed paired SD implies at 10,000 episodes.", ""]
     crow = contrast_rows(res)
     for r in crow:

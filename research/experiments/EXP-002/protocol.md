@@ -1,10 +1,10 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # EXP-002 protocol: social learning versus independent decisions across signal quality, network and visibility
 
-- **Status:** DRAFT v0.1, 2026-11-24. Not frozen. Awaiting the owner's freeze (G-FREEZE). Not executed.
+- **Status:** FROZEN v1.0, 2026-11-24 (owner-approved, G-FREEZE). Draft v0.1 plus the amendments of section 14. Not yet run.
 - **Type:** confirmatory once frozen.
 - **Depends on:** EXP-001 (smoke and verification) and the M2 verification tests passing.
-- **Protocol hash:** none yet; the SHA-256 of this file is recorded in `research/experiment_registry.csv` at freeze.
+- **Protocol hash:** the SHA-256 of this file is recorded in `research/experiment_registry.csv` and `research/freeze.json`.
 - **Study-level protocol:** `research/protocol.md` (model, definitions). This file is the experiment-specific operationalisation.
 
 ## 1. Precise question
@@ -25,8 +25,8 @@ Observing predecessors adds information, but once public evidence outweighs any 
 
 - **H0:** $\Delta_r(c) = 0$ for all $r \in$ {Bayesian, imitation} and all 24 cells $c = (q, G, v)$.
 - **H1 (non-directional):** $\Delta_r(c) \neq 0$ for at least one $(r, c)$.
-- **Directional expectations:** Bayesian $\Delta \geq 0$ everywhere; imitation $\Delta$ equals Bayesian $\Delta$ under `complete`; imitation $\Delta < 0$ in at least one `window-k` cell at low $q$.
-- **Contradicting results:** H1 is not supported if all 48 Holm-adjusted 95% intervals contain zero. A Bayesian $\Delta$ significantly below zero, or any divergence between imitation and Bayesian actions under `complete`, contradicts the model and stops interpretation pending an implementation check.
+- **Directional expectations:** Bayesian $\Delta \geq 0$ everywhere; imitation $\Delta$ equals Bayesian $\Delta$ under `complete`; imitation $\Delta < 0$ in at least one `window-k` cell at low $q$ ($k \in \{2, 3\}$).
+- **Contradicting results:** H1 is not supported if no contrast is Holm-significant (Holm-adjusted p < 0.05 within the family of non-degenerate contrasts) and no degenerate contrast has a non-zero exact difference. A Bayesian $\Delta$ significantly below zero, or any divergence between imitation and Bayesian actions under `complete`, contradicts the model and stops interpretation pending an implementation check.
 
 ## 5. Estimand
 
@@ -35,7 +35,7 @@ $\Delta_r(c) = E_e[\mathrm{Acc}_r(e) - \mathrm{Acc}_{\mathrm{ind}}(e)]$, the exp
 ## 6. Unit, scope and variables
 
 - **Experimental unit:** episode. **Simulation scope:** $N = 50$ agents, prior $1/2$.
-- **Independent variables:** rule (3 levels), $q \in \{0.55, 0.60, 0.70, 0.80\}$, $G \in$ {complete, window-1, window-3}, $v \in \{1.0, 0.5\}$.
+- **Independent variables:** rule (3 levels), $q \in \{0.55, 0.60, 0.70, 0.80\}$, $G \in$ {complete, window-2, window-3}, $v \in \{1.0, 0.5\}$.
 - **Dependent variables:** primary, episode accuracy; secondary, cascade probability, wrong-cascade probability, error persistence (longest wrong run, agents), informative-action share, action entropy (bits), last-agent accuracy. Formulas in `research/protocol.md` section 4.
 - **Treatment:** Bayesian or imitation rule. **Control and baseline:** independent rule on the same episode.
 
@@ -50,7 +50,9 @@ One local process on the audited machine; target under one hour wall-clock; actu
 
 ## 9. Analysis plan
 
-- For each $(r, c)$: mean paired difference, normal-approximation 95% interval, percentile bootstrap check (2,000 resamples over episodes, fixed seed), two-sided paired t-test p-value, Holm adjustment over 48 contrasts.
+- For each $(r, c)$: mean paired difference, normal-approximation 95% interval, percentile bootstrap check (2,000 resamples over episodes, fixed seed), two-sided paired t-test p-value, Holm adjustment over the non-degenerate contrasts among the 48 (familywise error rate 0.05).
+- A structurally degenerate contrast (zero paired variance) has no t statistic; it is excluded from the Holm family and reported as an exact comparison, and the family size is reported (amendment A-3).
+- The 95% intervals are unadjusted and describe magnitude; the decision uses Holm-adjusted p-values only. No simultaneous interval is claimed (amendment A-4).
 - Per-seed means and the full distribution of episode accuracy for every arm.
 - Secondary metrics: means with 95% intervals per arm; no multiplicity adjustment; described as secondary.
 
@@ -73,3 +75,15 @@ uv sync --frozen
 uv run python -m herd.cli run --config experiments/EXP-002.json
 uv run python -m herd.cli report --exp EXP-002
 ```
+
+## 14. Amendments before freeze (owner-approved 2026-11-24)
+
+Applied to draft v0.1 before the freeze; details and rationale in `research/protocol.md` section 11.
+
+- **A-1.** `window-1` replaced by `window-2` (sections 4 and 6; `experiments/EXP-002.json`).
+- **A-2.** The complete-network equivalence is predicted for $q > 1/2$ only; every EXP-002 cell has $q \geq 0.55$, so the check applies to all `complete` cells.
+- **A-3.** Structurally degenerate (zero-variance) contrasts are excluded from the Holm family and reported as exact comparisons (section 9).
+- **A-4.** Decisions use Holm-adjusted p-values; reported intervals are unadjusted 95% intervals; no simultaneous interval is claimed (sections 4 and 9).
+- **A-5.** Planned sample kept: seeds 0 to 9, 1,000 episodes per seed and cell (section 7, unchanged).
+
+The reproduction commands of section 13 are kept as drafted (not part of the approved amendments); the working commands, with the `PYTHONPATH=src` prefix and `report --run`, are in `CONTRIBUTING.md` and `research/freeze.json`.

@@ -6,11 +6,10 @@ import json
 
 import pytest
 
-from herd.cli import main
 from herd.model import ModelError
-from herd.provenance import REPO_ROOT, protocol_frozen
+from herd.provenance import REPO_ROOT, config_frozen, config_hash, protocol_frozen
 from herd.report import build_report
-from herd.runner import ProtocolGateError, run
+from herd.runner import ProtocolGateError, apply_holm, gate, run
 from herd.schema import SchemaError, errors, load_schema, validate
 from herd.serialize import read_result, write_run
 
@@ -64,13 +63,73 @@ def test_invalid_configs_rejected(mutation):
         run(cfg)
 
 
-def test_confirmatory_config_refused_while_unfrozen(tmp_path):
-    cfg = {**copy.deepcopy(BASE), "exp_id": "EXP-002", "run_id": "EXP-002-R001", "label": "confirmatory",
-           "output_dir": "results/EXP-002/x"}
-    with pytest.raises(ProtocolGateError):
-        run(cfg)  # the real registry: EXP-002 is a draft
-    frozen, reason = protocol_frozen("EXP-002")
-    assert not frozen and "not frozen" in reason
+def _synthetic_freeze(tmp_path):
+    for exp in ("EXP-009",):
+        (tmp_path / "research" / "experiments" / exp).mkdir(parents=True)
+    study = tmp_path / "research" / "protocol.md"
+    study.write_text("study protocol\n")
+    proto = tmp_path / "research" / "experiments" / "EXP-009" / "protocol.md"
+    proto.write_text("frozen protocol\n")
+    digest = hashlib.sha256(proto.read_bytes()).hexdigest()
+    (tmp_path / "research" / "experiment_registry.csv").write_text(
+        f"exp_id,protocol_path,protocol_sha256\nEXP-009,research/experiments/EXP-009/protocol.md,{digest}\n")
+    cfg = {**copy.deepcopy(BASE), "exp_id": "EXP-009", "run_id": "EXP-009-R001", "label": "confirmatory",
+           "output_dir": "results/EXP-009/x"}
+    record = {"study_protocol": {"path": "research/protocol.md", "sha256": hashlib.sha256(study.read_bytes()).hexdigest()},
+              "experiments": {"EXP-009": {"protocol_path": "research/experiments/EXP-009/protocol.md",
+                                          "protocol_sha256": digest,
+                                          "configs": [{"canonical_sha256": config_hash(cfg)}]}}}
+    (tmp_path / "research" / "freeze.json").write_text(json.dumps(record))
+    return cfg, study, proto
+
+
+def test_freeze_record_gate_with_synthetic_root(tmp_path):
+    cfg, study, proto = _synthetic_freeze(tmp_path)
+    assert config_frozen(cfg, tmp_path)[0]
+    assert "frozen" in gate(cfg, tmp_path)
+    changed = {**cfg, "episodes_per_seed": 41}
+    with pytest.raises(ProtocolGateError, match="not a frozen"):
+        gate(changed, tmp_path)
+    study.write_text("study protocol edited after freeze\n")
+    ok, reason = config_frozen(cfg, tmp_path)
+    assert not ok and "study protocol" in reason
+    (tmp_path / "research" / "freeze.json").unlink()
+    ok, reason = config_frozen(cfg, tmp_path)
+    assert not ok and "not found" in reason
+
+
+def test_gate_refuses_when_registry_unfrozen_even_with_freeze_record(tmp_path):
+    cfg, _, proto = _synthetic_freeze(tmp_path)
+    (tmp_path / "research" / "experiment_registry.csv").write_text(
+        "exp_id,protocol_path,protocol_sha256\nEXP-009,research/experiments/EXP-009/protocol.md,none\n")
+    with pytest.raises(ProtocolGateError, match="not frozen"):
+        gate(cfg, tmp_path)
+
+
+def _contrast(variation, p, degenerate=False):
+    return {"variation": variation, "p_value": p, "degenerate": degenerate}
+
+
+def test_holm_family_excludes_degenerate_contrasts():
+    cs = [_contrast("a", 0.01), _contrast("a", 1.0, degenerate=True), _contrast("a", 0.04), _contrast("a", 0.03),
+          _contrast("a", 0.005), _contrast("b", 0.02), _contrast("b", 0.0, degenerate=True)]
+    apply_holm(cs)
+    a = [c for c in cs if c["variation"] == "a"]
+    # family of variation a: four non-degenerate p-values, hand-computed Holm as in test_holm_hand_computed
+    assert [c["p_holm"] for c in a if c["holm_family"]] == pytest.approx([0.03, 0.06, 0.06, 0.02])
+    assert a[1]["holm_family"] is False and a[1]["p_holm"] is None
+    b = [c for c in cs if c["variation"] == "b"]
+    assert b[0]["p_holm"] == pytest.approx(0.02) and b[1]["holm_family"] is False and b[1]["p_holm"] is None
+
+
+def test_degenerate_contrast_in_a_run_is_reported_outside_holm():
+    # window-1 with own-signal ties is degenerate (amendment A-1): an exploratory run must flag it
+    cfg = {**copy.deepcopy(BASE), "q": [0.7], "networks": ["window-1"], "visibility": [1.0]}
+    res = run(cfg).result
+    assert res["contrasts"] and all(c["degenerate"] for c in res["contrasts"])
+    assert all(c["holm_family"] is False and c["p_holm"] is None for c in res["contrasts"])
+    rows = __import__("herd.report", fromlist=["contrast_rows"]).contrast_rows(res)
+    assert all(r["holm_family"] is False for r in rows)
 
 
 def test_protocol_gate_with_synthetic_registry(tmp_path):
@@ -88,12 +147,6 @@ def test_protocol_gate_with_synthetic_registry(tmp_path):
     proto.write_text("edited after freeze\n")
     ok, reason = protocol_frozen("EXP-009", tmp_path)
     assert not ok and "differs" in reason
-
-
-def test_cli_run_refuses_confirmatory_config(capsys):
-    assert main(["run", "--config", "experiments/EXP-002.json"]) == 3
-    assert "REFUSED" in capsys.readouterr().err
-    assert main(["run", "--config", "experiments/EXP-003.json"]) == 3
 
 
 def test_shipped_configs_are_valid():

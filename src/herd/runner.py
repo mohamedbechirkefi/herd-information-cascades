@@ -17,7 +17,7 @@ from . import RESULT_SCHEMA_VERSION
 from .generate import generate_episodes
 from .metrics import METRICS, episode_metrics
 from .model import Cell, ModelError
-from .provenance import REPO_ROOT, config_hash, protocol_frozen
+from .provenance import REPO_ROOT, config_frozen, config_hash, protocol_frozen
 from .reference import analytic_wrong_cascade_probability
 from .rules import run_rule
 from .schema import load_schema, validate
@@ -60,7 +60,27 @@ def gate(config: dict, root=REPO_ROOT) -> str:
     frozen, reason = protocol_frozen(config["exp_id"], root)
     if not frozen:
         raise ProtocolGateError(f"refusing to run confirmatory configuration: {reason}. Freezing is the owner's decision (G-FREEZE).")
-    return reason
+    ok, why = config_frozen(config, root)
+    if not ok:
+        raise ProtocolGateError(f"refusing to run confirmatory configuration: {why}. Freezing is the owner's decision (G-FREEZE).")
+    return f"{reason}; {why}"
+
+
+def apply_holm(contrasts: list[dict]) -> None:
+    """Holm adjustment within each variation (amendment A-3, owner-approved 2026-11-24).
+
+    A structurally degenerate contrast (every paired difference identical, so zero variance) has no
+    test statistic. It is excluded from the Holm family and reported as an exact comparison:
+    holm_family = False and p_holm = None. The family of a variation is its non-degenerate contrasts.
+    """
+    for variation in {c["variation"] for c in contrasts}:
+        group = [c for c in contrasts if c["variation"] == variation]
+        family = [c for c in group if not c["degenerate"]]
+        for c in group:
+            c["holm_family"] = not c["degenerate"]
+            c["p_holm"] = None
+        for c, adj in zip(family, holm([c["p_value"] for c in family])):
+            c["p_holm"] = adj
 
 
 def cells(config: dict):
@@ -148,11 +168,7 @@ def run(config: dict, root=REPO_ROOT) -> RunOutput:
         if config["verification"]:
             checks.extend(_checks(variation, cell, rules, pooled, extra, per_rule_near))
         t_analysis += time.perf_counter() - t1
-    # Holm adjustment within each variation, over all contrasts of that variation.
-    for variation in {c["variation"] for c in contrasts}:
-        group = [c for c in contrasts if c["variation"] == variation]
-        for c, adj in zip(group, holm([c["p_value"] for c in group])):
-            c["p_holm"] = adj
+    apply_holm(contrasts)
     result = {
         "schema_version": RESULT_SCHEMA_VERSION, "kind": "herd-result",
         "run_id": config["run_id"], "exp_id": config["exp_id"], "label": config["label"],

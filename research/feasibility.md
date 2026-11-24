@@ -52,4 +52,4 @@ No paid service, API, dataset, compute or hosting. All dependencies are free and
 
 - In scope: binary state, binary signals, sequential single actions, three rules, two network families, two visibility levels.
 - Excluded: human participants, real behavioural data, continuous signals, heterogeneous preferences, repeated actions, general random graphs (exact Bayesian inference there is not tractable within budget).
-- Fallback: if the exact `window-3` Bayesian recursion proves too slow or cannot be verified, the network factor is reduced to {complete, window-1} before the freeze, and this is recorded as an amendment to the draft.
+- Fallback: if the exact `window-3` Bayesian recursion proves too slow or cannot be verified, the network factor is reduced to {complete, window-2}, and this is recorded as an amendment (amendment A-1, owner-approved 2026-11-24, replaced the earlier fallback {complete, window-1}, since `window-1` is degenerate).

@@ -87,7 +87,8 @@
         "degenerate": {"type": "boolean"},
         "t": {"type": ["number", "null"]},
         "p_value": {"type": "number", "minimum": 0, "maximum": 1},
-        "p_holm": {"type": "number", "minimum": 0, "maximum": 1},
+        "p_holm": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "holm_family": {"type": "boolean"},
         "boot_ci_low": {"type": "number"}, "boot_ci_high": {"type": "number"},
         "per_seed_mean": {"type": "array", "items": {"type": "number"}}
       }

@@ -1,9 +1,9 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # EXP-001 protocol: smoke matrix and engine verification (exploratory)
 
-- **Status:** DRAFT v0.1, 2026-11-24. Exploratory by design: its numbers are never evidence for the study hypotheses. Not executed.
+- **Status:** v1.0, 2026-11-24, exploratory by design: its numbers are never evidence for the study hypotheses. Executed before the freeze (EXP-001-R001 to R004); amended before the freeze (section 10).
 - **Depends on:** M2 core engine and unit tests.
-- **Protocol hash:** recorded in `research/experiment_registry.csv` when the owner freezes the study protocol.
+- **Protocol hash:** recorded in `research/experiment_registry.csv` and `research/freeze.json` (exploratory; not a confirmatory protocol).
 
 ## 1. Precise question
 
@@ -19,10 +19,10 @@ Implementation error; Monte Carlo error; an error in the analytic derivation its
 
 ## 4. Hypotheses (verification checks, each with a pass criterion)
 
-1. **Analytic anchor.** Bayesian, `complete`, $v = 1$: the observed share of episodes with a wrong cascade by agent $N$ matches $\frac{(1-q)^2}{q^2 + (1-q)^2}\left(1 - (2q(1-q))^{m}\right)$ with $m = \lfloor (N-1)/2 \rfloor$, within its 99% binomial interval. Derivation (to be repeated in the report): from a public difference of 0, the next two informative actions reach $+2$ with probability $q^2$, $-2$ with probability $(1-q)^2$ and return to 0 with probability $2q(1-q)$; the first cascading agent is agent $2j+1$ after $j$ such pairs, so a cascade agent exists by agent $N$ only if $j \leq m$. The M2 reference function computes the same quantity by exact enumeration for small $N$ as an independent check.
+1. **Analytic anchor.** Bayesian, `complete`, $v = 1$, $q > 1/2$ only, so $q \in \{0.6, 0.8\}$ in the smoke matrix (amendment A-2): the observed share of episodes with a wrong cascade by agent $N$ matches $\frac{(1-q)^2}{q^2 + (1-q)^2}\left(1 - (2q(1-q))^{m}\right)$ with $m = \lfloor (N-1)/2 \rfloor$, within its 99% binomial interval. Derivation (to be repeated in the report): from a public difference of 0, the next two informative actions reach $+2$ with probability $q^2$, $-2$ with probability $(1-q)^2$ and return to 0 with probability $2q(1-q)$; the first cascading agent is agent $2j+1$ after $j$ such pairs, so a cascade agent exists by agent $N$ only if $j \leq m$. The M2 reference function computes the same quantity by exact enumeration for small $N$ as an independent check.
 2. **Zero information** ($q = 1/2$): all rules have expected accuracy $1/2$; Bayesian agents' posteriors equal $1/2$ for every history; no cascades are recorded for Bayesian agents (every tie follows the own signal).
 3. **Independent baseline:** mean accuracy matches $q$ within its 99% binomial interval; cascade share is exactly zero.
-4. **Equivalence:** Bayesian and imitation actions are identical on every episode under `complete`.
+4. **Equivalence:** Bayesian and imitation actions are identical on every episode under `complete`, for $q > 1/2$ only (amendment A-2). At $q = 1/2$ the equivalence does not hold and is not checked.
 5. **Schema:** every output validates against the versioned result schema.
 
 A failed check is a finding: it is recorded, and EXP-002 does not start until it is resolved.
@@ -48,3 +48,8 @@ Off-by-one in cascade onset; ties mis-detected through floating point; RNG strea
 ```
 uv run python -m herd.cli smoke
 ```
+
+## 10. Amendments before freeze (owner-approved 2026-11-24)
+
+- **A-2.** Checks 1 and 4 are restricted to $q > 1/2$ (section 4). The runner already applied both checks only for $q > 1/2$ in R001 to R004.
+- **A-1** does not change this smoke matrix: it was executed before the freeze with `window-1` and is kept as run. `window-1` is an exploratory verification cell here and appears in no confirmatory experiment.
