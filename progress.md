@@ -135,3 +135,16 @@ Owner: review `research/amendment_proposals.md` (especially P-1, `window-1` dege
 ### Next action
 
 M3, scheduled by the coordinator: run EXP-002 and EXP-003 under the frozen v1.0 protocols, then write the 11.3 reports (EXP-001 report included).
+
+## 2026-11-24: Session RATIFY (owner's second-round decisions)
+
+**Milestone:** records only, before M3. Nothing confirmatory was run.
+
+### Work
+
+- The owner answered "Approve all" (`../_shared/owner-approvals-2026-11-24b.md`); the HERD item ratifies the freeze-time choices A-3 (zero-variance contrasts outside the Holm family) and A-4 (unadjusted 95% intervals, decisions on Holm-adjusted p-values). Recorded as D-009 and as R-1 in `research/freeze.json` (`ratifications`).
+- No protocol, config or code changed; all frozen hashes unchanged. No other second-round item applies to HERD.
+
+### Next action
+
+M3, scheduled by the coordinator: run EXP-002 and EXP-003 under the frozen v1.0 protocols.

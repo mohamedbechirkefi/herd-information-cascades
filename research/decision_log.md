@@ -66,3 +66,11 @@ Each entry: id, date, decision, decided by, rationale, alternatives, consequence
 - **Rationale:** the owner approved the proposals. For P-4 and P-5 the approval named the topic without choosing an option; the options above were chosen by the master prompt's rule for deterministic results (section 11.3 item 8) and the existing implementation, before any confirmatory value was seen.
 - **Alternatives:** keeping `window-1` as an analytic null control outside the Holm family (not chosen by the owner); keeping degenerate contrasts in the Holm family with p = 1; adding Bonferroni simultaneous intervals.
 - **Consequences:** the run gate now requires both the registry hash and `research/freeze.json` (study protocol, experiment protocol and canonical config hashes); any edit to a frozen file or config makes `run` refuse it. Any later change is a dated post-freeze amendment. The reproduction commands written in the EXP-002 and EXP-003 protocols were not amended (not part of the approval); the working commands are in `CONTRIBUTING.md` and `research/freeze.json`.
+
+## D-009 (2026-11-24): The owner ratifies the Holm-family and interval choices (A-3, A-4)
+
+- **Decided by:** the owner, who answered "Approve all" (2026-11-24) to the coordinator's second-round list (`../_shared/owner-approvals-2026-11-24b.md`, section 3, HERD: "The agent's handling of zero-variance contrasts in the Holm family, and its interval definition.").
+- **Decision:** the two choices the AI assistant made at the freeze (D-008) are ratified: structurally degenerate (zero-variance) contrasts are excluded from the Holm family and reported as exact comparisons (A-3); decisions use Holm-adjusted p-values at familywise 0.05, reported intervals are unadjusted 95% intervals, and no simultaneous or "Holm-adjusted" interval is claimed (A-4).
+- **Rationale:** the first approval named these topics without choosing an option; this ratification makes the chosen options owner decisions.
+- **Alternatives:** keeping degenerate contrasts in the Holm family with p = 1; Bonferroni simultaneous intervals (not chosen).
+- **Consequences:** recorded as R-1 in the `ratifications` list of `research/freeze.json`. The choices are already in the frozen v1.0 text, so no protocol, config or code changed and every frozen hash is unchanged.

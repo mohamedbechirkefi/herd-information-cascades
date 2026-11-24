@@ -27,6 +27,22 @@
   "where": "research/protocol.md section 11; EXP-001 section 10, EXP-002 section 14, EXP-003 section 8",
   "note": "The approval named the topics of A-3 and A-4 without choosing between the options of P-4 and P-5; the AI assistant chose them at the freeze (master prompt 11.3 item 8; existing implementation), before any confirmatory value was seen. The owner may revisit them only by a dated post-freeze amendment."
  },
+ "ratifications": [
+  {
+   "id": "R-1",
+   "date": "2026-11-24",
+   "source": "../_shared/owner-approvals-2026-11-24b.md (labs workspace, outside this repository), section 3",
+   "owner_answer_quoted": "Approve all",
+   "herd_item_quoted": "The agent's handling of zero-variance contrasts in the Holm family, and its interval definition.",
+   "ratifies": [
+    "A-3",
+    "A-4"
+   ],
+   "effect": "The choices made by the AI assistant at the freeze for A-3 (zero-variance contrasts excluded from the Holm family, reported as exact comparisons) and A-4 (decisions on Holm-adjusted p-values; reported intervals are unadjusted 95% intervals; no simultaneous or Holm-adjusted interval claimed) are now owner decisions.",
+   "hashes": "unchanged: the ratified choices are already in the frozen v1.0 text; no protocol, config or code changed",
+   "decision_log": "D-009"
+  }
+ ],
  "common_decisions": {
   "C1": "Data: synthetic data only.",
   "C2": "PDFs: built with pandoc and Typst (-V mainfont=\"Libertinus Serif\"); no LaTeX on the machine.",
