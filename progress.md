@@ -108,3 +108,30 @@ Tie detection relies on a relative tolerance; the exact oracle covers $N \le 9$ 
 ### Next action
 
 Owner: review `research/amendment_proposals.md` (especially P-1, `window-1` degenerate) and freeze the protocols. Then M3: run EXP-002 and EXP-003 under the frozen protocols and write the 11.3 reports.
+
+## 2026-11-24: Session FREEZE (owner-approved amendments and protocol freeze)
+
+**Milestone:** M1 gate. The owner approved the amendments and the freeze on 2026-11-24 (`../_shared/owner-approvals-2026-11-24.md`, HERD section). Nothing confirmatory was run.
+
+### Starting state
+
+`git status`: working tree clean; HEAD `5806678`. `.venv/bin/python -m pytest -q`: `259 passed`.
+
+### Work
+
+- Applied A-1 to A-5 (see `research/protocol.md` section 11; decision D-008) to `research/protocol.md`, the three EXP protocols, `research/feasibility.md` (fallback) and the two confirmatory configs (`window-2` in place of `window-1`).
+- Code: `herd.runner.apply_holm` excludes degenerate contrasts from the Holm family (`holm_family = false`, `p_holm = null`); result schema allows a null `p_holm` and the `holm_family` flag; report text explains it; `herd.provenance.config_frozen` makes the run gate also require `research/freeze.json` to list the study protocol hash, the experiment protocol hash and the canonical config hash.
+- Tests: Holm family exclusion (hand-computed), a degenerate `window-1` run reported outside Holm, synthetic freeze-record gate (accept, changed config, edited study protocol, missing record, unfrozen registry), `tests/test_freeze.py` (frozen configs pass the gate, six kinds of change refused, record hashes match the files, amendments present in the configs, CLI refuses a changed config with exit code 3). The tests call the gate only; no confirmatory run.
+- Commit `c507f05` (amendments, code, tests), then the freeze record `research/freeze.json` (git revision `c507f05`), registry hashes and statuses, README, CITATION.cff and manuscript authorship (C3), roadmap and this entry.
+
+### Commands and outputs
+
+| Command | Output |
+|---|---|
+| `.venv/bin/python -m pytest -q --ignore=tests/test_freeze.py` (before the freeze record) | `261 passed` |
+| `.venv/bin/python -m pytest -q` (after the freeze record and registry) | `278 passed` |
+| `shasum -a 256 research/protocol.md` | `f73423c0bfd6f6463b1c1cb0d316e4ddc3942306eafe6793ba866112e72a457c` |
+
+### Next action
+
+M3, scheduled by the coordinator: run EXP-002 and EXP-003 under the frozen v1.0 protocols, then write the 11.3 reports (EXP-001 report included).

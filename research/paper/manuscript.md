@@ -4,6 +4,8 @@
 
 ## Author and affiliation metadata
 
+Mohamed Bechir Kefi. No affiliation. (Approved by the owner on 2026-11-24, common decision C3.)
+
 ## Abstract
 
 ## Keywords
@@ -43,6 +45,8 @@
 ## 10. Data and code availability
 
 ## 11. Funding, competing interests and AI assistance
+
+AI assistance: an AI system was used as a research and development assistant (code, tests, drafting under the author's direction and review). It is not an author. The full disclosure is completed at M4.
 
 ## References
 

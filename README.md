@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # HERD: when does social information help, and when does it produce cascades of errors?
 
-**Status: M2 (core implementation), 2026-11-24.** The engine, tests and tooling exist. Only exploratory verification and timing runs have been made; there are no findings. The study protocol is a draft awaiting the owner's freeze.
+**Status: M1 gate passed, 2026-11-24.** The engine, tests and tooling exist. The owner approved the amendments and the protocol is frozen (v1.0, `research/freeze.json`); the confirmatory experiments have not been run. Only exploratory verification and timing runs have been made; there are no findings.
 
 ## Question
 
@@ -19,7 +19,7 @@ The simulation engine (`src/herd/`): the independent baseline, exact Bayesian so
 
 | Item | Location | Status |
 |---|---|---|
-| Study protocol | `research/protocol.md` | DRAFT v0.1, not frozen |
+| Study protocol | `research/protocol.md` | FROZEN v1.0 (owner-approved 2026-11-24) |
 | Feasibility audit | `research/feasibility.md` | done (M0) |
 | Literature review | `research/literature_review.md` | initial, non-systematic |
 | Experiment registry | `research/experiment_registry.csv` | 3 planned |
@@ -29,8 +29,8 @@ The simulation engine (`src/herd/`): the independent baseline, exact Bayesian so
 | Experiment | Question | Status |
 |---|---|---|
 | EXP-001 | Smoke matrix and engine verification (exploratory) | exploratory runs R001 to R004 done; report pending (M3) |
-| EXP-002 | Bayesian and imitation rules versus independent decisions over signal quality, network and visibility | planned, protocol draft |
-| EXP-003 | Sensitivity of EXP-002 to tie-breaking and horizon | planned, protocol draft |
+| EXP-002 | Bayesian and imitation rules versus independent decisions over signal quality, network and visibility | frozen, not yet run |
+| EXP-003 | Sensitivity of EXP-002 to tie-breaking and horizon | frozen, not yet run |
 
 ## Quick start (development environment)
 
@@ -46,7 +46,7 @@ PYTHONPATH=src uv run --frozen python -m herd.cli smoke
 PYTHONPATH=src uv run --frozen python -m herd.cli report --run results/exploratory/EXP-001-R001
 ```
 
-`run --config experiments/EXP-002.json` is refused until the owner freezes the protocol.
+`run --config experiments/EXP-002.json` runs only while the protocol files and the configuration still have the hashes in `research/freeze.json`; any changed confirmatory configuration is refused.
 
 ## Data
 

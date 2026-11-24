@@ -6,9 +6,9 @@ Target: five focused development days (planning estimate). Status values: done, 
 | Milestone | Depends on | Priority | Effort | Status | Blockers |
 |---|---|---|---|---|---|
 | M0 Bootstrap and feasibility | none | P0 | 0.25 day | done (2026-11-24), pending the owner's review of scope and cost | none |
-| M1 Research and preregistration | M0 | P0 | 0.25 day | in progress: draft protocols written; freeze pending | owner freeze (G-FREEZE); full-text checks of BHW1992, CK2004, ER2010 |
-| M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | done (2026-11-24) for the code, tests and tooling; amendment proposals P-1 to P-6 await the owner | none for M2; M3 needs the owner freeze |
-| M3 Experiments | M1 freeze, M2 | P0 | 1 day | planned | owner freeze |
+| M1 Research and preregistration | M0 | P0 | 0.25 day | done (2026-11-24): M1 gate passed, protocols frozen v1.0 with the owner-approved amendments A-1 to A-5 (`research/freeze.json`) | full-text checks of BHW1992, CK2004, ER2010 remain open (literature, not the freeze) |
+| M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | done (2026-11-24) for the code, tests and tooling; proposals P-1 to P-6 answered and applied at the freeze | none |
+| M3 Experiments | M1 freeze, M2 | P0 | 1 day | planned, unblocked (frozen 2026-11-24) | scheduling by the coordinator (quiet machine for timing) |
 | M4 Interpretation | M3 | P0 | 1 day | planned | M3 |
 | M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M3 |
 | M6 Release candidate | M4, M5 | P0 | 0.25 day | planned | owner approval for any publication (G-PUBLIC) |
@@ -24,6 +24,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 - **Deliverables:** evidence review, formal model, baselines, protocol, fixture manifest.
 - **11.6 additions:** freeze the confirmatory protocols (EXP-002, EXP-003) before execution, recording version and SHA-256 in the registry; EXP-001 remains exploratory.
 - **Acceptance:** the owner has frozen the protocols; hashes recorded; full texts of the key sources checked against the model details; exploratory results visibly separated.
+- **Status (2026-11-24):** M1 gate passed. The owner approved the amendments (window-2 replaces window-1; anchor and equivalence for $q > 1/2$; zero-variance contrasts outside the Holm family; Holm-adjusted p-values with unadjusted intervals; planned sample kept). Protocol v1.0 frozen; hashes in `research/freeze.json` and the registry. Full-text checks of the key sources remain open.
 
 ## M2 Core implementation
 
