@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "herd/manifest-v1.json",
+  "title": "HERD run manifest, version 1.x",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "kind", "run_id", "exp_id", "label", "config_path", "config_sha256", "seeds",
+               "git", "versions", "platform", "started_utc", "finished_utc", "runtime_s", "peak_rss_bytes",
+               "outputs", "command"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^1\\.[0-9]+\\.[0-9]+$"},
+    "kind": {"const": "herd-run-manifest"},
+    "run_id": {"type": "string", "pattern": "^EXP-[0-9]{3}-R[0-9]{3}$"},
+    "exp_id": {"type": "string", "pattern": "^EXP-[0-9]{3}$"},
+    "label": {"enum": ["exploratory", "confirmatory"]},
+    "config_path": {"type": "string"},
+    "config_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "seeds": {"type": "array", "items": {"type": "integer", "minimum": 0}},
+    "git": {"type": "object", "required": ["revision", "dirty"],
+            "properties": {"revision": {"type": ["string", "null"]}, "dirty": {"type": ["boolean", "null"]}}},
+    "versions": {"type": "object", "required": ["herd", "python", "numpy", "result_schema"],
+                 "additionalProperties": {"type": "string"}},
+    "platform": {"type": "object", "required": ["os", "machine", "cpu"], "additionalProperties": {"type": "string"}},
+    "started_utc": {"type": "string"},
+    "finished_utc": {"type": "string"},
+    "runtime_s": {"type": "number", "minimum": 0},
+    "peak_rss_bytes": {"type": ["integer", "null"], "minimum": 0},
+    "outputs": {"type": "array", "items": {"type": "object", "required": ["path", "sha256", "bytes"],
+      "properties": {"path": {"type": "string"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                     "bytes": {"type": "integer", "minimum": 0}, "committed": {"type": "boolean"}}}},
+    "command": {"type": "string"}
+  }
+}

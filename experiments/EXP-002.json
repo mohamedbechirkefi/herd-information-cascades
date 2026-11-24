@@ -1,0 +1,54 @@
+{
+ "config_version": "1",
+ "exp_id": "EXP-002",
+ "run_id": "EXP-002-R001",
+ "label": "confirmatory",
+ "description": "EXP-002 full matrix as in the draft protocol (24 cells, 3 rules, seeds 0-9, 1,000 episodes per seed and cell, N=50, own-signal ties)",
+ "rules": [
+  "independent",
+  "bayesian",
+  "imitation"
+ ],
+ "q": [
+  0.55,
+  0.6,
+  0.7,
+  0.8
+ ],
+ "networks": [
+  "complete",
+  "window-1",
+  "window-3"
+ ],
+ "visibility": [
+  1.0,
+  0.5
+ ],
+ "variations": [
+  {
+   "id": "main",
+   "tie_rule": "own",
+   "n_agents": 50
+  }
+ ],
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "episodes_per_seed": 1000,
+ "bootstrap": {
+  "resamples": 2000,
+  "seed": 20261124
+ },
+ "verification": true,
+ "output_dir": "results/EXP-002/EXP-002-R001",
+ "raw_dir": "results/raw/EXP-002-R001"
+}

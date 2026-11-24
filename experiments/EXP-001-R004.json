@@ -1,0 +1,52 @@
+{
+ "config_version": "1",
+ "exp_id": "EXP-001",
+ "run_id": "EXP-001-R004",
+ "label": "exploratory",
+ "description": "Candidate replacement for the degenerate window-1 network: window-2 cells at N=50, seeds 100-109 (exploratory, supports a proposed amendment)",
+ "rules": [
+  "independent",
+  "bayesian",
+  "imitation"
+ ],
+ "q": [
+  0.55,
+  0.6,
+  0.7,
+  0.8
+ ],
+ "networks": [
+  "window-2"
+ ],
+ "visibility": [
+  1.0,
+  0.5
+ ],
+ "variations": [
+  {
+   "id": "main",
+   "tie_rule": "own",
+   "n_agents": 50
+  }
+ ],
+ "seeds": [
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109
+ ],
+ "episodes_per_seed": 200,
+ "bootstrap": {
+  "resamples": 2000,
+  "seed": 20261124
+ },
+ "verification": true,
+ "output_dir": "results/exploratory/EXP-001-R004",
+ "raw_dir": "results/raw/EXP-001-R004"
+}

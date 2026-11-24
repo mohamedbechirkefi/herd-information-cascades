@@ -1,0 +1,62 @@
+{
+ "config_version": "1",
+ "exp_id": "EXP-001",
+ "run_id": "EXP-001-R003",
+ "label": "exploratory",
+ "description": "Throughput probe on the EXP-003 matrix shape (coin ties at N=50; own ties at N=10 and N=200) at one fifth of the planned episodes, seeds 100-109 (exploratory)",
+ "rules": [
+  "independent",
+  "bayesian",
+  "imitation"
+ ],
+ "q": [
+  0.55,
+  0.7
+ ],
+ "networks": [
+  "complete",
+  "window-1",
+  "window-3"
+ ],
+ "visibility": [
+  1.0,
+  0.5
+ ],
+ "variations": [
+  {
+   "id": "V1",
+   "tie_rule": "coin",
+   "n_agents": 50
+  },
+  {
+   "id": "V2",
+   "tie_rule": "own",
+   "n_agents": 10
+  },
+  {
+   "id": "V3",
+   "tie_rule": "own",
+   "n_agents": 200
+  }
+ ],
+ "seeds": [
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109
+ ],
+ "episodes_per_seed": 200,
+ "bootstrap": {
+  "resamples": 2000,
+  "seed": 20261124
+ },
+ "verification": true,
+ "output_dir": "results/exploratory/EXP-001-R003",
+ "raw_dir": "results/raw/EXP-001-R003"
+}

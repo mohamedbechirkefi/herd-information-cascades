@@ -1,0 +1,54 @@
+{
+ "config_version": "1",
+ "exp_id": "EXP-001",
+ "run_id": "EXP-001-R002",
+ "label": "exploratory",
+ "description": "Throughput and seed-spread probe on the EXP-002 matrix shape at one fifth of the planned episodes, with seeds 100-109 disjoint from the confirmatory seeds 0-9 (exploratory)",
+ "rules": [
+  "independent",
+  "bayesian",
+  "imitation"
+ ],
+ "q": [
+  0.55,
+  0.6,
+  0.7,
+  0.8
+ ],
+ "networks": [
+  "complete",
+  "window-1",
+  "window-3"
+ ],
+ "visibility": [
+  1.0,
+  0.5
+ ],
+ "variations": [
+  {
+   "id": "main",
+   "tie_rule": "own",
+   "n_agents": 50
+  }
+ ],
+ "seeds": [
+  100,
+  101,
+  102,
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109
+ ],
+ "episodes_per_seed": 200,
+ "bootstrap": {
+  "resamples": 2000,
+  "seed": 20261124
+ },
+ "verification": true,
+ "output_dir": "results/exploratory/EXP-001-R002",
+ "raw_dir": "results/raw/EXP-001-R002"
+}

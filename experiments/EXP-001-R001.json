@@ -1,0 +1,43 @@
+{
+ "config_version": "1",
+ "exp_id": "EXP-001",
+ "run_id": "EXP-001-R001",
+ "label": "exploratory",
+ "description": "EXP-001 smoke matrix and verification checks as in the draft protocol section 7 (exploratory)",
+ "rules": [
+  "independent",
+  "bayesian",
+  "imitation"
+ ],
+ "q": [
+  0.5,
+  0.6,
+  0.8
+ ],
+ "networks": [
+  "complete",
+  "window-1"
+ ],
+ "visibility": [
+  1.0
+ ],
+ "variations": [
+  {
+   "id": "smoke",
+   "tie_rule": "own",
+   "n_agents": 20
+  }
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "episodes_per_seed": 200,
+ "bootstrap": {
+  "resamples": 0,
+  "seed": 20261124
+ },
+ "verification": true,
+ "output_dir": "results/exploratory/EXP-001-R001",
+ "raw_dir": "results/raw/EXP-001-R001"
+}
