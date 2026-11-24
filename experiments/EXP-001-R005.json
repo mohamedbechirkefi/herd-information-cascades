@@ -1,0 +1,43 @@
+{
+ "config_version": "1",
+ "exp_id": "EXP-001",
+ "run_id": "EXP-001-R005",
+ "label": "exploratory",
+ "description": "M3 pre-confirmatory smoke run: the EXP-001 smoke matrix (study protocol section 7) on exploratory seeds 100-101, disjoint from the confirmatory seeds 0-9 (exploratory; metric and engine validation before EXP-002 and EXP-003)",
+ "rules": [
+  "independent",
+  "bayesian",
+  "imitation"
+ ],
+ "q": [
+  0.5,
+  0.6,
+  0.8
+ ],
+ "networks": [
+  "complete",
+  "window-1"
+ ],
+ "visibility": [
+  1.0
+ ],
+ "variations": [
+  {
+   "id": "smoke",
+   "tie_rule": "own",
+   "n_agents": 20
+  }
+ ],
+ "seeds": [
+  100,
+  101
+ ],
+ "episodes_per_seed": 200,
+ "bootstrap": {
+  "resamples": 0,
+  "seed": 20261124
+ },
+ "verification": true,
+ "output_dir": "results/exploratory/EXP-001-R005",
+ "raw_dir": "results/raw/EXP-001-R005"
+}

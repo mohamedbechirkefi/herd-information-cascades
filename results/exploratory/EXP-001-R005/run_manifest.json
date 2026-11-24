@@ -1,0 +1,48 @@
+{
+ "schema_version": "1.0.0",
+ "kind": "herd-run-manifest",
+ "run_id": "EXP-001-R005",
+ "exp_id": "EXP-001",
+ "label": "exploratory",
+ "config_path": "experiments/EXP-001-R005.json",
+ "config_sha256": "0c1bfeb60beb150c2b858a8e74b86d3b4b72f907cd03ace5d140a58259147cbf",
+ "seeds": [
+  100,
+  101
+ ],
+ "git": {
+  "revision": "eded9b82ff9a7b64471ae6e66d127cbc83a9b5e3",
+  "dirty": false
+ },
+ "versions": {
+  "herd": "0.1.0",
+  "python": "3.12.1",
+  "numpy": "2.3.4",
+  "result_schema": "1.0.0"
+ },
+ "platform": {
+  "os": "Darwin 24.3.0",
+  "machine": "arm64",
+  "cpu": "Apple M1 Pro",
+  "mac_ver": "15.3.1"
+ },
+ "started_utc": "2026-11-24T23:30:59Z",
+ "finished_utc": "2026-11-24T23:30:59Z",
+ "runtime_s": 0.04680287499650149,
+ "peak_rss_bytes": 35389440,
+ "outputs": [
+  {
+   "path": "results/exploratory/EXP-001-R005/result.json",
+   "sha256": "9d48defecdcd7ea5610c8faf28883fd6e789d17f2923157c27918c2826a75a13",
+   "bytes": 65868,
+   "committed": true
+  },
+  {
+   "path": "results/raw/EXP-001-R005/episodes.npz",
+   "sha256": "8df7f5bae687aca908a6eb1af319746da6d81e2a243ca7df5320bd216d9ba12f",
+   "bytes": 64148,
+   "committed": false
+  }
+ ],
+ "command": "herd.cli run --config experiments/EXP-001-R005.json"
+}
