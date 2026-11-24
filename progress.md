@@ -51,3 +51,60 @@ Exact Bayesian `window-k` recursion is the main implementation risk; throughput 
 ### Next action
 
 Owner: review and freeze (or amend) the draft protocols. Meanwhile, M2: implement the independent baseline, the Bayesian `complete` rule and the verification tests.
+
+## 2026-11-24: Session M2 (core implementation while the freeze is pending)
+
+**Milestone:** M2 core implementation. The protocols remain unfrozen drafts; nothing confirmatory was run.
+
+### Starting state
+
+`git status`: on branch `main`, working tree clean; HEAD `cf2ab2c`.
+
+### Implemented (`src/herd/`)
+
+- `model.py` (typed, validated `Cell` and `Episodes`), `generate.py` (SeedSequence streams per (seed, cell), tie rule excluded from the key, separate coin stream), `rules.py` (independent baseline; Bayesian `complete` public-belief recursion and exact `window-k` recursion; naive imitation; own and coin tie rules; cascade flags; near-tie counting), `metrics.py`, `stats.py` (normal intervals, Student t tail, Wilson, bootstrap, Holm), `reference.py` (exact rational enumeration oracle and analytic anchor), `schema.py` with `schemas/config-v1.json`, `result-v1.json`, `manifest-v1.json`, `provenance.py` (config hash, git revision, versions, platform, peak RSS, protocol gate), `runner.py`, `serialize.py`, `report.py` (CSV and Markdown tables, SVG figures, report.md, report.pdf through pandoc and Typst), `cli.py` (`smoke`, `run`, `report`, `test`).
+- Configurations in `experiments/`: `EXP-001-R001..R004.json` (exploratory) and `EXP-002.json`, `EXP-003.json` (confirmatory, refused while unfrozen).
+
+### Commands run and actual outputs
+
+| Command | Output |
+|---|---|
+| `.venv/bin/python -m pytest -q` (first full run) | `2 failed, 256 passed`: a test with inexact float arithmetic (test fixed), and check C4 failing at $q = 0.5$ (a real finding: the equivalence needs $q > 1/2$; check restricted, proposal P-2) |
+| `PYTHONPATH=src uv run --frozen python -m herd.cli test -q` | `259 passed in 18.03s` (before commit `f15c0c2`) |
+| `PYTHONPATH=src uv run --frozen python -m herd.cli smoke` | `EXPLORATORY run EXP-001-R001: 18 arms, 12 contrasts, 25 checks (0 failed), 0 failed cells`; runtime 0.07 s |
+| `... run --config experiments/EXP-001-R002.json` | 72 arms, 48 contrasts, 61 checks (0 failed); runtime 9.81 s (simulation 5.68 s); peak RSS 123060224 bytes |
+| `... run --config experiments/EXP-001-R003.json` | 108 arms, 72 contrasts, 89 checks (0 failed); runtime 22.34 s (simulation 16.24 s); peak RSS 144687104 bytes |
+| `... run --config experiments/EXP-001-R004.json` | 24 arms, 16 contrasts, 17 checks (0 failed); runtime 3.26 s |
+| `... run --config experiments/EXP-002.json` | `REFUSED: ... EXP-002 protocol is not frozen (registry protocol_sha256 = 'none (recorded at freeze)') ...`, exit code 3 |
+| `... report --run results/exploratory/EXP-001-R00N` (N = 1..4) | tables, two SVG figures, report.md and report.pdf per run; PDFs of 4, 10, 12 and 4 pages, text extracted with pypdf, the EXPLORATORY banner present in each |
+| First PDF build | long tables were cut at the page end (pandoc wraps Typst tables in unbreakable figures); fixed in commit `7aea99f` with breakable figures; pages inspected as PNG renders |
+| `.venv/bin/python -m pytest -q` (after the report fix) | `259 passed` |
+
+### Exploratory measurements (EXP-001, not evidence for any hypothesis)
+
+- Verification: all checks passed in all four runs (C1 analytic anchor, C2 zero information, C3 independent baseline, C4 complete-network equivalence for $q > 1/2$, C5 schema, C6 no near ties; C7 found 0 Bayesian/imitation divergences under `complete` with coin ties).
+- Throughput: 0.79 to 0.91 ms per 1,000 agent decisions (all rules). Projected full EXP-002: about 28 s of simulation and 16 s of analysis (five times R002); EXP-003: about 1.7 minutes (five times R003). Both are far below the one-hour budget.
+- Seed spread: largest paired SD of a non-degenerate contrast 0.458 (R002) and 0.484 (R003), so the planned 10,000 episodes give a 95% half-width of at most about 0.0095 (planning value 0.01 holds). Between-seed SD of per-seed mean differences over the SD expected from independent episodes: median 0.98 (R002), 1.05 (R003).
+- Degenerate cells: all 16 `window-1` contrasts in R002 have zero variance (both social rules equal the baseline exactly); proposal P-1.
+
+### Decisions
+
+D-006 (implementation choices), D-007 (amendment proposals recorded, not applied). Proposals: `research/amendment_proposals.md`.
+
+### Files created or changed
+
+Created: `src/herd/*` and schemas, `tests/*.py`, `experiments/*.json`, `results/exploratory/EXP-001-R001..R004/`, `research/amendment_proposals.md`. Changed: `roadmap.md`, `progress.md`, `research/experiment_registry.csv` (EXP-001 status), `research/experiment_journal.jsonl` (J-0002 to J-0005), `research/decision_log.md`, `research/publication/artifact_manifest.json`, READMEs in `src/`, `tests/`, `results/`, `experiments/`, `CONTRIBUTING.md` (commands appended). Git-ignored: `results/raw/EXP-001-R00N/episodes.npz`.
+
+### Not done
+
+- The 11.3 standalone report for EXP-001 (`research/experiments/EXP-001/report.md`) is left for M3; the generated run reports are its inputs.
+- No confirmatory run, no protocol freeze, no push.
+- Holm-adjusted or simultaneous intervals are not implemented pending the owner's choice (P-5).
+
+### Outstanding risks
+
+Tie detection relies on a relative tolerance; the exact oracle covers $N \le 9$ only, and the near-tie counter guards larger $N$. The literature review is still abstract-level.
+
+### Next action
+
+Owner: review `research/amendment_proposals.md` (especially P-1, `window-1` degenerate) and freeze the protocols. Then M3: run EXP-002 and EXP-003 under the frozen protocols and write the 11.3 reports.

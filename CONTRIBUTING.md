@@ -41,3 +41,8 @@ Never commit an e-mail address, a name or any other personal identifier in code,
 - Install the locked environment: `uv sync --frozen` (uv 0.9.5; Python 3.12).
 - Refresh the lockfile after an approved dependency change: `uv lock` (resolution is limited by `exclude-newer` in `pyproject.toml`).
 - Run the tests (once they exist, M2): `uv run pytest`.
+- Command line (M2; the package is run from `src/`):
+  - `PYTHONPATH=src uv run --frozen python -m herd.cli smoke` (exploratory EXP-001 smoke matrix)
+  - `PYTHONPATH=src uv run --frozen python -m herd.cli run --config experiments/<file>.json` (confirmatory configurations are refused while the protocol is unfrozen)
+  - `PYTHONPATH=src uv run --frozen python -m herd.cli report --run results/exploratory/<run_id>` (needs pandoc and the typst Python package; `--no-pdf` skips the PDF; paths via `HERD_PANDOC` and `HERD_TYPST_PYTHON`)
+  - `PYTHONPATH=src uv run --frozen python -m herd.cli test`

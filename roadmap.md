@@ -7,7 +7,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 |---|---|---|---|---|---|
 | M0 Bootstrap and feasibility | none | P0 | 0.25 day | done (2026-11-24), pending the owner's review of scope and cost | none |
 | M1 Research and preregistration | M0 | P0 | 0.25 day | in progress: draft protocols written; freeze pending | owner freeze (G-FREEZE); full-text checks of BHW1992, CK2004, ER2010 |
-| M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | planned | none |
+| M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | done (2026-11-24) for the code, tests and tooling; amendment proposals P-1 to P-6 await the owner | none for M2; M3 needs the owner freeze |
 | M3 Experiments | M1 freeze, M2 | P0 | 1 day | planned | owner freeze |
 | M4 Interpretation | M3 | P0 | 1 day | planned | M3 |
 | M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M3 |
@@ -30,6 +30,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 - **Deliverables:** independent baseline first, then Bayesian (`complete`, then `window-k`) and imitation rules; episode generator with `SeedSequence` streams; metrics; experiment runner; CLI (`smoke`, `run`, `report`, `test`).
 - **11.6 additions:** versioned JSON result schema with validation, run manifests (runtime, peak memory, OS, CPU, package versions, git revision, config), report generators, all built alongside the core.
 - **Acceptance:** unit tests for likelihood calculations, the zero-information case and the independent baseline; analytic cascade anchor; exact enumeration reference for small $N$; complete-network equivalence test; invalid-input tests; all run with actual counts recorded.
+- **Status (2026-11-24):** met. 259 tests pass (`progress.md`, M2 entry), including exhaustive differential tests against the exact rational oracle for `complete`, `window-1`, `window-2` and `window-3`, both tie rules and four visibility patterns; the analytic anchor holds as an exact rational identity for $N = 1..8$; CLI, schemas, manifests and the report generator work end to end on four exploratory runs (EXP-001-R001 to R004, all checks passed). Findings for the owner: `window-1` is degenerate (P-1) and the complete-network equivalence needs $q > 1/2$ (P-2), see `research/amendment_proposals.md`. The 11.3 report for EXP-001 is deferred to M3.
 
 ## M3 Experiments
 

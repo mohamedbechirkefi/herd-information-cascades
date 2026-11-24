@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # HERD: when does social information help, and when does it produce cascades of errors?
 
-**Status: M0 (bootstrap and feasibility), 2026-11-24.** No experiment has been run. There are no findings. The study protocol is a draft awaiting the owner's freeze.
+**Status: M2 (core implementation), 2026-11-24.** The engine, tests and tooling exist. Only exploratory verification and timing runs have been made; there are no findings. The study protocol is a draft awaiting the owner's freeze.
 
 ## Question
 
@@ -13,7 +13,7 @@ Groups often act on what others did before them. Classic models show that this c
 
 ## What is implemented
 
-Nothing yet beyond the control files, the draft protocol and the dependency lockfile. See `roadmap.md`.
+The simulation engine (`src/herd/`): the independent baseline, exact Bayesian social learning on complete and window-k networks, naive imitation, metrics, a seeded runner with versioned JSON results and run manifests, a report generator, and a command line. A pytest suite checks it against hand-computed examples, an exact rational enumeration oracle and an analytic cascade formula. Exploratory runs (EXP-001) are in `results/exploratory/`; they are planning measurements, not findings. See `roadmap.md`.
 
 ## Research navigation
 
@@ -28,7 +28,7 @@ Nothing yet beyond the control files, the draft protocol and the dependency lock
 
 | Experiment | Question | Status |
 |---|---|---|
-| EXP-001 | Smoke matrix and engine verification (exploratory) | planned, protocol draft |
+| EXP-001 | Smoke matrix and engine verification (exploratory) | exploratory runs R001 to R004 done; report pending (M3) |
 | EXP-002 | Bayesian and imitation rules versus independent decisions over signal quality, network and visibility | planned, protocol draft |
 | EXP-003 | Sensitivity of EXP-002 to tie-breaking and horizon | planned, protocol draft |
 
@@ -38,7 +38,15 @@ Nothing yet beyond the control files, the draft protocol and the dependency lock
 /Users/bechir/research/labs/.tools/py/bin/uv sync --frozen
 ```
 
-Experiment commands will be added in M2.
+Commands (the package runs from `src/`):
+
+```
+PYTHONPATH=src uv run --frozen python -m herd.cli test
+PYTHONPATH=src uv run --frozen python -m herd.cli smoke
+PYTHONPATH=src uv run --frozen python -m herd.cli report --run results/exploratory/EXP-001-R001
+```
+
+`run --config experiments/EXP-002.json` is refused until the owner freezes the protocol.
 
 ## Data
 

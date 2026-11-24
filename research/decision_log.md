@@ -39,3 +39,22 @@ Each entry: id, date, decision, decided by, rationale, alternatives, consequence
 - **Decision:** Python 3.12 only; runtime dependency `numpy==2.3.4`; development dependency `pytest==8.4.2`; `uv lock` with `exclude-newer = 2026-11-10` so that every resolved release is at least two weeks old.
 - **Rationale:** minimal, pinned, free dependencies. numpy 2.3.4 files were uploaded on 2025-10-15 and pytest 8.4.2 on 2025-09-04 (PyPI JSON, read 2026-11-24).
 - **Consequences:** network generation and statistics are implemented in-house on numpy; no networkx or scipy.
+
+## D-006 (2026-11-24): M2 implementation choices
+
+- **Decided by:** AI, within the master prompt (sections 4 and 11.6); open for the owner's review.
+- **Decision:**
+  1. Bayesian inference is exact up to floating point: a public-belief recursion for `complete`, and a forward recursion over the $2^k$ joint states of the last $k$ actions, conditional on $\theta$, for `window-k`. Ties are detected with a relative tolerance of $10^{-9}$; comparisons with a relative gap in $(10^{-9}, 10^{-6}]$ at realised states are counted and reported as near ties (check C6). None occurred in the exploratory runs.
+  2. An exact rational oracle (`src/herd/reference.py`) enumerates every state, signal and coin profile for $N \le 9$ and derives each decision from the posterior definition; it shares no code with the engine and is the differential-test reference.
+  3. No new dependency. JSON Schema validation uses an in-house validator for a declared subset of draft 2020-12 (unknown keywords raise); Student t tails use an in-house regularised incomplete beta; figures are hand-written SVG.
+  4. Exploratory runs use master seeds 100 to 109, disjoint from the confirmatory seeds 0 to 9 named in the draft protocols, and are written only under `results/exploratory/`; the runner refuses a confirmatory configuration unless the registry records a SHA-256 for the protocol and the file still has it.
+  5. The package is run with `PYTHONPATH=src` (the project is not installed as a package, `tool.uv.package = false`), so that `uv.lock` is unchanged.
+- **Rationale:** exactness and verifiability first; minimal, pinned dependencies (D-005); keep confirmatory seeds unseen before the freeze.
+- **Consequences:** the protocol's reproduction commands need the `PYTHONPATH=src` prefix (recorded in `CONTRIBUTING.md`).
+
+## D-007 (2026-11-24): Amendment proposals recorded, not applied
+
+- **Decided by:** AI proposal; adoption is the owner's decision at the freeze (G-FREEZE).
+- **Decision:** six proposals (P-1 to P-6) are written in `research/amendment_proposals.md`. The main one (P-1): the `window-1` network is degenerate under binary signals with own-signal ties (both social rules reproduce the independent baseline exactly), so EXP-002 would spend 8 of 24 cells on contrasts that are zero by construction; `window-2` is proposed instead.
+- **Rationale:** the brief for this session forbids changing the draft analysis; the evidence (tests and exploratory runs) is recorded so the owner can decide.
+- **Consequences:** `research/protocol.md` and the EXP-00N protocols are unchanged.

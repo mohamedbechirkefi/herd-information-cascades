@@ -1,6 +1,103 @@
 {
-  "schema_version": "0.1.0",
-  "updated": "2026-11-24",
-  "status": "empty at M0: no results, figures or tables exist yet",
-  "artifacts": []
+ "schema_version": "0.1.0",
+ "updated": "2026-11-24",
+ "status": "exploratory artifacts only (M2); no confirmatory result exists",
+ "artifacts": [
+  {
+   "artifact_id": "EXP-001-R001-report",
+   "label": "exploratory",
+   "exp_id": "EXP-001",
+   "run_ids": [
+    "EXP-001-R001"
+   ],
+   "description": "EXP-001 smoke matrix (protocol section 7)",
+   "result_path": "results/exploratory/EXP-001-R001/result.json",
+   "outputs": [
+    "results/exploratory/EXP-001-R001/tables/arms.csv",
+    "results/exploratory/EXP-001-R001/tables/contrasts.csv",
+    "results/exploratory/EXP-001-R001/tables/checks.csv",
+    "results/exploratory/EXP-001-R001/figures/delta.svg",
+    "results/exploratory/EXP-001-R001/figures/accuracy_hist.svg",
+    "results/exploratory/EXP-001-R001/report.md",
+    "results/exploratory/EXP-001-R001/report.pdf"
+   ],
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "6bb119865235b1f09f33ddfb1cd61c0ec8f644ef4ff331b61acc6871f4b2bb49",
+   "protocol_hash": null,
+   "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
+   "use": "planning and verification only; never cited as evidence"
+  },
+  {
+   "artifact_id": "EXP-001-R002-report",
+   "label": "exploratory",
+   "exp_id": "EXP-001",
+   "run_ids": [
+    "EXP-001-R002"
+   ],
+   "description": "EXP-002 matrix shape at one fifth of the planned episodes, seeds 100-109",
+   "result_path": "results/exploratory/EXP-001-R002/result.json",
+   "outputs": [
+    "results/exploratory/EXP-001-R002/tables/arms.csv",
+    "results/exploratory/EXP-001-R002/tables/contrasts.csv",
+    "results/exploratory/EXP-001-R002/tables/checks.csv",
+    "results/exploratory/EXP-001-R002/figures/delta.svg",
+    "results/exploratory/EXP-001-R002/figures/accuracy_hist.svg",
+    "results/exploratory/EXP-001-R002/report.md",
+    "results/exploratory/EXP-001-R002/report.pdf"
+   ],
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "e18b052ab500b99a79f30ec9a215f3ce1422f7e77ee4aff830dc9c12d7d180ce",
+   "protocol_hash": null,
+   "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
+   "use": "planning and verification only; never cited as evidence"
+  },
+  {
+   "artifact_id": "EXP-001-R003-report",
+   "label": "exploratory",
+   "exp_id": "EXP-001",
+   "run_ids": [
+    "EXP-001-R003"
+   ],
+   "description": "EXP-003 matrix shape (V1 coin N=50, V2 N=10, V3 N=200) at one fifth, seeds 100-109",
+   "result_path": "results/exploratory/EXP-001-R003/result.json",
+   "outputs": [
+    "results/exploratory/EXP-001-R003/tables/arms.csv",
+    "results/exploratory/EXP-001-R003/tables/contrasts.csv",
+    "results/exploratory/EXP-001-R003/tables/checks.csv",
+    "results/exploratory/EXP-001-R003/figures/delta.svg",
+    "results/exploratory/EXP-001-R003/figures/accuracy_hist.svg",
+    "results/exploratory/EXP-001-R003/report.md",
+    "results/exploratory/EXP-001-R003/report.pdf"
+   ],
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "0f01eecc86cd6251b8bcbbb244e107f8ace205b2f9a09b0c44ec0a067eb21d2a",
+   "protocol_hash": null,
+   "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
+   "use": "planning and verification only; never cited as evidence"
+  },
+  {
+   "artifact_id": "EXP-001-R004-report",
+   "label": "exploratory",
+   "exp_id": "EXP-001",
+   "run_ids": [
+    "EXP-001-R004"
+   ],
+   "description": "window-2 cells at N=50, seeds 100-109",
+   "result_path": "results/exploratory/EXP-001-R004/result.json",
+   "outputs": [
+    "results/exploratory/EXP-001-R004/tables/arms.csv",
+    "results/exploratory/EXP-001-R004/tables/contrasts.csv",
+    "results/exploratory/EXP-001-R004/tables/checks.csv",
+    "results/exploratory/EXP-001-R004/figures/delta.svg",
+    "results/exploratory/EXP-001-R004/figures/accuracy_hist.svg",
+    "results/exploratory/EXP-001-R004/report.md",
+    "results/exploratory/EXP-001-R004/report.pdf"
+   ],
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "7e64cd6f93ffe4db44f8d8f1daffa7148f9909db69687833ac185a4234d104e6",
+   "protocol_hash": null,
+   "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
+   "use": "planning and verification only; never cited as evidence"
+  }
+ ]
 }
