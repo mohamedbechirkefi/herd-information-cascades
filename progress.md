@@ -302,3 +302,42 @@ Repository URL and demo URL ("to be added after the owner approves publication")
 ### Next action
 
 M6: clean-clone reproduction, PDFs, link and licence scans, owner review checklist; the owner's full-text review of the manuscript (including the D-014 wording edit).
+
+## 2026-11-25: Session M6 (release candidate)
+
+**Milestone:** M6, under the coordinator's M6 brief. Authority: owner, 2026-11-25, "Next" (second) (`../_shared/owner-approvals-2026-11-25e.md`). Nothing pushed, tagged or released; no frozen protocol, config, seed or result changed; no confirmatory run. Decision D-015. Commits `802145d` (work) and the records commit that follows it.
+
+### Work
+
+- Clean clones (two, both deleted): full results in `research/publication/reproducibility_report.md`.
+- PDFs: `scripts/build_pdfs.py` (new) with an extended `build_pdf` (metadata title, author, page numbers, no creation date). Built `research/paper/manuscript.pdf` (13 pages, 284,401 bytes), `supplementary.pdf` (19 pages), `research/experiments/EXP-001/report.pdf` (3), `EXP-002` (13), `EXP-003` (20), `EXP-004` (5), and `manuscript.tex`. Pages rendered to PNG at 60 to 80 ppi in scratch and read: all 13 manuscript pages, the first page of each report, table pages of EXP-002, EXP-003 and the supplementary. Fixed: overlapping cells in manuscript Table 2 and in the EXP-001 execution-record table. Metadata (pypdf): title and author set in all 6, 0 e-mail addresses, 0 local paths. Two builds gave the same MD5.
+- References: 9 of 9 cited and resolved. Full texts (free, legal) read: BHW1992 (published), ADLO2011, CK2004, ER2010, W2008wp (working-paper versions); abstract only: Banerjee1992, SS2000 (MIT DSpace copy refused with HTTP 429), GJ2010 (three-page author version only), AH1997; unverified: 0. F-5 resolved: BHW1992 section II.A, p. 996, coin-flip tie convention; footnote 13, p. 1000, "indifferent individuals adopt" in the general model. Manuscript section 2 and reference note, CK2004 sentence, EXP-002 and EXP-003 reports (dated notes), `research/limitations.md` item 13 and `research/publication/evidence_audit.md` section 3.1 updated. No number changed.
+- Links and numbers: `scripts/check_links.py` and `tests/test_links.py` (3 tests); `tests/test_public_numbers.py` (README, CITATION.cff and articles against the paper).
+- Scans: 0 e-mail addresses, 0 keys or tokens, 0 private-key headers, 0 `.env` files in tracked files. Home-directory paths removed from `README.md`, `demo/README.md`, `CONTRIBUTING.md`, `src/herd/report.py`. *Note on this journal:* earlier entries of this file contain two lines with absolute tool paths (M0 entry); they are left as recorded (append-only), as are 6 lines in `CLAUDE.md` and 4 in `research/feasibility.md`.
+- `research/publication/dependency_licences.md`: 6 Python, 53 npm packages; no flag (notes: lightningcss MPL-2.0 build-only; pandoc GPL-2.0-or-later as a local tool).
+- `CITATION.cff`: `version: 0.1.0-rc1`; `date-released` already absent, left absent; structural check against CFF 1.2.0 keys and types passed; `preferred-citation.title` equals the manuscript title.
+- `data/manifest.json`: stale generator status corrected.
+- `demo/public/data/results.json` re-exported (source hashes of the edited limitations file changed; no number changed).
+- `research/publication/author_review.md`: 0 ticked boxes found, none ticked; section "Prepared for the owner (M6, 2026-11-25)" added with reading paths, open decisions and 11 placeholder locations. `release_checklist.md`: items 1 to 11 ticked with evidence; the two owner items open.
+
+### Commands and actual outputs (working repository)
+
+| Command | Output |
+|---|---|
+| `.venv/bin/python -m pytest -q -p no:cacheprovider` | `299 passed` |
+| `PYTHONPATH=src .venv/bin/python -m herd.audit` | `trace: 88 rows, 88 verified, 0 failed`; `coverage: 0 manuscript prose numbers without a trace row`; `report tables: all generated rows present verbatim`; `all generated tables match the result files` |
+| `PYTHONPATH=src .venv/bin/python -m herd.paper fill` | `research/paper/manuscript.md: 5 generated tables`; `research/paper/supplementary.md: 4 generated tables` |
+| `.venv/bin/python scripts/export_demo_data.py --check` | `results.json is up to date` |
+| `.venv/bin/python scripts/check_links.py` | `links: 49 Markdown files, 21 relative links, 0 broken` |
+| `cd demo && npm test` | `Test Files 3 passed (3)`, `Tests 69 passed (69)` |
+| `npm run build`; `node tools/a11y_check.mjs dist` | `✓ built`; `A11Y-CHECK PASS` |
+| `shasum -a 256 -c results/EXP-002/SHA256SUMS`, `results/EXP-003/SHA256SUMS` | 10 OK, 11 OK |
+| artifact manifest check (23 artifacts) | 79 paths exist; 16 file hashes and 8 canonical config hashes match |
+
+### Status
+
+M6: release candidate prepared, awaiting owner review and G-PUBLIC. Not done until the owner signs off `research/publication/author_review.md`.
+
+### Next action
+
+The owner's review: `research/publication/author_review.md` (section "Prepared for the owner"), then a G-PUBLIC decision.

@@ -11,7 +11,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 | M3 Experiments | M1 freeze, M2 | P0 | 1 day | done (2026-11-25): EXP-002 and EXP-003 frozen matrices complete, reports written | none |
 | M4 Interpretation | M3 | P0 | 1 day | done (2026-11-25): confounder inspection, exploratory EXP-004, evidence audit (88 of 88 traced numbers verified), manuscript v1.0 and second review pass; gate holds | the EXP-004 standalone report was refused by the session's write tool and is handed to the coordinator to write; BHW1992, CK2004, ER2010 full texts still unread (abstract-level citations, marked) |
 | M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | done (2026-11-25): static page in `demo/`, results exported from committed files, sandbox port tested against the Python engine, `A11Y-CHECK PASS`; gate holds | demo URL and repository URL await the owner's publication decision (G-PUBLIC) |
-| M6 Release candidate | M4, M5 | P0 | 0.25 day | planned | owner approval for any publication (G-PUBLIC) |
+| M6 Release candidate | M4, M5 | P0 | 0.25 day | release candidate prepared, awaiting owner review and G-PUBLIC | owner sign-off of `author_review.md`; owner approval for any publication (G-PUBLIC) |
 
 ## M0 Bootstrap and feasibility
 
@@ -59,6 +59,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 - **Deliverables:** clean clone, locked install, tests, smoke reproduction, demo build, manifest and link checks, secret and licence scan, publication drafts.
 - **11.6 additions:** compile and visually inspect manuscript and report PDFs (pandoc to Typst); verify references, cross-links, equations and figures; owner review checklist.
 - **Acceptance:** actual command outputs recorded; verified facts only; the owner approves any publication. Nothing is pushed or published without approval.
+- **Status (2026-11-25):** release candidate prepared, awaiting owner review and G-PUBLIC. Two clean clones reproduced the tests (299 passed), the EXP-001 smoke runs (exact apart from run times), the demo (`A11Y-CHECK PASS`), deterministic exports and byte-identical PDFs; manifests, links, numbers, secrets and dependency licences checked; six PDFs compiled and inspected; references checked against free full texts where available (D-015; `research/publication/reproducibility_report.md`, `release_checklist.md`). M6 is not done until the owner signs off `research/publication/author_review.md`.
 
 ## Cut order if the five-day target is threatened
 
