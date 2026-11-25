@@ -16,7 +16,7 @@
   },
   {
    "path": "research/limitations.md",
-   "sha256": "1c46fbc9a0763a04be1b62156ccdb40c8de4251e1154ef2715dbbcaa45a360f8"
+   "sha256": "d2a77b6828a577ea0a890edb240a8694e726b1e9874f750f1699a5c5b30be717"
   },
   {
    "path": "research/publication/artifact_manifest.json",
@@ -1076,7 +1076,7 @@
   "Mean versus distribution. The primary estimand is a mean paired difference. Episode accuracy is bimodal under social learning, and wrong cascades are frequent (up to 0.87 of episodes in EXP-002), so a positive mean does not say that every group gains. No distributional estimand was preregistered. M4 update: exploratory analysis puts the share of episodes in which the social group ends below the baseline at 0.050 to 0.425 (CLM-011).",
   "Imitation versus Bayesian not tested. Differences between the two social rules in the window networks (EXP-002) are exploratory; no planned test compares them directly. M4 update: exploratory paired intervals are in CLM-013 (no multiplicity control).",
   "Practical size. Two Holm-significant EXP-002 contrasts (+0.0059 and +0.0091, q = 0.55, window-2, v = 0.5) are below the 0.01 effect the protocol calls the smallest practically meaningful (CLM-014); under coin ties 5 of 48 contrasts are below it.",
-  "Unverified literature detail. The protocols attribute coin-flip tie-breaking to BHW1992; this was not checked against the full text (publisher page inaccessible). The frozen protocols are not edited; reports and manuscript do not rely on the attribution.",
+  "Unverified literature detail. The protocols attribute coin-flip tie-breaking to BHW1992; this was not checked against the full text (publisher page inaccessible). The frozen protocols are not edited; reports and manuscript do not rely on the attribution. *Resolved at M6 (2026-11-25):* the full text (section II.A) states the coin-flip convention for the specific model; the general model of the paper lets indifferent individuals adopt.",
   "Verification coverage of the window code. The exact oracle covers N <= 9 and the analytic anchor only the complete network with v = 1; a window-network error that appears only at larger N cannot be excluded, and it would move both social rules together.",
   "Quantity versus structure not separable. In this grid the window networks have both less and differently placed information than the complete network; the design cannot attribute network differences to structure (EXP-004 Q4, CLM-015)."
  ],

@@ -78,7 +78,7 @@ def tab_primary() -> str:
 
 def tab_sensitivity() -> str:
     out = ["| Source | Label | Variation | q values | Compared | Robust | Lost significance | Sign reversed | Delta range | Largest Holm p | Positive in all 10 seeds |",
-           "|---|---|---|---|---|---|---|---|---|---|---|"]
+           "|-------|------------|-----------|-----|---------|------|----------|--------|-----------|------|-------|"]
     for run, label, rob in ((R3, "confirmatory", f"{R3}/tables/robustness_vs_EXP-002-R001.csv"),
                             (R4, "exploratory", f"{R4}/tables/robustness_vs_EXP-002-R001.csv")):
         res, rows = _res(run), _csv(rob)

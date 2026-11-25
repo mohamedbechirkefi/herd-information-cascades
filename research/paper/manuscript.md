@@ -33,11 +33,11 @@ The research question of this study is: **when does social information improve b
 
 ## 2. Related work
 
-All sources below were checked at the level of bibliographic metadata and abstract on 2026-11-24 (records listed in `research/literature_review.md`); no full text was read. Statements about the sources are limited to what their abstracts say.
+All sources below were checked at the level of bibliographic metadata and abstract on 2026-11-24 (records listed in `research/literature_review.md`). On 2026-11-25 (M6) freely available full texts were read for Bikhchandani, Hirshleifer and Welch (1992), and working-paper versions for Acemoglu et al., Celen and Kariv, Eyster and Rabin and Weizsacker; each statement below was checked against them (pages and sections in `research/publication/evidence_audit.md`, section 3). Statements about Banerjee (1992), Smith and Sorensen (2000), Golub and Jackson (2010) and Anderson and Holt (1997) remain limited to what their abstracts say.
 
 **Informational cascades.** Bikhchandani, Hirshleifer and Welch (1992) define an informational cascade as a situation in which it is optimal to follow predecessors regardless of one's own information, and use it to explain localised conformity and the fragility of mass behaviour. Banerjee (1992) shows that optimising agents who observe predecessors herd and that the equilibrium is inefficient. Our `complete` network with full visibility and Bayesian agents is this setting; we use it as an analytic anchor and a replication target, not as a contribution.
 
-**Pathologies and networks.** Smith and Sorensen (2000) show that with heterogeneous preferences "confounded learning" can arise besides herds; our populations are homogeneous, so this mechanism is excluded. Acemoglu, Dahleh, Lobel and Ozdaglar (2011) study sequential learning over stochastic observation networks and give conditions on "expansion in observations" for learning with unbounded private beliefs; our binary signals give bounded beliefs, and our networks are deterministic recent windows chosen so that exact posteriors can be computed. Celen and Kariv (2004) is listed because of the single-predecessor setting; only its bibliographic metadata was verified, and no statement here relies on its content.
+**Pathologies and networks.** Smith and Sorensen (2000) show that with heterogeneous preferences "confounded learning" can arise besides herds; our populations are homogeneous, so this mechanism is excluded. Acemoglu, Dahleh, Lobel and Ozdaglar (2011) study sequential learning over stochastic observation networks and give conditions on "expansion in observations" for learning with unbounded private beliefs; our binary signals give bounded beliefs, and our networks are deterministic recent windows chosen so that exact posteriors can be computed. Celen and Kariv (2004) study Bayesian sequential decisions in which each agent observes only the immediate predecessor's action (checked against the authors' working-paper version); our `window-k` networks with $k \geq 2$ do not include that case.
 
 **Naive inference.** Eyster and Rabin (2010) study naive agents who treat predecessors' actions as reflecting only private information; according to their abstract such agents over-weight early movers, herd on wrong actions with positive probability and can be worse off from observing others. Our imitation rule is a simplified operationalisation of that idea (each observed action counts as one independent signal); it is not a replication of their model, and our results neither confirm nor contradict theirs. Golub and Jackson (2010) concern repeated averaging (DeGroot) rather than one-shot sequential choices and are related work only.
 
@@ -142,7 +142,7 @@ No contrast was degenerate (Holm family $m = 24$ per variation). Of the 72 compa
 
 <!-- BEGIN GENERATED TAB-002 -->
 | Source | Label | Variation | q values | Compared | Robust | Lost significance | Sign reversed | Delta range | Largest Holm p | Positive in all 10 seeds |
-|---|---|---|---|---|---|---|---|---|---|---|
+|-------|------------|-----------|-----|---------|------|----------|--------|-----------|------|-------|
 | EXP-003-R001 | confirmatory | V1 (N=50, coin ties) | 0.55, 0.70 | 24 | 22 | 2 | 0 | 0.0036 to 0.0494 | 0.18 | 13 of 24 |
 | EXP-003-R001 | confirmatory | V2 (N=10, own ties) | 0.55, 0.70 | 24 | 24 | 0 | 0 | 0.0074 to 0.0957 | 7.2e-08 | 22 of 24 |
 | EXP-003-R001 | confirmatory | V3 (N=200, own ties) | 0.55, 0.70 | 24 | 24 | 0 | 0 | 0.0068 to 0.1572 | 7.3e-13 | 24 of 24 |
@@ -287,13 +287,13 @@ No funding was received. The author declares no competing interests. An AI syste
 
 ## References
 
-All entries were verified at the level of bibliographic metadata and abstract (accessed 2026-11-24 unless stated); full texts were not read.
+All entries were verified at the level of bibliographic metadata and abstract (accessed 2026-11-24 unless stated). Full texts read on 2026-11-25: Bikhchandani, Hirshleifer and Welch (published version); Acemoglu et al., Celen and Kariv, Eyster and Rabin and Weizsacker (working-paper versions, listed in `research/publication/evidence_audit.md`). The others: abstract only.
 
 - Acemoglu, D., Dahleh, M. A., Lobel, I. and Ozdaglar, A. (2011). Bayesian learning in social networks. *Review of Economic Studies*, 78(4), 1201-1236. https://doi.org/10.1093/restud/rdr004
 - Anderson, L. R. and Holt, C. A. (1997). Information cascades in the laboratory. *American Economic Review*, 87(5), 847-862. https://ideas.repec.org/a/aea/aecrev/v87y1997i5p847-62.html
 - Banerjee, A. V. (1992). A simple model of herd behavior. *Quarterly Journal of Economics*, 107(3), 797-817. https://doi.org/10.2307/2118364
 - Bikhchandani, S., Hirshleifer, D. and Welch, I. (1992). A theory of fads, fashion, custom, and cultural change as informational cascades. *Journal of Political Economy*, 100(5), 992-1026. https://doi.org/10.1086/261849 (title checked against the Crossref record on 2026-11-25)
-- Celen, B. and Kariv, S. (2004). Observational learning under imperfect information. *Games and Economic Behavior*, 47(1), 72-86. https://ideas.repec.org/a/eee/gamebe/v47y2004i1p72-86.html (metadata only)
+- Celen, B. and Kariv, S. (2004). Observational learning under imperfect information. *Games and Economic Behavior*, 47(1), 72-86. https://ideas.repec.org/a/eee/gamebe/v47y2004i1p72-86.html (content checked against the authors' working-paper version)
 - Eyster, E. and Rabin, M. (2010). Naive herding in rich-information settings. *American Economic Journal: Microeconomics*, 2(4), 221-243. https://doi.org/10.1257/mic.2.4.221
 - Golub, B. and Jackson, M. O. (2010). Naive learning in social networks and the wisdom of crowds. *American Economic Journal: Microeconomics*, 2(1), 112-149. https://doi.org/10.1257/mic.2.1.112
 - Smith, L. and Sorensen, P. (2000). Pathological outcomes of observational learning. *Econometrica*, 68(2), 371-398. https://ideas.repec.org/a/ecm/emetrp/v68y2000i2p371-398.html

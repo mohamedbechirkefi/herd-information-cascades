@@ -9,7 +9,7 @@ type: software
 authors:
   - family-names: Kefi
     given-names: Mohamed Bechir
-version: 0.0.0
+version: 0.1.0-rc1
 abstract: "Simulation study of sequential binary decisions with private signals and publicly observed actions, comparing exact Bayesian social learners and naive vote-counting imitators with independent agents on matched episodes. In the confirmatory study (EXP-002) all 48 paired accuracy contrasts were positive and Holm-significant, from +0.0059 (95% CI 0.0048 to 0.0070) to +0.1439 (0.1375 to 0.1504) on the proportion scale; the same rules produced wrong cascades in up to 0.87 of episodes. Under coin-flip ties every gain shrank and two contrasts lost significance (EXP-003). Results hold only within the model's assumptions."
 keywords:
   - social learning

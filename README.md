@@ -60,7 +60,7 @@ The simulation engine (`src/herd/`): the independent baseline, exact Bayesian so
 ## Quick start
 
 ```
-/Users/bechir/research/labs/.tools/py/bin/uv sync --frozen --all-groups
+uv sync --frozen --all-groups
 .venv/bin/python -m pytest -q
 PYTHONPATH=src .venv/bin/python -m herd.cli smoke
 ```

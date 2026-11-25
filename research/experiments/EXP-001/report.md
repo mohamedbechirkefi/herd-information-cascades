@@ -43,7 +43,7 @@ The checks are the experiment. In addition, the unit suite (278 tests at the fro
 ## 7. Execution record
 
 | Run | Config SHA-256 (prefix) | Revision | Started (UTC) | Wall-clock (s) | Checks | Failed cells |
-|---|---|---|---|---|---|---|
+|----------|--------------|--------|----------------|--------|------|------|
 | EXP-001-R001 | 6bb119865235b1f0 | f15c0c24 | 2026-11-24T16:06:49Z | 0.07 | 25/25 | 0 |
 | EXP-001-R002 | e18b052ab500b99a | f15c0c24 | 2026-11-24T16:06:53Z | 9.81 | 61/61 | 0 |
 | EXP-001-R003 | 0f01eecc86cd6251 | f15c0c24 | 2026-11-24T16:07:04Z | 22.34 | 89/89 | 0 |

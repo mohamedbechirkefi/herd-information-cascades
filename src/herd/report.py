@@ -13,14 +13,18 @@ import json
 import math
 import os
 import subprocess
+import sys
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 from .serialize import read_result
 from .stats import Z95
 
-PANDOC = os.environ.get("HERD_PANDOC", "/Users/bechir/research/labs/.tools/pandoc")
-TYPST_PYTHON = os.environ.get("HERD_TYPST_PYTHON", "/Users/bechir/research/labs/.tools/py/bin/python")
+# Local toolchain (CLAUDE.md section 3): the shared `.tools` folder next to this repository when present,
+# otherwise `pandoc` on PATH and the current interpreter (which then needs the typst package).
+_TOOLS = Path(__file__).resolve().parents[3] / ".tools"
+PANDOC = os.environ.get("HERD_PANDOC", str(_TOOLS / "pandoc") if (_TOOLS / "pandoc").exists() else "pandoc")
+TYPST_PYTHON = os.environ.get("HERD_TYPST_PYTHON", str(_TOOLS / "py/bin/python") if (_TOOLS / "py/bin/python").exists() else sys.executable)
 RULE_COLOURS = {"independent": "#6b6b6b", "bayesian": "#1f5f8b", "imitation": "#b5562b"}
 FONT = "Libertinus Serif, Georgia, serif"
 
@@ -250,18 +254,40 @@ def build_markdown(res: dict, manifest: dict | None, figs: dict) -> str:
     return "\n".join(lines)
 
 
-def build_pdf(md_path: Path) -> Path:
+def _typst_str(text: str) -> str:
+    return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def pdf_title(md_text: str, fallback: str) -> str:
+    """The first level-1 Markdown heading, without inline Markdown, for the PDF metadata title."""
+    for line in md_text.splitlines():
+        if line.startswith("# "):
+            return line[2:].strip().replace("*", "").replace("`", "")
+    return fallback
+
+
+def build_pdf(md_path: Path, keep_typ: bool = False, author: str | None = None,
+              page_numbers: bool = False) -> Path:
+    """Markdown -> Typst (pandoc) -> PDF (typst). The PDF title is the first level-1 heading;
+    the creation date is omitted so that metadata carry no build time (M6)."""
     typ = md_path.with_suffix(".typ")
     pdf = md_path.with_suffix(".pdf")
-    subprocess.run([PANDOC, md_path.name, "-s", "-V", "mainfont=Libertinus Serif", "-V", "papersize=a4",
-                    "-V", "header-includes=#show figure: set block(breakable: true)",
-                    "-V", "header-includes=#show table: set text(size: 7.5pt)",
-                    "-V", "header-includes=#show table: set par(justify: false)",
-                    "-V", "header-includes=#show table.cell: set align(left)", "-o", typ.name],
-                   cwd=md_path.parent, check=True)
+    title = pdf_title(md_path.read_text(encoding="utf-8"), md_path.stem)
+    meta = f"#set document(title: {_typst_str(title)}, date: none"
+    meta += f", author: {_typst_str(author)})" if author else ")"
+    args = [PANDOC, md_path.name, "-s", "-V", "mainfont=Libertinus Serif", "-V", "papersize=a4",
+            "-V", "header-includes=#show figure: set block(breakable: true)",
+            "-V", "header-includes=#show table: set text(size: 7.5pt)",
+            "-V", "header-includes=#show table: set par(justify: false)",
+            "-V", "header-includes=#show table.cell: set align(left)",
+            "-V", f"include-before={meta}"]
+    if page_numbers:
+        args += ["-V", "page-numbering=1"]
+    subprocess.run(args + ["-o", typ.name], cwd=md_path.parent, check=True)
     subprocess.run([TYPST_PYTHON, "-c", "import sys, typst; typst.compile(sys.argv[1], output=sys.argv[2], root=sys.argv[3])",
                     typ.name, pdf.name, "."], cwd=md_path.parent, check=True)
-    typ.unlink()
+    if not keep_typ:
+        typ.unlink()
     return pdf
 
 

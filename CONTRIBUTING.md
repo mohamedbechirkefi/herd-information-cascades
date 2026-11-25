@@ -54,4 +54,4 @@ Never commit an e-mail address, a name or any other personal identifier in code,
   - `PYTHONPATH=src uv run --frozen python -m herd.manifest` (writes `research/publication/artifact_manifest.json`)
   - `.venv/bin/python scripts/export_demo_data.py` (writes `demo/public/data/results.json` from committed results; `--check` fails if it is stale)
   - `.venv/bin/python scripts/export_sandbox_fixture.py` (writes `demo/src/fixtures/engine_fixture.json`, the Python-engine fixture for the demo's TypeScript port)
-- Demo (M5; Node from `/Users/bechir/research/helix/.tools/node/bin`): `cd demo && npm ci && npm test && npm run build && npm run preview`; accessibility and offline check `node tools/a11y_check.mjs dist --screenshots <folder>`.
+- Demo (M5; Node 22): `cd demo && npm ci && npm test && npm run build && npm run preview`; accessibility and offline check `node tools/a11y_check.mjs dist --screenshots <folder>`.

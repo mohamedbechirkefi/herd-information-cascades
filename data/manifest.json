@@ -1,12 +1,12 @@
 {
   "schema_version": "0.1.0",
   "project": "HERD",
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "policy": "Synthetic data only (decision D-002). No external dataset is downloaded, bundled or redistributed. Synthetic datasets are regenerated deterministically from the generator version, parameters and seed recorded per run.",
   "synthetic_generators": [
     {
       "id": "herd-episode-generator",
-      "status": "planned (M2); not implemented",
+      "status": "implemented at M2 in src/herd/generate.py (status corrected at M6, 2026-11-25)",
       "description": "Draws hidden state, private binary signals and visibility pattern per episode from numpy SeedSequence streams derived from (master seed, cell).",
       "license": "LicenseRef-HERD-NC-Research-1.0 (generated outputs are covered by NOTICE.md)"
     }

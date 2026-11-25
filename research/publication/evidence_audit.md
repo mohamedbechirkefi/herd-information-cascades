@@ -40,7 +40,25 @@ The trace file is `research/publication/number_trace.csv` (columns: id, doc, tok
 | SS2000 | metadata and abstract; DOI only from a search snippet | confounded learning excluded | The manuscript cites the RePEc URL, not the unverified DOI. |
 | GJ2010, AH1997, W2008wp | metadata and abstract | related work, human-subject context | W2008wp cited as a working paper; its published version is unverified and not cited. |
 
-No full text was read for any source. Every reference in the manuscript is labelled accordingly.
+At M4 no full text was read for any source (superseded by section 3.1). Every reference in the manuscript is labelled accordingly.
+
+### 3.1 Full-text check (M6, 2026-11-25)
+
+Free, legal copies only: no paid access, no login, no shadow library. Labels: **read in full** (the cited version or a version by the authors, read and checked against each claim), **abstract only**, **unverified**.
+
+| Source | Label | Copy read | Claim checked, with location |
+|---|---|---|---|
+| BHW1992 | read in full (published version) | JPE 1992 scan in Levine's Working Paper Archive, RePEc `cla:levarc:1193` (`dklevine.com/archive/refs41193.pdf`) | Definition of an informational cascade: abstract, p. 992 (supported). Localised conformity and fragility of mass behaviour: abstract, p. 992 (supported). Tie rule: section II.A, p. 996, "As a tie-breaking convention, an individual indifferent between adoption and rejection adopts or rejects with equal probability" (supports the coin-flip attribution of the frozen protocols for the specific model); footnote 13, p. 1000: the general model instead lets indifferent individuals adopt. Finding F-5 resolved. |
+| ADLO2011 | read in full (working-paper version) | NBER Working Paper 14040, May 2008 (`nber.org/papers/w14040`) | Stochastic observation networks, "expansion in observations", asymptotic learning with unbounded private beliefs: abstract and section 1 (supported). The published version was not read. |
+| CK2004 | read in full (working-paper version) | authors' version dated 2003-01-23 (`eml.berkeley.edu/~kariv/CK_I.pdf`) | Each decision maker observes only the immediate predecessor's binary action: abstract and section 1 (supported). Manuscript wording updated from "metadata only". The published version was not read. |
+| ER2010 | read in full (earlier working-paper version) | "Rational and Naive Herding", 2009-06-15, STICERD seminar paper (`sticerd.lse.ac.uk/seminarpapers/et29102009.pdf`) | Naive agents treat each predecessor's action as reflecting only private information, over-weight early movers, herd on wrong actions with positive probability, can be harmed on average by observing others: abstract, p. 1, and the model sections (supported). The published AEJ version was not read; its abstract states the same points. |
+| W2008wp | read in full (cited version) | LSE Research Online eprint 4945, accepted working-paper version | Meta data set of 13 experiments: abstract (PDF p. 2) and conclusion (PDF p. 34); whether people follow others when they should: title and abstract (supported). |
+| GJ2010 | abstract only | three-page short version on the first author's page (`bengolub.net`) read; the AEJ paper not obtained | Repeated weighted averaging of neighbours' opinions (DeGroot updating): short version, abstract and model description (supported). |
+| Banerjee1992 | abstract only | no free full text found (publisher and JSTOR restricted) | Herding and inefficiency: abstract only. |
+| SS2000 | abstract only | MIT DSpace working paper 96-19 located; download refused with HTTP 429 on 2026-11-25 | Confounded learning with heterogeneous preferences: abstract only. |
+| AH1997 | abstract only | no free copy from the publisher or the authors found | Laboratory study of cascades: abstract only. |
+
+Counts: read in full 5 (one published version, four working-paper versions), abstract only 4, unverified 0. Every citation in the manuscript resolves to one of the 9 reference entries, and every entry is cited. Claims that rest on abstract-only sources are qualified in the manuscript (section 2: "remain limited to what their abstracts say").
 
 ## 4. Findings and fixes
 

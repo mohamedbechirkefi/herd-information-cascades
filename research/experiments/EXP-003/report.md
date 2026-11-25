@@ -20,7 +20,7 @@
 
 ## 3. Rationale and literature
 
-Under coin-flip ties, which the protocol describes as the convention of BHW1992 (a model detail beyond the abstract, not verified against the full text; M4 audit, 2026-11-25), an agent with a balanced posterior acts at random, so cascades can start one agent earlier and early actions carry less information. Averaging accuracy over $N$ agents weights pre-cascade agents by about $1/N$, so a short horizon can hide the cost of a wrong cascade and a long one can amplify it. Either convention could reverse a conclusion drawn from EXP-002 (EXP-003 protocol section 2; references in `research/literature_review.md`; full texts of BHW1992 not yet checked).
+Under coin-flip ties, which the protocol describes as the convention of BHW1992 (a model detail beyond the abstract, not verified against the full text; M4 audit, 2026-11-25), an agent with a balanced posterior acts at random, so cascades can start one agent earlier and early actions carry less information. Averaging accuracy over $N$ agents weights pre-cascade agents by about $1/N$, so a short horizon can hide the cost of a wrong cascade and a long one can amplify it. Either convention could reverse a conclusion drawn from EXP-002 (EXP-003 protocol section 2; references in `research/literature_review.md`; full texts of BHW1992 not yet checked). *M6 note (2026-11-25):* the full text of BHW1992 has since been read; its specific model (section II.A) states that an indifferent individual adopts or rejects with equal probability, which supports the attribution for that model; its general model (footnote 13) instead lets indifferent individuals adopt (`research/publication/evidence_audit.md`, section 3).
 
 ## 4. Hypotheses and operational definitions
 

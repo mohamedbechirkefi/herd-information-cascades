@@ -20,7 +20,7 @@ Measured results, sandbox output and assumptions are labelled differently and ne
 
 ## Commands
 
-Node from `/Users/bechir/research/helix/.tools/node/bin` (read-only).
+Node 22 (the version used is recorded in `progress.md`).
 
 ```
 cd demo && npm ci && npm run build && npm run preview
