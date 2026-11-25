@@ -10,7 +10,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 | M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | done (2026-11-24) for the code, tests and tooling; proposals P-1 to P-6 answered and applied at the freeze | none |
 | M3 Experiments | M1 freeze, M2 | P0 | 1 day | done (2026-11-25): EXP-002 and EXP-003 frozen matrices complete, reports written | none |
 | M4 Interpretation | M3 | P0 | 1 day | done (2026-11-25): confounder inspection, exploratory EXP-004, evidence audit (88 of 88 traced numbers verified), manuscript v1.0 and second review pass; gate holds | the EXP-004 standalone report was refused by the session's write tool and is handed to the coordinator to write; BHW1992, CK2004, ER2010 full texts still unread (abstract-level citations, marked) |
-| M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M4 for final labels |
+| M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | done (2026-11-25): static page in `demo/`, results exported from committed files, sandbox port tested against the Python engine, `A11Y-CHECK PASS`; gate holds | demo URL and repository URL await the owner's publication decision (G-PUBLIC) |
 | M6 Release candidate | M4, M5 | P0 | 0.25 day | planned | owner approval for any publication (G-PUBLIC) |
 
 ## M0 Bootstrap and feasibility
@@ -52,6 +52,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 - **Deliverables:** static page with an animated decision cascade and the accuracy distribution; playground with reset, seed and scenario controls; published results separated from sandbox runs.
 - **11.6 additions:** demo, paper, reports and articles use identical verified results, labels and scope.
 - **Acceptance:** offline after initial load, responsive, keyboard usable, reduced-motion option, no fabricated data, no runtime service.
+- **Status (2026-11-25):** met. Offline after the first load, no request to another origin, no horizontal scroll at 360 px, keyboard reach and visible focus, contrast in both schemes and no running animation under reduced motion are checked by `demo/tools/a11y_check.mjs` (PASS); the animation also has its own switch. Every displayed number comes from `demo/public/data/results.json`, which `tests/test_demo_export.py` ties to the committed results and to the manuscript text. No backend or runtime service. README, CITATION.cff, the article drafts and `demo/README.md` aligned with the manuscript (D-013); one manuscript wording correction (D-014).
 
 ## M6 Release candidate
 

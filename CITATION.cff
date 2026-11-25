@@ -1,17 +1,27 @@
 # SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0
 # Licence: HERD Source-Available Non-Commercial Research License v1.0 (custom licence, see LICENSE).
 # It is deliberately not given as an SPDX "license" field because it is not on the SPDX licence list.
+# Repository URL: to be added after the owner approves publication (no "repository-code" field until then).
 cff-version: 1.2.0
-message: "If you use this work, please cite it as below. Status: unreleased research software; protocol frozen 2026-11-24, confirmatory runs completed 2026-11-25 (local, unpublished). Author: Mohamed Bechir Kefi, no affiliation. An AI system was used as a research and development assistant and is not an author."
+message: "If you use this work, please cite it as below. Status: unreleased research software and independent research manuscript / preprint draft (v1.0, 2026-11-25), not peer-reviewed; protocols frozen 2026-11-24, confirmatory runs EXP-002 and EXP-003 completed 2026-11-25; local and unpublished. Simulation with synthetic agents only. Author: Mohamed Bechir Kefi, no affiliation. An AI system was used as a research and development assistant and is not an author."
 title: "HERD: when social information improves decisions and when it produces cascades of errors"
 type: software
 authors:
   - family-names: Kefi
     given-names: Mohamed Bechir
 version: 0.0.0
+abstract: "Simulation study of sequential binary decisions with private signals and publicly observed actions, comparing exact Bayesian social learners and naive vote-counting imitators with independent agents on matched episodes. In the confirmatory study (EXP-002) all 48 paired accuracy contrasts were positive and Holm-significant, from +0.0059 (95% CI 0.0048 to 0.0070) to +0.1439 (0.1375 to 0.1504) on the proportion scale; the same rules produced wrong cascades in up to 0.87 of episodes. Under coin-flip ties every gain shrank and two contrasts lost significance (EXP-003). Results hold only within the model's assumptions."
 keywords:
   - social learning
   - information cascades
   - herding
   - simulation
   - reproducibility
+preferred-citation:
+  type: unpublished
+  title: "Higher average accuracy, frequent locked-in errors: a simulation study of Bayesian and naive social learning"
+  authors:
+    - family-names: Kefi
+      given-names: Mohamed Bechir
+  year: 2026
+  notes: "Independent research manuscript / preprint draft, version 1.0, not peer-reviewed. Repository URL to be added after the owner approves publication."

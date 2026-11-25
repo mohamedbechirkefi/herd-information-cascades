@@ -246,3 +246,59 @@ No `manuscript.tex` or PDF exists in this repository yet; both are left to M6.
 No other placeholder needing an owner-only fact was found in the manuscript, supplementary, `README.md` or `CITATION.cff`. Observed but outside this session's items: `README.md` still describes the M4 interpretation and the EXP-001 report as pending (stale status text, for M5).
 
 **Next action.** M5 (interactive page) with the M4 labels.
+
+## 2026-11-25: Session M5 (interactive experience)
+
+**Milestone:** M5, under the coordinator's M5 brief. Authority: owner, 2026-11-25, "Next" (`../_shared/owner-approvals-2026-11-25d.md`), with the master prompt's default stack (TypeScript, React, Vite) pinned from the shared template. No frozen protocol, config, seed or result changed; no confirmatory run; nothing pushed. Decisions D-013 and D-014.
+
+### Work
+
+- `demo/` copied from `labs/_shared/demo-template/` (without `node_modules`; `.npmrc`, `package.json` and `package-lock.json` unchanged); `npm ci --prefer-offline`: "added 53 packages".
+- `scripts/export_demo_data.py` writes `demo/public/data/results.json`: 4 experiments, 81 estimates, 192 contrasts, 24 cells, 25 hashed sources, no timestamp. Extensions validated fail-closed in `demo/src/results.ts`.
+- `scripts/export_sandbox_fixture.py` writes `demo/src/fixtures/engine_fixture.json` (48 cells, seed 7, 16 episodes of 12 agents; 0.2 s).
+- Page (`demo/src/App.tsx`, `charts.tsx`, `Sandbox.tsx`, `engine.ts`, `simulate.ts`, `sandbox.worker.ts`, `style.css`): overview with status label; forest plot of every contrast with intervals (EXP-002, EXP-003 V1 to V3, EXP-004 V1 to V3), hollow same-size marks for contrasts that are not significant or lost significance; one panel per experiment; EXP-002 accuracy distributions; assumptions; method and limitations; sandbox with an animated cascade replay, scenario, rule, q, network, visibility, ties, N, episodes and seed controls, Run, Cancel, Reset and an animation switch.
+- `tests/test_demo_export.py` (6 tests): fresh export identity, determinism, every display string in the manuscript or supplementary or a documented exception (4 C1 interval texts), every registered experiment and claim exported, hashed sources, sandbox fixture reproduced by the Python engine.
+- Text alignment: `README.md`, `CITATION.cff`, `articles/medium.md` and `articles/linkedin.md` (new drafts), `articles/README.md`, `demo/README.md`, `CONTRIBUTING.md` (commands appended). Every decimal number in README, CITATION.cff and the two articles was checked to appear in the manuscript, supplementary, claims register or limitations (script output: no missing number besides `cff-version` 1.2).
+- Manuscript section 5.1 and Table 6: C1 wording corrected (D-014); no number changed.
+- `docs/demo.png` (95,908 bytes): sandbox section after a run, seed 1, default settings.
+- Screenshots inspected with the Read tool (desktop light, desktop dark, mobile, sandbox after a run on desktop and on mobile in dark mode). Fixed during inspection: a select overflowing at 360 px (two places), table regions inside closed `details` counted as focusable (content now rendered only when open), spacing of the cascade marker in the strip.
+
+### Commands and actual outputs
+
+| Command | Output |
+|---|---|
+| `.venv/bin/python scripts/export_demo_data.py --check` | `results.json is up to date` |
+| `.venv/bin/python -m pytest -q` | `295 passed` (289 before plus 6 in `tests/test_demo_export.py`) |
+| `PYTHONPATH=src .venv/bin/python -m herd.audit` | `trace: 88 rows, 88 verified, 0 failed`; `coverage: 0 manuscript prose numbers without a trace row`; `report tables: all generated rows present verbatim`; `all generated tables match the result files` |
+| `cd demo && npm test` | `Test Files 3 passed (3)`, `Tests 69 passed (69)` (engine port 51, results validator 14, sandbox simulation 4) |
+| `npm run build` | `✓ built`; `dist/assets/index-*.js` 251.92 kB, worker 5.36 kB |
+| `node tools/a11y_check.mjs dist` on a copy of `dist` with a malformed `results.json` | `FAIL results render (no fail-closed panel): 0 experiment panels`, `A11Y-CHECK FAIL (2)` (fail-closed confirmed) |
+
+`node tools/a11y_check.mjs dist --screenshots <scratchpad>/herd/shots`, full output:
+
+```
+PASS results render (no fail-closed panel): 4 experiment panels
+PASS text contrast, light scheme (WCAG AA)
+PASS text contrast, dark scheme (WCAG AA)
+PASS keyboard reaches every focusable element: 30 reached of 30
+PASS visible focus indicator
+PASS no horizontal page scroll at 360 px: overflow 0px
+PASS reduced motion: no running animations: 0 running
+PASS no request leaves the local origin
+PASS offline after first load: results stay, sandbox runs: Sandbox run complete (seed 1, 500 episodes of 30 agents): Bayesian minus indepen
+A11Y-CHECK PASS
+```
+
+The checker is the template's, unchanged apart from its SPDX line.
+
+### Gate
+
+M5 gate holds: offline after the initial load, responsive at 360 px, usable with the keyboard, reduced-motion option, no fabricated data, no runtime service. M5 **done**.
+
+### Owner placeholders remaining
+
+Repository URL and demo URL ("to be added after the owner approves publication") in the manuscript section 10, README, CITATION.cff, articles, page footer and `demo/README.md`; the owner review checklist (`research/publication/author_review.md`, all boxes open). Author line, affiliation, funding and competing interests are owner-approved (C3, D-012).
+
+### Next action
+
+M6: clean-clone reproduction, PDFs, link and licence scans, owner review checklist; the owner's full-text review of the manuscript (including the D-014 wording edit).

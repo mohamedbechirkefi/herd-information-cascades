@@ -93,7 +93,7 @@ The study protocol and the EXP-002 and EXP-003 protocols were frozen at v1.0 on 
 
 ### 5.1 EXP-001: verification (exploratory)
 
-All checks passed in all five runs (R001 25 of 25, R002 61 of 61, R003 89 of 89, R004 17 of 17, R005 25 of 25). Under `window-1`, both social rules reproduced the independent baseline exactly, which motivated amendment A-1. In the confirmatory runs, the analytic anchor C1 held at every precision: the observed wrong-cascade shares 0.4084, 0.3098, 0.1550 and 0.0597 lie inside the Wilson 99% intervals around the analytic values 0.4010, 0.3077, 0.1552 and 0.0588 ($q = 0.55$, 0.60, 0.70, 0.80; EXP-002-R001). Bayesian and imitation actions were identical on all 10,000 episodes of each of the 8 complete-network cells (C4).
+All checks passed in all five runs (R001 25 of 25, R002 61 of 61, R003 89 of 89, R004 17 of 17, R005 25 of 25). Under `window-1`, both social rules reproduced the independent baseline exactly, which motivated amendment A-1. In the confirmatory runs, the analytic anchor C1 held at every precision: the analytic values 0.4010, 0.3077, 0.1552 and 0.0588 lie inside the Wilson 99% intervals of the observed wrong-cascade shares 0.4084, 0.3098, 0.1550 and 0.0597 ($q = 0.55$, 0.60, 0.70, 0.80; EXP-002-R001). Bayesian and imitation actions were identical on all 10,000 episodes of each of the 8 complete-network cells (C4).
 
 ### 5.2 EXP-002: social information and mean accuracy (confirmatory)
 
@@ -239,7 +239,7 @@ No contrast was degenerate (Holm family $m = 24$ per variation). Of the 72 compa
 | EXP-002 | Bayesian $\Delta \geq 0$ in every cell | All 24 Bayesian contrasts positive, smallest 0.0091 | Consistent; stopping rule not triggered |
 | EXP-002 | Imitation and Bayesian identical under `complete` | 0 differing episodes in 8 cells of 10,000 | Confirmed (C4) |
 | EXP-002 | Imitation $\Delta < 0$ in at least one `window-k` cell at low $q$ | Smallest imitation contrast +0.0059 [0.0048, 0.0070], Holm-significant | Contradicted |
-| EXP-002 | Analytic anchor C1 at each $q$ | Observed inside the Wilson 99% interval at all 4 $q$ | Passed |
+| EXP-002 | Analytic anchor C1 at each $q$ | Analytic value inside the Wilson 99% interval of the observed share at all 4 $q$ | Passed |
 | EXP-003 | H0 (robustness): every EXP-002 significant sign holds under V1, V2, V3 | 70 of 72 robust, 0 reversed, 2 lost significance | H1 of EXP-003 holds for 2 contrasts; both convention-dependent |
 | EXP-003 | Analytic anchor C1 under V2 and V3 | Inside the 99% intervals | Passed |
 
