@@ -1,0 +1,60 @@
+{
+ "label": "exploratory (EXP-004, post hoc, M4); not evidence for any frozen hypothesis",
+ "created_utc": "2026-11-25T01:21:06Z",
+ "git": {
+  "revision": "f2c91ff154bdaed9a444d81041e8c59d2060b725",
+  "dirty": false
+ },
+ "command": "python -m herd.exploratory --out results/exploratory/EXP-004-derived",
+ "inputs_sha256": {
+  "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29",
+  "results/raw/EXP-002-R001/episodes.npz": "d3b1c7192803f0dd15adf41f9a1d0799dba840210f25f9e205b304085f8be07d",
+  "results/EXP-003/EXP-003-R001/result.json": "f74a37667153b0dc12ab8d3c0df6af74476cde9a9994fd4ea3d090760b5c7367",
+  "results/raw/EXP-003-R001/episodes.npz": "a72e02c67175a82fde47e59189b72c878072010f8248fce80bdbcd7ef728d1ac",
+  "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv": "7e40967a5f72796b63f7feaf3c9054bbe746f33c9184539a33b59c12aee4363a",
+  "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv": "b68872289c8e749f41263832c0e98a1cc914bdd4d71aa27c9979098286fb37cc"
+ },
+ "q2_exp002": {
+  "contrasts": 48,
+  "share_below_baseline_min": 0.0496,
+  "share_below_baseline_max": 0.4252,
+  "last_agent_delta_min": 0.0067,
+  "last_agent_delta_max": 0.1595,
+  "last_agent_ci_excludes_zero": 48
+ },
+ "q3_exp002": {
+  "cells": 24,
+  "complete_cells_all_zero": true,
+  "ci_excludes_zero": 11
+ },
+ "robustness": {
+  "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv": {
+   "comparisons": 72,
+   "status_counts": {
+    "robust": 70,
+    "lost significance": 2
+   },
+   "v1_contrasts": 24,
+   "v1_below_reference": 24,
+   "v1_below_half_reference": 16,
+   "v1_ratio_min": 0.17726319546691632,
+   "v1_ratio_max": 0.8119357306809487
+  },
+  "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv": {
+   "comparisons": 72,
+   "status_counts": {
+    "robust": 72
+   },
+   "v1_contrasts": 24,
+   "v1_below_reference": 24,
+   "v1_below_half_reference": 17,
+   "v1_ratio_min": 0.27069045361324884,
+   "v1_ratio_max": 0.6272162448855888
+  }
+ },
+ "outputs_sha256": {
+  "q2_distribution.csv": "5fce3b114672ea68dc580249e466cc78f4b2f2d2b04a858056ac1a5fb10b0cd9",
+  "q3_imitation_minus_bayesian.csv": "d51323270190156dc16fbe0975aa3b40a6092631a19877a97e406566f5900f21",
+  "q4_quantity.csv": "9f213df5d0d1430a0b3297b63896807a45d5cbbe5db2b4625ce608759847d1df"
+ }
+}

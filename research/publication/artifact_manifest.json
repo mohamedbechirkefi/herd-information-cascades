@@ -1,103 +1,555 @@
 {
- "schema_version": "0.1.0",
- "updated": "2026-11-24",
- "status": "exploratory artifacts only (M2); no confirmatory result exists",
+ "schema_version": "1.0.0",
+ "updated": "2026-11-25",
+ "status": "M4: confirmatory runs EXP-002-R001 and EXP-003-R001, exploratory runs EXP-001-R001 to R005 and EXP-004-R001, manuscript tables and figures; every manuscript number is traced in research/publication/number_trace.csv",
  "artifacts": [
   {
-   "artifact_id": "EXP-001-R001-report",
+   "artifact_id": "EXP-001-R001",
+   "kind": "run",
    "label": "exploratory",
    "exp_id": "EXP-001",
    "run_ids": [
     "EXP-001-R001"
    ],
-   "description": "EXP-001 smoke matrix (protocol section 7)",
    "result_path": "results/exploratory/EXP-001-R001/result.json",
-   "outputs": [
-    "results/exploratory/EXP-001-R001/tables/arms.csv",
-    "results/exploratory/EXP-001-R001/tables/contrasts.csv",
-    "results/exploratory/EXP-001-R001/tables/checks.csv",
-    "results/exploratory/EXP-001-R001/figures/delta.svg",
-    "results/exploratory/EXP-001-R001/figures/accuracy_hist.svg",
-    "results/exploratory/EXP-001-R001/report.md",
-    "results/exploratory/EXP-001-R001/report.pdf"
-   ],
-   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "result_sha256": "2ba81c009f2bd6448df061bc8817413dc03d3ac6e6abce649c6e0d2e6fb23a82",
+   "config_path": "experiments/EXP-001-R001.json",
    "config_sha256": "6bb119865235b1f09f33ddfb1cd61c0ec8f644ef4ff331b61acc6871f4b2bb49",
-   "protocol_hash": null,
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "protocol_sha256": "f40252ceb8e3a7106df06a144da117aad44a730ac6057e4d0477659dbb1987ff",
    "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
-   "use": "planning and verification only; never cited as evidence"
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-001/report.md",
+   "generated_run_report": "results/exploratory/EXP-001-R001/report.md"
   },
   {
-   "artifact_id": "EXP-001-R002-report",
+   "artifact_id": "EXP-001-R002",
+   "kind": "run",
    "label": "exploratory",
    "exp_id": "EXP-001",
    "run_ids": [
     "EXP-001-R002"
    ],
-   "description": "EXP-002 matrix shape at one fifth of the planned episodes, seeds 100-109",
    "result_path": "results/exploratory/EXP-001-R002/result.json",
-   "outputs": [
-    "results/exploratory/EXP-001-R002/tables/arms.csv",
-    "results/exploratory/EXP-001-R002/tables/contrasts.csv",
-    "results/exploratory/EXP-001-R002/tables/checks.csv",
-    "results/exploratory/EXP-001-R002/figures/delta.svg",
-    "results/exploratory/EXP-001-R002/figures/accuracy_hist.svg",
-    "results/exploratory/EXP-001-R002/report.md",
-    "results/exploratory/EXP-001-R002/report.pdf"
-   ],
-   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "result_sha256": "6faa85b35a7aeb01744752139098905423cb2aa42ebaa025e33a6ddb9bd1dcd2",
+   "config_path": "experiments/EXP-001-R002.json",
    "config_sha256": "e18b052ab500b99a79f30ec9a215f3ce1422f7e77ee4aff830dc9c12d7d180ce",
-   "protocol_hash": null,
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "protocol_sha256": "f40252ceb8e3a7106df06a144da117aad44a730ac6057e4d0477659dbb1987ff",
    "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
-   "use": "planning and verification only; never cited as evidence"
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-001/report.md",
+   "generated_run_report": "results/exploratory/EXP-001-R002/report.md"
   },
   {
-   "artifact_id": "EXP-001-R003-report",
+   "artifact_id": "EXP-001-R003",
+   "kind": "run",
    "label": "exploratory",
    "exp_id": "EXP-001",
    "run_ids": [
     "EXP-001-R003"
    ],
-   "description": "EXP-003 matrix shape (V1 coin N=50, V2 N=10, V3 N=200) at one fifth, seeds 100-109",
    "result_path": "results/exploratory/EXP-001-R003/result.json",
-   "outputs": [
-    "results/exploratory/EXP-001-R003/tables/arms.csv",
-    "results/exploratory/EXP-001-R003/tables/contrasts.csv",
-    "results/exploratory/EXP-001-R003/tables/checks.csv",
-    "results/exploratory/EXP-001-R003/figures/delta.svg",
-    "results/exploratory/EXP-001-R003/figures/accuracy_hist.svg",
-    "results/exploratory/EXP-001-R003/report.md",
-    "results/exploratory/EXP-001-R003/report.pdf"
-   ],
-   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "result_sha256": "8600f6203555ed15353ce380aaaf2ad72fb09a8a96b745c9c1e582ad48f107e3",
+   "config_path": "experiments/EXP-001-R003.json",
    "config_sha256": "0f01eecc86cd6251b8bcbbb244e107f8ace205b2f9a09b0c44ec0a067eb21d2a",
-   "protocol_hash": null,
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "protocol_sha256": "f40252ceb8e3a7106df06a144da117aad44a730ac6057e4d0477659dbb1987ff",
    "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
-   "use": "planning and verification only; never cited as evidence"
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-001/report.md",
+   "generated_run_report": "results/exploratory/EXP-001-R003/report.md"
   },
   {
-   "artifact_id": "EXP-001-R004-report",
+   "artifact_id": "EXP-001-R004",
+   "kind": "run",
    "label": "exploratory",
    "exp_id": "EXP-001",
    "run_ids": [
     "EXP-001-R004"
    ],
-   "description": "window-2 cells at N=50, seeds 100-109",
    "result_path": "results/exploratory/EXP-001-R004/result.json",
-   "outputs": [
-    "results/exploratory/EXP-001-R004/tables/arms.csv",
-    "results/exploratory/EXP-001-R004/tables/contrasts.csv",
-    "results/exploratory/EXP-001-R004/tables/checks.csv",
-    "results/exploratory/EXP-001-R004/figures/delta.svg",
-    "results/exploratory/EXP-001-R004/figures/accuracy_hist.svg",
-    "results/exploratory/EXP-001-R004/report.md",
-    "results/exploratory/EXP-001-R004/report.pdf"
-   ],
-   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "result_sha256": "13fddbadc2d7b78cb979f4c1f64465c149487bf9883f55e524cdcd36b4e08d80",
+   "config_path": "experiments/EXP-001-R004.json",
    "config_sha256": "7e64cd6f93ffe4db44f8d8f1daffa7148f9909db69687833ac185a4234d104e6",
-   "protocol_hash": null,
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "protocol_sha256": "f40252ceb8e3a7106df06a144da117aad44a730ac6057e4d0477659dbb1987ff",
    "code_revision": "f15c0c24f83fa84cf7707602660509573ba30b2b",
-   "use": "planning and verification only; never cited as evidence"
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-001/report.md",
+   "generated_run_report": "results/exploratory/EXP-001-R004/report.md"
+  },
+  {
+   "artifact_id": "EXP-001-R005",
+   "kind": "run",
+   "label": "exploratory",
+   "exp_id": "EXP-001",
+   "run_ids": [
+    "EXP-001-R005"
+   ],
+   "result_path": "results/exploratory/EXP-001-R005/result.json",
+   "result_sha256": "9d48defecdcd7ea5610c8faf28883fd6e789d17f2923157c27918c2826a75a13",
+   "config_path": "experiments/EXP-001-R005.json",
+   "config_sha256": "0c1bfeb60beb150c2b858a8e74b86d3b4b72f907cd03ace5d140a58259147cbf",
+   "protocol_path": "research/experiments/EXP-001/protocol.md",
+   "protocol_sha256": "f40252ceb8e3a7106df06a144da117aad44a730ac6057e4d0477659dbb1987ff",
+   "code_revision": "eded9b82ff9a7b64471ae6e66d127cbc83a9b5e3",
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-001/report.md",
+   "generated_run_report": "results/exploratory/EXP-001-R005/report.md"
+  },
+  {
+   "artifact_id": "EXP-002-R001",
+   "kind": "run",
+   "label": "confirmatory",
+   "exp_id": "EXP-002",
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "result_path": "results/EXP-002/EXP-002-R001/result.json",
+   "result_sha256": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29",
+   "config_path": "experiments/EXP-002.json",
+   "config_sha256": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796",
+   "protocol_path": "research/experiments/EXP-002/protocol.md",
+   "protocol_sha256": "36fbb89207fe9900366ae5a6d1e4d3654548564bde02ab536c3e2c7b1c0d0d7b",
+   "code_revision": "50fbdb1af8db41c1569013166365f17379dd05bd",
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-002/report.md",
+   "generated_run_report": "results/EXP-002/EXP-002-R001/report.md"
+  },
+  {
+   "artifact_id": "EXP-003-R001",
+   "kind": "run",
+   "label": "confirmatory",
+   "exp_id": "EXP-003",
+   "run_ids": [
+    "EXP-003-R001"
+   ],
+   "result_path": "results/EXP-003/EXP-003-R001/result.json",
+   "result_sha256": "f74a37667153b0dc12ab8d3c0df6af74476cde9a9994fd4ea3d090760b5c7367",
+   "config_path": "experiments/EXP-003.json",
+   "config_sha256": "12ebfabeef1fca01b598cc0026c22a2cd1b30be6ad39b96386decc8f0ee8584a",
+   "protocol_path": "research/experiments/EXP-003/protocol.md",
+   "protocol_sha256": "fd0b7c9e361f196c62b0af093503b25b757e814c42557314489bcee899045db5",
+   "code_revision": "50fbdb1af8db41c1569013166365f17379dd05bd",
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-003/report.md",
+   "generated_run_report": "results/EXP-003/EXP-003-R001/report.md"
+  },
+  {
+   "artifact_id": "EXP-004-R001",
+   "kind": "run",
+   "label": "exploratory",
+   "exp_id": "EXP-004",
+   "run_ids": [
+    "EXP-004-R001"
+   ],
+   "result_path": "results/exploratory/EXP-004-R001/result.json",
+   "result_sha256": "f76d3763dccc3ac0c33f3c76b582b34a84e1d3c18fc059df7a466a8882bbe728",
+   "config_path": "experiments/EXP-004-R001.json",
+   "config_sha256": "9269dee899844d0595693bf088efcdb7ddd179de3f3cbd202e905a585dcf0e66",
+   "protocol_path": "research/experiments/EXP-004/protocol.md",
+   "protocol_sha256": "e14989310901286f06a108de2234224f7ce013fdf219e6d170e5044c873ca219",
+   "code_revision": "3831429e2589fbeec183b04e367f39bb78e98d2a",
+   "dirty": false,
+   "generator": "src/herd/runner.py and src/herd/serialize.py (python -m herd.cli run); report: src/herd/report.py",
+   "report": "research/experiments/EXP-004/report.md",
+   "generated_run_report": "results/exploratory/EXP-004-R001/report.md"
+  },
+  {
+   "artifact_id": "TAB-001",
+   "kind": "table",
+   "label": "confirmatory",
+   "exp_id": [
+    "EXP-002"
+   ],
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "metric": "Delta_r(c) = mean over paired episodes of Acc_r(e) - Acc_ind(e), Acc(e) = share of the N agents with a_i = theta (proportion); 95% normal interval; Holm-adjusted two-sided paired t-test p within the variation",
+   "source_paths": [
+    "results/EXP-002/EXP-002-R001/result.json"
+   ],
+   "source_sha256": {
+    "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29"
+   },
+   "generator": "src/herd/paper.py (tab_primary; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-002-R001": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796"
+   },
+   "code_revision": {
+    "EXP-002-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/manuscript.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-002",
+   "kind": "table",
+   "label": "mixed: confirmatory rows EXP-003-R001, exploratory rows EXP-004-R001",
+   "exp_id": [
+    "EXP-003",
+    "EXP-004"
+   ],
+   "run_ids": [
+    "EXP-003-R001",
+    "EXP-004-R001"
+   ],
+   "metric": "status by the frozen EXP-003 rule (src/herd/robustness.py) plus Delta range, largest Holm p, per-seed signs",
+   "source_paths": [
+    "results/EXP-002/EXP-002-R001/result.json",
+    "results/EXP-003/EXP-003-R001/result.json",
+    "results/exploratory/EXP-004-R001/result.json",
+    "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv",
+    "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv"
+   ],
+   "source_sha256": {
+    "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29",
+    "results/EXP-003/EXP-003-R001/result.json": "f74a37667153b0dc12ab8d3c0df6af74476cde9a9994fd4ea3d090760b5c7367",
+    "results/exploratory/EXP-004-R001/result.json": "f76d3763dccc3ac0c33f3c76b582b34a84e1d3c18fc059df7a466a8882bbe728",
+    "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv": "7e40967a5f72796b63f7feaf3c9054bbe746f33c9184539a33b59c12aee4363a",
+    "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv": "b68872289c8e749f41263832c0e98a1cc914bdd4d71aa27c9979098286fb37cc"
+   },
+   "generator": "src/herd/paper.py (tab_sensitivity; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-003-R001": "12ebfabeef1fca01b598cc0026c22a2cd1b30be6ad39b96386decc8f0ee8584a",
+    "EXP-004-R001": "9269dee899844d0595693bf088efcdb7ddd179de3f3cbd202e905a585dcf0e66"
+   },
+   "code_revision": {
+    "EXP-003-R001": "50fbdb1af8db41c1569013166365f17379dd05bd",
+    "EXP-004-R001": "3831429e2589fbeec183b04e367f39bb78e98d2a"
+   },
+   "used_in": [
+    "research/paper/manuscript.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-003",
+   "kind": "table",
+   "label": "exploratory",
+   "exp_id": [
+    "EXP-002",
+    "EXP-004"
+   ],
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "metric": "wrong-cascade probability (share of episodes with an agent in a wrong cascade); share of paired episodes with Acc_r < Acc_ind; last-agent paired difference",
+   "source_paths": [
+    "results/EXP-002/EXP-002-R001/result.json",
+    "results/exploratory/EXP-004-derived/q2_distribution.csv"
+   ],
+   "source_sha256": {
+    "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29",
+    "results/exploratory/EXP-004-derived/q2_distribution.csv": "5fce3b114672ea68dc580249e466cc78f4b2f2d2b04a858056ac1a5fb10b0cd9"
+   },
+   "generator": "src/herd/paper.py (tab_distribution; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-002-R001": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796"
+   },
+   "code_revision": {
+    "EXP-002-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/manuscript.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-004",
+   "kind": "table",
+   "label": "exploratory",
+   "exp_id": [
+    "EXP-002",
+    "EXP-004"
+   ],
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "metric": "paired difference Acc_imitation(e) - Acc_bayesian(e), 95% normal interval; share of episodes that differ",
+   "source_paths": [
+    "results/exploratory/EXP-004-derived/q3_imitation_minus_bayesian.csv"
+   ],
+   "source_sha256": {
+    "results/exploratory/EXP-004-derived/q3_imitation_minus_bayesian.csv": "d51323270190156dc16fbe0975aa3b40a6092631a19877a97e406566f5900f21"
+   },
+   "generator": "src/herd/paper.py (tab_rule_difference; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-002-R001": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796"
+   },
+   "code_revision": {
+    "EXP-002-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/manuscript.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-005",
+   "kind": "table",
+   "label": "exploratory",
+   "exp_id": [
+    "EXP-002",
+    "EXP-004"
+   ],
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "metric": "mean over agents of expected visible observed actions beside Bayesian Delta",
+   "source_paths": [
+    "results/exploratory/EXP-004-derived/q4_quantity.csv"
+   ],
+   "source_sha256": {
+    "results/exploratory/EXP-004-derived/q4_quantity.csv": "9f213df5d0d1430a0b3297b63896807a45d5cbbe5db2b4625ce608759847d1df"
+   },
+   "generator": "src/herd/paper.py (tab_quantity; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-002-R001": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796"
+   },
+   "code_revision": {
+    "EXP-002-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/manuscript.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-S01",
+   "kind": "table",
+   "label": "confirmatory",
+   "exp_id": [
+    "EXP-002"
+   ],
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "metric": "Delta_r(c) = mean over paired episodes of Acc_r(e) - Acc_ind(e), Acc(e) = share of the N agents with a_i = theta (proportion); 95% normal interval; Holm-adjusted two-sided paired t-test p within the variation",
+   "source_paths": [
+    "results/EXP-002/EXP-002-R001/result.json"
+   ],
+   "source_sha256": {
+    "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29"
+   },
+   "generator": "src/herd/paper.py (contrasts_table; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-002-R001": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796"
+   },
+   "code_revision": {
+    "EXP-002-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/supplementary.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-S02",
+   "kind": "table",
+   "label": "confirmatory",
+   "exp_id": [
+    "EXP-003"
+   ],
+   "run_ids": [
+    "EXP-003-R001"
+   ],
+   "metric": "status by the frozen EXP-003 rule",
+   "source_paths": [
+    "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv"
+   ],
+   "source_sha256": {
+    "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv": "7e40967a5f72796b63f7feaf3c9054bbe746f33c9184539a33b59c12aee4363a"
+   },
+   "generator": "src/herd/paper.py (robustness_table; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-003-R001": "12ebfabeef1fca01b598cc0026c22a2cd1b30be6ad39b96386decc8f0ee8584a"
+   },
+   "code_revision": {
+    "EXP-003-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/supplementary.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-S03",
+   "kind": "table",
+   "label": "exploratory",
+   "exp_id": [
+    "EXP-004"
+   ],
+   "run_ids": [
+    "EXP-004-R001"
+   ],
+   "metric": "status by the frozen EXP-003 rule (exploratory run)",
+   "source_paths": [
+    "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv"
+   ],
+   "source_sha256": {
+    "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv": "b68872289c8e749f41263832c0e98a1cc914bdd4d71aa27c9979098286fb37cc"
+   },
+   "generator": "src/herd/paper.py (robustness_table; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-004-R001": "9269dee899844d0595693bf088efcdb7ddd179de3f3cbd202e905a585dcf0e66"
+   },
+   "code_revision": {
+    "EXP-004-R001": "3831429e2589fbeec183b04e367f39bb78e98d2a"
+   },
+   "used_in": [
+    "research/paper/supplementary.md"
+   ]
+  },
+  {
+   "artifact_id": "TAB-S04",
+   "kind": "table",
+   "label": "confirmatory",
+   "exp_id": [
+    "EXP-002"
+   ],
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "metric": "secondary metrics per arm, means with 95% intervals",
+   "source_paths": [
+    "results/EXP-002/EXP-002-R001/result.json"
+   ],
+   "source_sha256": {
+    "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29"
+   },
+   "generator": "src/herd/paper.py (secondary_table; python -m herd.paper fill)",
+   "config_sha256": {
+    "EXP-002-R001": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796"
+   },
+   "code_revision": {
+    "EXP-002-R001": "50fbdb1af8db41c1569013166365f17379dd05bd"
+   },
+   "used_in": [
+    "research/paper/supplementary.md"
+   ]
+  },
+  {
+   "artifact_id": "FIG-001",
+   "kind": "figure",
+   "label": "confirmatory",
+   "exp_id": "EXP-002",
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "path": "results/EXP-002/EXP-002-R001/figures/delta.svg",
+   "sha256": "37eb39ac240916a05b368a1a70f999ed4bb3865d441be86915682e8cf0edde49",
+   "description": "forest plot of the 48 primary contrasts with 95% intervals",
+   "metric": "Delta_r(c) = mean over paired episodes of Acc_r(e) - Acc_ind(e), Acc(e) = share of the N agents with a_i = theta (proportion); 95% normal interval; Holm-adjusted two-sided paired t-test p within the variation",
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796",
+   "code_revision": "50fbdb1af8db41c1569013166365f17379dd05bd",
+   "used_in": [
+    "research/paper/manuscript.md",
+    "research/paper/supplementary.md",
+    "research/experiments/EXP-002/report.md"
+   ]
+  },
+  {
+   "artifact_id": "FIG-002",
+   "kind": "figure",
+   "label": "confirmatory",
+   "exp_id": "EXP-002",
+   "run_ids": [
+    "EXP-002-R001"
+   ],
+   "path": "results/EXP-002/EXP-002-R001/figures/accuracy_hist.svg",
+   "sha256": "57e73075cfe209647b28df0613867c5b3fbd457e97804ef42446b310ddd11c88",
+   "description": "episode-accuracy histograms per arm",
+   "metric": "Delta_r(c) = mean over paired episodes of Acc_r(e) - Acc_ind(e), Acc(e) = share of the N agents with a_i = theta (proportion); 95% normal interval; Holm-adjusted two-sided paired t-test p within the variation",
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796",
+   "code_revision": "50fbdb1af8db41c1569013166365f17379dd05bd",
+   "used_in": [
+    "research/paper/manuscript.md",
+    "research/paper/supplementary.md",
+    "research/experiments/EXP-002/report.md"
+   ]
+  },
+  {
+   "artifact_id": "FIG-003",
+   "kind": "figure",
+   "label": "confirmatory",
+   "exp_id": "EXP-003",
+   "run_ids": [
+    "EXP-003-R001"
+   ],
+   "path": "results/EXP-003/EXP-003-R001/figures/delta.svg",
+   "sha256": "b932fb08ba03fdb08b424f01d582e0b11d7fad4f0168677a54ec9847b3ccb918",
+   "description": "forest plot of the 72 sensitivity contrasts",
+   "metric": "Delta_r(c) = mean over paired episodes of Acc_r(e) - Acc_ind(e), Acc(e) = share of the N agents with a_i = theta (proportion); 95% normal interval; Holm-adjusted two-sided paired t-test p within the variation",
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "12ebfabeef1fca01b598cc0026c22a2cd1b30be6ad39b96386decc8f0ee8584a",
+   "code_revision": "50fbdb1af8db41c1569013166365f17379dd05bd",
+   "used_in": [
+    "research/paper/manuscript.md",
+    "research/paper/supplementary.md",
+    "research/experiments/EXP-003/report.md"
+   ]
+  },
+  {
+   "artifact_id": "FIG-004",
+   "kind": "figure",
+   "label": "exploratory",
+   "exp_id": "EXP-004",
+   "run_ids": [
+    "EXP-004-R001"
+   ],
+   "path": "results/exploratory/EXP-004-R001/figures/delta.svg",
+   "sha256": "e0a2148c147051aad09b9744fb5d97330325df2026fdc36a95e22099eb96484d",
+   "description": "forest plot of the 72 exploratory EXP-004-R001 contrasts",
+   "metric": "Delta_r(c) = mean over paired episodes of Acc_r(e) - Acc_ind(e), Acc(e) = share of the N agents with a_i = theta (proportion); 95% normal interval; Holm-adjusted two-sided paired t-test p within the variation",
+   "generator": "src/herd/report.py (python -m herd.cli report)",
+   "config_sha256": "9269dee899844d0595693bf088efcdb7ddd179de3f3cbd202e905a585dcf0e66",
+   "code_revision": "3831429e2589fbeec183b04e367f39bb78e98d2a",
+   "used_in": [
+    "research/paper/manuscript.md",
+    "research/paper/supplementary.md",
+    "research/experiments/EXP-004/report.md"
+   ]
+  },
+  {
+   "artifact_id": "EXP-004-derived",
+   "kind": "derived analysis",
+   "label": "exploratory",
+   "exp_id": "EXP-004",
+   "run_ids": [
+    "EXP-002-R001",
+    "EXP-003-R001"
+   ],
+   "path": "results/exploratory/EXP-004-derived",
+   "inputs_sha256": {
+    "results/EXP-002/EXP-002-R001/result.json": "86171fe73d39a30468a0b9e2fed8c2c4d1f16d808a635a259aaa94f56bc48a29",
+    "results/raw/EXP-002-R001/episodes.npz": "d3b1c7192803f0dd15adf41f9a1d0799dba840210f25f9e205b304085f8be07d",
+    "results/EXP-003/EXP-003-R001/result.json": "f74a37667153b0dc12ab8d3c0df6af74476cde9a9994fd4ea3d090760b5c7367",
+    "results/raw/EXP-003-R001/episodes.npz": "a72e02c67175a82fde47e59189b72c878072010f8248fce80bdbcd7ef728d1ac",
+    "results/EXP-003/EXP-003-R001/tables/robustness_vs_EXP-002-R001.csv": "7e40967a5f72796b63f7feaf3c9054bbe746f33c9184539a33b59c12aee4363a",
+    "results/exploratory/EXP-004-R001/tables/robustness_vs_EXP-002-R001.csv": "b68872289c8e749f41263832c0e98a1cc914bdd4d71aa27c9979098286fb37cc"
+   },
+   "outputs_sha256": {
+    "q2_distribution.csv": "5fce3b114672ea68dc580249e466cc78f4b2f2d2b04a858056ac1a5fb10b0cd9",
+    "q3_imitation_minus_bayesian.csv": "d51323270190156dc16fbe0975aa3b40a6092631a19877a97e406566f5900f21",
+    "q4_quantity.csv": "9f213df5d0d1430a0b3297b63896807a45d5cbbe5db2b4625ce608759847d1df"
+   },
+   "generator": "src/herd/exploratory.py (python -m herd.exploratory)",
+   "protocol_sha256": "e14989310901286f06a108de2234224f7ce013fdf219e6d170e5044c873ca219",
+   "code_revision": "f2c91ff154bdaed9a444d81041e8c59d2060b725"
+  },
+  {
+   "artifact_id": "NUMBER-TRACE",
+   "kind": "number trace",
+   "path": "research/publication/number_trace.csv",
+   "sha256": "002c5ecbc9e40a7cbb25b514fdfe4c7fb2406115566b914cb531c083a8df88e0",
+   "description": "one row per number printed in the manuscript prose: token, selector into a committed artifact, experiment, runs, metric, hashes, claim; verified by python -m herd.audit",
+   "generator": "hand-curated; checked by src/herd/audit.py"
   }
  ]
 }

@@ -48,3 +48,7 @@ Never commit an e-mail address, a name or any other personal identifier in code,
   - `PYTHONPATH=src uv run --frozen python -m herd.cli test`
   - `PYTHONPATH=src uv run --frozen python -m herd.robustness --reference results/EXP-002/EXP-002-R001 --sensitivity results/EXP-003/EXP-003-R001` (EXP-003 decision rule)
   - `PYTHONPATH=src uv run --frozen python -m herd.tables contrasts|secondary --run <run dir>` (11.3 report tables)
+  - `PYTHONPATH=src uv run --frozen python -m herd.exploratory --out results/exploratory/EXP-004-derived` (EXP-004 derived analyses, exploratory; refuses an existing output)
+  - `PYTHONPATH=src uv run --frozen python -m herd.paper fill|check` (manuscript and supplementary tables from committed results; `check` fails on a stale table)
+  - `PYTHONPATH=src uv run --frozen python -m herd.audit` (evidence audit: number trace, coverage, report tables)
+  - `PYTHONPATH=src uv run --frozen python -m herd.manifest` (writes `research/publication/artifact_manifest.json`)

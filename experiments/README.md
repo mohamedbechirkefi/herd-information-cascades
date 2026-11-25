@@ -8,3 +8,4 @@ Runnable configurations (schema `src/herd/schemas/config-v1.json`). Protocols an
 - `EXP-001-R004.json`: exploratory `window-2` cells (amendment proposal P-1).
 - `EXP-002.json`, `EXP-003.json`: confirmatory configurations of the frozen protocols v1.0 (owner-approved 2026-11-24). `herd.cli run` accepts them only while their canonical SHA-256 and the protocol hashes match `research/freeze.json` and the registry; never edit them (a change is a new study version).
 - `EXP-001-R005.json`: M3 pre-confirmatory smoke run (2026-11-25), the EXP-001 smoke matrix on exploratory seeds 100 and 101 (disjoint from the confirmatory seeds); exploratory.
+- `EXP-004-R001.json`: M4 exploratory, post-hoc run (2026-11-25): the EXP-003 sensitivity design on $q \in \{0.60, 0.80\}$, seeds 0 to 9 so that episodes match EXP-002 (protocol `research/experiments/EXP-004/protocol.md`). Never evidence for a frozen hypothesis.

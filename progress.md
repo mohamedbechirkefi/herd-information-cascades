@@ -185,3 +185,33 @@ M3, scheduled by the coordinator: run EXP-002 and EXP-003 under the frozen v1.0 
 ### Next action
 
 M4: evidence audit, manuscript synthesis with the EXP-003 caveat and the contradicted imitation expectation, second review pass challenging the preferred hypothesis.
+
+## 2026-11-25: Session M4 (interpretation, evidence audit and manuscript)
+
+**Milestone:** M4, under the coordinator's M4 brief (owner: "Approve all recommendations, push then next", 2026-11-25). No owner follow-up of 2026-11-25 is specific to HERD. No confirmatory rerun; no frozen protocol, config or seed changed.
+
+### Work
+
+- **Confounder inspection and sensitivity.** Competing explanations of the study protocol section 9 and EXP-002 section 3 checked against committed results (`research/publication/evidence_audit.md` section 5). Gaps closed by a cheap exploratory experiment, EXP-004 (protocol committed first at `3831429`; D-011):
+  - `PYTHONPATH=src nice -n 10 .venv/bin/python -m herd.cli run --config experiments/EXP-004-R001.json`: "EXPLORATORY run EXP-004-R001: 108 arms, 72 contrasts, 89 checks (0 failed), 0 failed cells; runtime 20.50 s (simulation 13.61 s, 0.145 ms per 1000 decisions), peak RSS 305086464 bytes"; exit 0. Journal J-0009.
+  - `herd.robustness --reference results/EXP-002/EXP-002-R001 --sensitivity results/exploratory/EXP-004-R001`: "72 comparisons: {'robust': 72}".
+  - `PYTHONPATH=src .venv/bin/python -m herd.exploratory --out results/exploratory/EXP-004-derived` (at `f2c91ff`): share below baseline 0.0496 to 0.4252; last-agent delta 0.0067 to 0.1595, 48 of 48 intervals exclude zero; imitation minus Bayesian: 11 of 24 intervals exclude zero, complete cells all zero. Journal J-0010.
+- **Expected versus observed:** manuscript Table 6.
+- **Claims register:** CLM-001 to CLM-015, with result ID, config hash, table or figure, manuscript section and trace IDs; CLM-002 and CLM-009 unit wording corrected.
+- **Evidence audit:** `src/herd/audit.py`, `src/herd/paper.py`, `src/herd/manifest.py`; `research/publication/number_trace.csv` (88 rows), `artifact_manifest.json` (23 artifacts), `evidence_audit.md` (findings F-1 to F-8), `claims_audit.md`. EXP-002 and EXP-003 reports edited with dated notes (units, one unsourced phrase, CK2004 and BHW1992 tie convention marked unverified); no number changed. BHW1992 title checked against Crossref.
+- **Manuscript:** `research/paper/manuscript.md` v1.0 (about 4,860 words of prose before the references, abstract 247 words, title revised) and `research/paper/supplementary.md`; 9 generated tables.
+- **Second review pass:** `research/publication/review_pass_2.md`; six challenges, four of which led to manuscript changes (tie-convention magnitudes, mean versus group outcome and title, practical threshold, scope of the imitation result).
+- **Records:** limitations 9 to 11 updated and 12 to 15 added; D-011; registry row EXP-004; roadmap M4 done.
+- **Refused file.** The write tool refused `research/experiments/EXP-004/report.md` (the twelve-section 11.3 report of EXP-004). Per the brief it was not written by other means; its full text is returned to the coordinator. The generated run report `results/exploratory/EXP-004-R001/report.md` exists.
+
+### Checks
+
+| Command | Output |
+|---|---|
+| `PYTHONPATH=src .venv/bin/python -m herd.audit` | `trace: 88 rows, 88 verified, 0 failed`; `coverage: 0 manuscript prose numbers without a trace row`; `report tables: all generated rows present verbatim`; `all generated tables match the result files` |
+| `shasum -a 256 -c results/EXP-002/SHA256SUMS results/EXP-003/SHA256SUMS` | 21 OK, 0 failed |
+| `.venv/bin/python -m pytest -q` | `289 passed` (281 before plus 4 in `tests/test_exploratory.py` and 4 in `tests/test_audit.py`) |
+
+### Next action
+
+The coordinator writes `research/experiments/EXP-004/report.md` from the returned text; then M5 (interactive page) with the M4 labels. Open for the owner: review of the revised title, the manuscript and the AI-assistance statement; the full texts of BHW1992, CK2004 and ER2010 remain unread.

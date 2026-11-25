@@ -9,7 +9,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 | M1 Research and preregistration | M0 | P0 | 0.25 day | done (2026-11-24): M1 gate passed, protocols frozen v1.0 with the owner-approved amendments A-1 to A-5 (`research/freeze.json`) | full-text checks of BHW1992, CK2004, ER2010 remain open (literature, not the freeze) |
 | M2 Core implementation | M1 draft (implementation may proceed before the freeze) | P0 | 1.5 days | done (2026-11-24) for the code, tests and tooling; proposals P-1 to P-6 answered and applied at the freeze | none |
 | M3 Experiments | M1 freeze, M2 | P0 | 1 day | done (2026-11-25): EXP-002 and EXP-003 frozen matrices complete, reports written | none |
-| M4 Interpretation | M3 | P0 | 1 day | planned, unblocked | none |
+| M4 Interpretation | M3 | P0 | 1 day | done (2026-11-25): confounder inspection, exploratory EXP-004, evidence audit (88 of 88 traced numbers verified), manuscript v1.0 and second review pass; gate holds | the EXP-004 standalone report was refused by the session's write tool and is handed to the coordinator to write; BHW1992, CK2004, ER2010 full texts still unread (abstract-level citations, marked) |
 | M5 Interactive experience | M3 results (M4 for final labels) | P1 | 0.75 day | planned | M4 for final labels |
 | M6 Release candidate | M4, M5 | P0 | 0.25 day | planned | owner approval for any publication (G-PUBLIC) |
 
@@ -45,6 +45,7 @@ Target: five focused development days (planning estimate). Status values: done, 
 - **Deliverables:** confounder inspection, sensitivity analysis (EXP-003), expected versus observed, claims register, limitations.
 - **11.6 additions:** finish experiment reports and evidence audit; synthesise the manuscript, including contradictory results and the sensitivity analysis; second review pass that challenges the preferred hypothesis.
 - **Acceptance:** each numerical claim maps to result ID, config and figure; each external claim to a verified source; unsupported claims removed or qualified.
+- **Status (2026-11-25):** met. Every manuscript prose number has a row in `research/publication/number_trace.csv` (result path, run, metric, config and protocol hash, revision) verified by `python -m herd.audit`; every claim CLM-001 to CLM-015 maps to a result ID, config hash, table or figure and manuscript section; every external claim maps to a source opened at abstract or metadata level and is marked so; unsupported phrases removed or qualified (evidence audit F-2 to F-8). Exploratory EXP-004 closes limitations 9 to 11 descriptively without changing a frozen verdict. Pending outside the gate: `research/experiments/EXP-004/report.md`, handed to the coordinator.
 
 ## M5 Interactive experience
 
