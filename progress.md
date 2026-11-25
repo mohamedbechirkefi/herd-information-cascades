@@ -219,3 +219,30 @@ The coordinator writes `research/experiments/EXP-004/report.md` from the returne
 ## 2026-11-25: M4 done (coordinator)
 
 The M4 session composed the file(s) the write tool refused from committed results; the coordinator wrote them after checking that every decimal number appears in a committed file. With the manuscript, evidence audit and second review pass already committed, the M4 gate holds. M4 is **done**.
+
+## 2026-11-25: Post-M4 owner decisions applied (items 1 and 2)
+
+**Authority.** Owner, 2026-11-25, "Approve all" (post-M4) (`../_shared/owner-approvals-2026-11-25c.md`). Decision D-012.
+
+**Changes.**
+- Item 1: the M4 title is approved; the manuscript status line records the approval (one sentence added, no line added).
+- Item 2: the funding, competing-interest and AI-use wording of manuscript section 11 is recorded as owner-approved (D-012). No wording changed.
+
+**Commands and actual outputs.**
+
+| Command | Output |
+|---|---|
+| `.venv/bin/python -m pytest -q` | `289 passed` |
+| `PYTHONPATH=src .venv/bin/python -m herd.audit` | `trace: 88 rows, 88 verified, 0 failed`; `coverage: 0 manuscript prose numbers without a trace row`; `report tables: all generated rows present verbatim`; `all generated tables match the result files` |
+| `PYTHONPATH=src .venv/bin/python -m herd.paper check` | `all generated tables match the result files` |
+
+No `manuscript.tex` or PDF exists in this repository yet; both are left to M6.
+
+### Owner placeholders for M5
+
+1. `research/paper/manuscript.md` section 10: "public URL: to be added after the owner approves publication". The owner supplies the repository URL at release.
+2. `research/publication/author_review.md`: every item of the owner review checklist is open and can be completed only by the owner.
+
+No other placeholder needing an owner-only fact was found in the manuscript, supplementary, `README.md` or `CITATION.cff`. Observed but outside this session's items: `README.md` still describes the M4 interpretation and the EXP-001 report as pending (stale status text, for M5).
+
+**Next action.** M5 (interactive page) with the M4 labels.

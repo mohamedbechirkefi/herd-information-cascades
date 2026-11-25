@@ -2,7 +2,7 @@
 <!-- Status: independent research manuscript / preprint draft, not peer-reviewed. Version 1.0 (M4, 2026-11-25), revised after the second review pass (`research/publication/review_pass_2.md`). Tables between GENERATED markers are written by `python -m herd.paper fill` from committed results; do not edit them by hand. -->
 # Higher average accuracy, frequent locked-in errors: a simulation study of Bayesian and naive social learning
 
-**Status:** independent research manuscript / preprint draft, not peer-reviewed. Version 1.0, 2026-11-25. Working title until M4: *How groups can become confidently wrong*.
+**Status:** independent research manuscript / preprint draft, not peer-reviewed. Version 1.0, 2026-11-25. Working title until M4: *How groups can become confidently wrong*. The M4 title was approved by the owner on 2026-11-25 (decision log D-012).
 
 ## Author and affiliation metadata
 
