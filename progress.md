@@ -215,3 +215,7 @@ M4: evidence audit, manuscript synthesis with the EXP-003 caveat and the contrad
 ### Next action
 
 The coordinator writes `research/experiments/EXP-004/report.md` from the returned text; then M5 (interactive page) with the M4 labels. Open for the owner: review of the revised title, the manuscript and the AI-assistance statement; the full texts of BHW1992, CK2004 and ER2010 remain unread.
+
+## 2026-11-25: M4 done (coordinator)
+
+The M4 session composed the file(s) the write tool refused from committed results; the coordinator wrote them after checking that every decimal number appears in a committed file. With the manuscript, evidence audit and second review pass already committed, the M4 gate holds. M4 is **done**.
