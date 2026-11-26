@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # HERD: when does social information help, and when does it produce cascades of errors?
 
-**Status (2026-11-25): independent research manuscript / preprint draft, not peer-reviewed.** Milestones M0 to M4 are done and M5 (interactive page) is in this repository. The confirmatory experiments EXP-002 and EXP-003 ran once each under protocols frozen with the owner's approval on 2026-11-24; EXP-001 and EXP-004 are exploratory. The owner approved the manuscript title and its funding, competing-interest and AI-use statements on 2026-11-25; the owner's full-text review of the manuscript is pending (M6). Nothing has been published. Simulation with synthetic agents only.
+**Status (2026-11-25): independent research manuscript / preprint draft, not peer-reviewed.** Milestones M0 to M4 are done and M5 (interactive page) is in this repository. The confirmatory experiments EXP-002 and EXP-003 ran once each under protocols frozen with the owner's approval on 2026-11-24; EXP-001 and EXP-004 are exploratory. The owner approved the manuscript title and its funding, competing-interest and AI-use statements on 2026-11-25; the owner's full-text review of the manuscript is pending (M6). The repository is public at https://github.com/mohamedbechirkefi/herd-information-cascades since 2026-11-25; no release, tag, DOI or preprint exists yet. Author: Mohamed Bechir Kefi, independent researcher. Simulation with synthetic agents only.
 
 ## Question
 
@@ -28,7 +28,7 @@ A positive mean gain over many groups does not mean that any given group gains. 
 
 *Screenshot of the sandbox section (seed 1, default settings). Sandbox output is produced in the browser and is not a research result.*
 
-`demo/` is a static page (TypeScript, React, Vite; no runtime service) with the published results drawn from `demo/public/data/results.json`, which `scripts/export_demo_data.py` writes from committed results only: a forest plot of every contrast with its interval for EXP-002, EXP-003 and EXP-004, the episode-accuracy distribution of every EXP-002 cell, the assumptions, method and limitations, and a sandbox. The sandbox runs a TypeScript port of the decision rules, tested against the Python engine on a fixture (identical actions and cascade flags), with its own random generator. The page runs offline after the first load and collects nothing. Demo URL: to be added after the owner approves publication.
+`demo/` is a static page (TypeScript, React, Vite; no runtime service) with the published results drawn from `demo/public/data/results.json`, which `scripts/export_demo_data.py` writes from committed results only: a forest plot of every contrast with its interval for EXP-002, EXP-003 and EXP-004, the episode-accuracy distribution of every EXP-002 cell, the assumptions, method and limitations, and a sandbox. The sandbox runs a TypeScript port of the decision rules, tested against the Python engine on a fixture (identical actions and cascade flags), with its own random generator. The page runs offline after the first load and collects nothing. Demo URL: https://herd-information-cascades.kefimohamedbechir.workers.dev (static assets on Cloudflare Workers, free plan; see `demo/README.md`).
 
 ```
 cd demo && npm ci && npm run build && npm run preview
@@ -93,4 +93,4 @@ HERD Source-Available Non-Commercial Research License v1.0 (`LicenseRef-HERD-NC-
 
 ## Citation
 
-Mohamed Bechir Kefi. *Higher average accuracy, frequent locked-in errors: a simulation study of Bayesian and naive social learning.* Independent research manuscript / preprint draft, not peer-reviewed, 2026. Repository URL: to be added after the owner approves publication. See `CITATION.cff`. An AI system was used as a research and development assistant and is not an author.
+Mohamed Bechir Kefi, independent researcher. *Higher average accuracy, frequent locked-in errors: a simulation study of Bayesian and naive social learning.* Independent research manuscript / preprint draft, not peer-reviewed, 2026. Repository: https://github.com/mohamedbechirkefi/herd-information-cascades. See `CITATION.cff`. An AI system was used as a research and development assistant and is not an author.

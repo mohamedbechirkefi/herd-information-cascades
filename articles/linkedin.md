@@ -9,7 +9,9 @@ One defensible finding: in the confirmatory study, observing others raised mean 
 
 Caveat: these are synthetic agents in a stylised model, not people. The size of the gain depends strongly on how ties are broken, and my own prediction that naive imitation would hurt accuracy was contradicted. Not peer-reviewed.
 
-Repository: to be added after the owner approves publication.
-Interactive demo: to be added after the owner approves publication.
+Repository: https://github.com/mohamedbechirkefi/herd-information-cascades
+Interactive demo: https://herd-information-cascades.kefimohamedbechir.workers.dev
 
 An AI system was used as a research and development assistant.
+
+Mohamed Bechir Kefi, independent researcher

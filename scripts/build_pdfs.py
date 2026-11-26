@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from herd.report import PANDOC, build_pdf  # noqa: E402
 
-AUTHOR = "Mohamed Bechir Kefi"  # owner-approved author line (common decision C3)
+AUTHOR = "Mohamed Bechir Kefi"  # owner-approved author name (common decision C3; decision sheet B3, 2026-11-26)
 TARGETS = [ROOT / "research/paper/manuscript.md", ROOT / "research/paper/supplementary.md",
            *sorted((ROOT / "research/experiments").glob("EXP-*/report.md"))]
 

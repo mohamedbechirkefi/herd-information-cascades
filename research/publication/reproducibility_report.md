@@ -64,3 +64,9 @@ No command failed. Findings from the other M6 checks, fixed in the working repos
 ## Not reproduced
 
 The confirmatory runs EXP-002-R001 and EXP-003-R001 and the exploratory EXP-004-R001 were not re-run at M6 (no confirmatory run is allowed in M6; their committed results and raw arrays are verified by hash above). Their full reproduction commands are in `README.md`.
+
+## Home-directory paths (owner decision sheet item B9, 2026-11-26)
+
+On 2026-11-26 the absolute home-directory paths were removed from the editable files that still had them: `CLAUDE.md` (6 lines, now paths relative to the repository such as `../.tools/` and "the research root" in words) and `research/feasibility.md` (4 lines, tool locations now relative to the repository). No command, script or source default used them; the PDF builder already resolves the shared tools relative to the repository (D-015, item 1). The history is not rewritten, so earlier commits keep the old text.
+
+What remains in tracked files, and why: 2 lines in `progress.md` (the M0 entry of 2026-11-24, a `df -h` and a `node --version` command as run), kept because the journal is append-only. No frozen protocol, decision log, checksummed result file, run log or licence file contains such a path (scan of all tracked files with `grep -n "/Users/"`).

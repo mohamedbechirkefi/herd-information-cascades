@@ -7,7 +7,7 @@
 
 - **Experiment:** EXP-001 (exploratory by design). **Runs:** EXP-001-R001 to R004 (M2, 2026-11-24, before the freeze) and EXP-001-R005 (M3, 2026-11-25, pre-confirmatory smoke run).
 - **Report version:** 1.0, 2026-11-25. **Status:** complete; all verification checks passed in all five runs.
-- **Authorship:** Mohamed Bechir Kefi (no affiliation). An AI system was used as a research and development assistant and is not an author.
+- **Authorship:** Mohamed Bechir Kefi, independent researcher. An AI system was used as a research and development assistant and is not an author.
 - **Protocol:** `research/experiments/EXP-001/protocol.md` v1.0 (exploratory), SHA-256 `f40252ceb8e3a7106df06a144da117aad44a730ac6057e4d0477659dbb1987ff`.
 - **Code revisions:** R001 to R004 at `f15c0c24f83fa84cf7707602660509573ba30b2b`; R005 at `eded9b82ff9a7b64471ae6e66d127cbc83a9b5e3` (the frozen tree, clean).
 

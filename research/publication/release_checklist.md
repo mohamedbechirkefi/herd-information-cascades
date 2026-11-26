@@ -3,6 +3,8 @@
 
 **Status (2026-11-25, M6):** release candidate prepared (`CITATION.cff` version `0.1.0-rc1`), awaiting the owner's review and G-PUBLIC. Items 1 to 11 were verified in the M6 session; items 12 and 13 belong to the owner. Evidence: `reproducibility_report.md`, `progress.md` (M6 entry), decision D-015.
 
+**Update (2026-11-26):** the repository has been public at https://github.com/mohamedbechirkefi/herd-information-cascades since 2026-11-25 (pushed by the coordinator on the owner's word), so everything committed in it is public. No release, tag, DOI or preprint exists. The owner's answers of 2026-11-26 (owner, 2026-11-26, decision sheet) were applied in decision D-016. The interactive page is to be hosted at https://herd-information-cascades.kefimohamedbechir.workers.dev (Cloudflare Workers static assets, free plan, deployed by the coordinator). Item 13 below is about the release (B18), which the owner has not yet decided.
+
 - [x] Clean clone into a separate directory. Evidence: two local clones of HEAD (`4cd8c92`, then `802145d`) in the session scratch folder, deleted afterwards.
 - [x] `uv sync --frozen` succeeds from `uv.lock`. Evidence: `uv sync --frozen --all-groups --all-extras`, `Installed 6 packages` (clone 2).
 - [x] Test suite run; actual counts and output recorded in `progress.md`. Evidence: `299 passed` in clone 2 and in the working repository; demo `Tests 69 passed (69)`.
@@ -16,3 +18,12 @@
 - [x] Claims audit complete (`claims_audit.md`). Evidence: present since M4; `herd.audit` 88 of 88 trace rows verified, 0 untraced prose numbers (M6).
 - [ ] Owner review complete (`author_review.md`)
 - [ ] Owner approval for any publication (G-PUBLIC)
+
+## Version and date at the release (owner decision sheet item B8, 2026-11-26)
+
+`CITATION.cff` keeps `version: 0.1.0-rc1` and no `date-released` until the release. At the release, `version` becomes `0.1.0` and `date-released` is set to the release day. `pyproject.toml` stays at `0.0.0` (changing it would change the lockfile and the recorded environments).
+
+## Release notes (draft)
+
+- External build and check tools are used but not redistributed: pandoc (GPL-2.0-or-later) converts Markdown to Typst and LaTeX, Google Chrome runs the accessibility check of the demo, and lightningcss (MPL-2.0) is a build-time CSS tool of Vite that is not shipped in the page bundle (see `dependency_licences.md`).
+- The eight run-report PDFs under `results/` predate the M6 PDF builder and carry no title in their metadata; they are kept unchanged as parts of committed result folders (owner decision sheet item R-HERD-1, kept).

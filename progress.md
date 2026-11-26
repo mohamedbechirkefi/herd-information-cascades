@@ -341,3 +341,33 @@ M6: release candidate prepared, awaiting owner review and G-PUBLIC. Not done unt
 ### Next action
 
 The owner's review: `research/publication/author_review.md` (section "Prepared for the owner"), then a G-PUBLIC decision.
+
+## 2026-11-26: Owner answers of 2026-11-26 applied (wording and configuration)
+
+**Authority:** owner, 2026-11-26, decision sheet (`../_shared/owner-decision-sheet-2026-11-26.md`, `../_shared/owner-approvals-2026-11-26.md`), applied under the coordinator's brief `../_shared/OWNER-ANSWERS-brief.md`. Decision D-016. No push, no deploy, no box of `author_review.md` ticked. No result, analysis, figure, configuration, seed, frozen protocol, protocol hash or checksummed output changed. `git status` was clean at the start.
+
+### Work
+
+- A1, B1, B2: repository and demo URLs filled (`CITATION.cff` with `repository-code`, `README.md`, `demo/README.md`, both articles, manuscript section 10, page footer in `demo/src/App.tsx`); out-of-date "nothing published" sentences corrected. `demo/wrangler.jsonc` added (assets only, `./dist`). Footer text wraps (`overflow-wrap: anywhere` in `demo/src/style.css`).
+- B3: author line "Mohamed Bechir Kefi, independent researcher" in the manuscript, the four experiment reports (identification section only), `CITATION.cff` (`affiliation`), README, articles and page footer. B7: `CITATION.cff` `title` set to the manuscript title.
+- B8, B13, R-HERD-1: `release_checklist.md` gains a dated status update, a version note and "Release notes (draft)".
+- B9: home paths replaced in `CLAUDE.md` and `research/feasibility.md`; 2 lines remain in this journal's M0 entry (listed in `reproducibility_report.md`).
+- `author_review.md`: placeholder list updated (none remain), section "Owner answers recorded (2026-11-26)" added; 0 boxes ticked.
+
+### Commands and actual outputs
+
+| Command | Output |
+|---|---|
+| `.venv/bin/python scripts/build_pdfs.py` | manuscript.pdf (284490 bytes), supplementary.pdf (587481), EXP-001 to EXP-004 report.pdf, manuscript.tex; supplementary.pdf unchanged byte for byte (its source did not change) |
+| typst PNG render (70 ppi, scratch) of manuscript pages 1, 12, 13 and EXP-002 report page 1 | read: author line, section 10 URLs and section 11 statements render correctly, no overlap; pypdf: author line found on page 1 of all four reports; metadata author "Mohamed Bechir Kefi" |
+| `.venv/bin/python -m pytest -q -p no:cacheprovider` | `299 passed in 7.73s` |
+| `PYTHONPATH=src .venv/bin/python -m herd.audit` | `trace: 88 rows, 88 verified, 0 failed`; `coverage: 0 manuscript prose numbers without a trace row`; `all generated tables match the result files` |
+| `.venv/bin/python scripts/export_demo_data.py --check` | `results.json is up to date` |
+| `.venv/bin/python scripts/check_links.py` | `links: 49 Markdown files, 21 relative links, 0 broken` |
+| `cd demo && npm test` | `Test Files 3 passed (3)`, `Tests 69 passed (69)` |
+| `npm run build`; `node tools/a11y_check.mjs dist` | `✓ built in 169ms`; 9 PASS lines including "no request leaves the local origin", `A11Y-CHECK PASS` |
+| `git ls-files \| xargs grep -n "/Users/"` | 2 lines, both in `progress.md` (M0 entry) |
+
+### Next action
+
+The owner: B15 (articles), B16 (full-text review and sign-off of `research/publication/author_review.md`), B18 (release). The coordinator deploys the demo from `demo/dist` with `demo/wrangler.jsonc`.

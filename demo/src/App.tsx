@@ -49,8 +49,10 @@ export function App() {
       <footer className="site">
         <div className="wrap">
           <p>
-            Runs offline after the first load. No data about visitors is collected, stored or sent anywhere. Repository and
-            demo URL: to be added after the owner approves publication.
+            Mohamed Bechir Kefi, independent researcher. Runs offline after the first load. No data about visitors is
+            collected, stored or sent anywhere. Repository:{" "}
+            <a href="https://github.com/mohamedbechirkefi/herd-information-cascades">github.com/mohamedbechirkefi/herd-information-cascades</a>. Demo:{" "}
+            <a href="https://herd-information-cascades.kefimohamedbechir.workers.dev">herd-information-cascades.kefimohamedbechir.workers.dev</a>.
           </p>
         </div>
       </footer>

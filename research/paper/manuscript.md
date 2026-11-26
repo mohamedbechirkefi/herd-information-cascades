@@ -6,7 +6,7 @@
 
 ## Author and affiliation metadata
 
-Mohamed Bechir Kefi. No affiliation. (Approved by the owner on 2026-11-24, common decision C3.)
+Mohamed Bechir Kefi. Independent researcher; no institutional affiliation. (Author line approved by the owner on 2026-11-26, decision sheet item B3; it replaces the earlier "No affiliation" of common decision C3.)
 
 ## Abstract
 
@@ -279,7 +279,7 @@ In a stylised model of sequential binary decisions, using social information rai
 
 ## 10. Data and code availability
 
-All code, configurations, frozen protocols, raw per-episode outputs (confirmatory runs), result files, run manifests, generated reports and figures are in this repository (public URL: to be added after the owner approves publication). Environment: `uv sync --frozen` from `uv.lock` (Python 3.12.1, numpy 2.3.4). Reproduction: `PYTHONPATH=src .venv/bin/python -m herd.cli run --config experiments/EXP-002.json` (and `EXP-003.json`, `EXP-004-R001.json`), then `herd.cli report --run <run folder>`; derived analyses `python -m herd.exploratory`; manuscript tables `python -m herd.paper fill`. Every number in this manuscript is mapped to its source in `research/publication/artifact_manifest.json`.
+All code, configurations, frozen protocols, raw per-episode outputs (confirmatory runs), result files, run manifests, generated reports and figures are in this repository (public URL: https://github.com/mohamedbechirkefi/herd-information-cascades; interactive page: https://herd-information-cascades.kefimohamedbechir.workers.dev). Environment: `uv sync --frozen` from `uv.lock` (Python 3.12.1, numpy 2.3.4). Reproduction: `PYTHONPATH=src .venv/bin/python -m herd.cli run --config experiments/EXP-002.json` (and `EXP-003.json`, `EXP-004-R001.json`), then `herd.cli report --run <run folder>`; derived analyses `python -m herd.exploratory`; manuscript tables `python -m herd.paper fill`. Every number in this manuscript is mapped to its source in `research/publication/artifact_manifest.json`.
 
 ## 11. Funding, competing interests and AI assistance
 

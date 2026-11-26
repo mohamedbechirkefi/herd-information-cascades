@@ -29,19 +29,19 @@ Then run `git status`, inspect existing files, and never overwrite changes made 
 
 ## 3. Toolchain (zero cost, local)
 
-- Python 3.12.1 at `/usr/local/bin/python3`; dependencies locked in `uv.lock` with `/Users/bechir/research/labs/.tools/py/bin/uv`.
-- `uv`, `typst` (Python package 0.15.0), `pypdf` and `pillow` in `/Users/bechir/research/labs/.tools/py/bin/`.
-- pandoc 3.6.3 at `/Users/bechir/research/labs/.tools/pandoc`.
-- Node 22.23.3 at `/Users/bechir/research/helix/.tools/node/bin`: read-only use; never modify that folder.
+- Python 3.12.1 at `/usr/local/bin/python3`; dependencies locked in `uv.lock` with `../.tools/py/bin/uv` (paths in this section are relative to the repository; the shared `.tools` folder sits in the labs folder).
+- `uv`, `typst` (Python package 0.15.0), `pypdf` and `pillow` in `../.tools/py/bin/`.
+- pandoc 3.6.3 at `../.tools/pandoc`.
+- Node 22.23.3 at `../../helix/.tools/node/bin`: read-only use; never modify that folder.
 - No TeX distribution. PDFs are built as Markdown to Typst with pandoc (pass `-V mainfont="Libertinus Serif"`; the default template leaves the font list empty), compiled with the typst Python package. `manuscript.tex` is generated from Markdown with pandoc and is not compiled locally.
 
 ## 4. Rules for all sessions
 
 - **Gates.** Never push, add a remote, create a GitHub repository or publish anything (G-PUBLIC). No paid service of any kind. Never freeze a protocol: freezing is the owner's decision (G-FREEZE). No confirmatory experiment before the owner freezes its protocol. Exploratory runs are allowed and are labelled exploratory.
-- **Scope.** Work only inside this repository, except for read-only use of the tools listed above. Do not touch any other folder under `/Users/bechir/research`. Never kill processes you did not start. Never delete anything you did not create in the current session.
+- **Scope.** Work only inside this repository, except for read-only use of the tools listed above. Do not touch any other folder under the research root. Never kill processes you did not start. Never delete anything you did not create in the current session.
 - **Truthfulness.** Never fabricate results, citations, test counts or PDFs. Record commands and their actual outputs in `progress.md`. Anything not verified is labelled unverified.
 - **Files and style.** New text and code files start with `SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0` as a comment where the format allows; JSON and CSV are covered by `NOTICE.md`. English. No em dashes. Plain, formal register. No e-mail address, personal identifier or secret in any committed file (git author metadata excepted). Refer to the owner as "the owner" (they/them).
 - **Licence.** The licence files (`LICENSE`, `NOTICE.md`, `LICENSE_HISTORY.md`, `CLA.md`, `.github/`) are the owner's decision and are not changed. Development commands may be appended to `CONTRIBUTING.md`.
-- **Commits.** Local only: `git -c user.name=<owner username> -c user.email=<owner address> commit` with the identity given in `/Users/bechir/research/labs/_shared/M0-brief.md` (the address is never written into a committed file), message ending with a blank line and `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Run `git status` before and after.
+- **Commits.** Local only: `git -c user.name=<owner username> -c user.email=<owner address> commit` with the identity given in `../_shared/M0-brief.md` (the address is never written into a committed file), message ending with a blank line and `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`. Run `git status` before and after.
 - **Claims boundary.** Synthetic actors do not establish real human irrationality. Simulation results hold only within the model's assumptions.
 - **Session end.** Update `progress.md` (dated entry with commands and real outputs), `roadmap.md` statuses and blockers, and `research/decision_log.md` for any decision.

@@ -8,7 +8,7 @@
 - **Experiment:** EXP-004 (exploratory, M4). **Run:** EXP-004-R001 (new simulation, once, no rerun). **Derived analyses:** `results/exploratory/EXP-004-derived/` (no simulation; computed from committed EXP-002-R001 and EXP-003-R001 outputs).
 - **Date:** 2026-11-25 (R001: 2026-11-25T01:19:46Z to 01:20:07Z UTC). Report version 1.0, 2026-11-25.
 - **Status:** complete. R001 ran its full matrix: 0 failed cells, 89 of 89 verification checks passed.
-- **Authorship:** Mohamed Bechir Kefi (no affiliation). An AI system was used as a research and development assistant and is not an author.
+- **Authorship:** Mohamed Bechir Kefi, independent researcher. An AI system was used as a research and development assistant and is not an author.
 - **Protocol:** `research/experiments/EXP-004/protocol.md` v1.0 (exploratory, not frozen), SHA-256 `e14989310901286f06a108de2234224f7ce013fdf219e6d170e5044c873ca219`, committed at `3831429` before R001 ran.
 - **Configuration:** `experiments/EXP-004-R001.json`, canonical SHA-256 `9269dee899844d0595693bf088efcdb7ddd179de3f3cbd202e905a585dcf0e66` (file SHA-256 `fd27019f78884c6aaf448df7e5ab83ea413828060de075b035e221b8926b0cc8`).
 - **Code revisions:** R001 at `3831429e2589fbeec183b04e367f39bb78e98d2a` (clean tree; engine identical to the confirmatory revision `50fbdb1`, since only records and configs changed in between); derived analyses at `f2c91ff154bdaed9a444d81041e8c59d2060b725` (clean tree; adds `src/herd/exploratory.py`).

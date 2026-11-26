@@ -3,6 +3,8 @@
 
 # Higher average accuracy, frequent locked-in errors: what a simulation says about following the crowd
 
+*By Mohamed Bechir Kefi, independent researcher.*
+
 *Draft. A simulation study with synthetic agents; nothing here is a finding about real people. Not peer-reviewed.*
 
 Imagine a queue of people, each deciding between two options. Each has a private hint that is right a little more often than not, and each can see what some of the people before them chose. Should they follow the crowd or their own hint?
@@ -24,7 +26,7 @@ The confirmatory study (EXP-002) crossed four signal precisions, three networks 
 
 ## Visual explanation
 
-The interactive page in `demo/` replays a single episode agent by agent: the private signal, the social agent's action and what an independent agent would have done. In the episode shown with the sandbox's default settings (seed 1), two early wrong signals push the visible lead to two and every later Bayesian agent follows the wrong action, even those holding the right signal. The page also shows, for every cell of the study, the distribution of episode accuracy: under social learning it is split between groups that end mostly right and groups that end mostly wrong. Demo link: to be added after the owner approves publication.
+The interactive page in `demo/` replays a single episode agent by agent: the private signal, the social agent's action and what an independent agent would have done. In the episode shown with the sandbox's default settings (seed 1), two early wrong signals push the visible lead to two and every later Bayesian agent follows the wrong action, even those holding the right signal. The page also shows, for every cell of the study, the distribution of episode accuracy: under social learning it is split between groups that end mostly right and groups that end mostly wrong. Demo link: https://herd-information-cascades.kefimohamedbechir.workers.dev.
 
 *Figure (`docs/demo.png`): the sandbox after a run, showing one episode agent by agent above the accuracy distribution of the run. Alt text: a row of agents in which, after two wrong early signals, every Bayesian agent's action is wrong, above two histograms in which the independent group is spread around one half and the Bayesian group is concentrated at zero and at one. Sandbox output, not a research result.*
 
@@ -52,6 +54,6 @@ The full list is in `research/limitations.md`.
 
 ## Reproducibility
 
-Code, frozen protocols, configurations, raw per-episode outputs, run manifests, per-experiment reports and the manuscript are in the repository, with a trace from every manuscript number to its source. Repository link: to be added after the owner approves publication.
+Code, frozen protocols, configurations, raw per-episode outputs, run manifests, per-experiment reports and the manuscript are in the repository, with a trace from every manuscript number to its source. Repository link: https://github.com/mohamedbechirkefi/herd-information-cascades.
 
 An AI system (Claude, Anthropic) was used as a research and development assistant: it wrote code, tests, reports and drafts under my direction. It is not an author.

@@ -1,7 +1,7 @@
 <!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
 # demo/: HERD interactive page (M5)
 
-A static page built from the shared lab template (TypeScript, React and Vite, pinned versions, `package-lock.json`). It has no backend and no runtime service, loads nothing from another host, collects no visitor data and runs offline after the first load. Demo URL: to be added after the owner approves publication.
+A static page built from the shared lab template (TypeScript, React and Vite, pinned versions, `package-lock.json`). It has no backend and no runtime service, loads nothing from another host, collects no visitor data and runs offline after the first load. Demo URL: https://herd-information-cascades.kefimohamedbechir.workers.dev. The page is hosted as Cloudflare Workers static assets on the free plan (`wrangler.jsonc`: the built `dist/` folder, assets only, no Worker script). It is deployed by the lab coordinator, not by any script of this repository. Repository: https://github.com/mohamedbechirkefi/herd-information-cascades. The page footer names the author: Mohamed Bechir Kefi, independent researcher.
 
 ## What it shows
 

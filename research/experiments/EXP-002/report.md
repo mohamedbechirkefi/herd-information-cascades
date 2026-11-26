@@ -6,7 +6,7 @@
 - **Experiment:** EXP-002 (confirmatory). **Run:** EXP-002-R001 (the only run; no rerun).
 - **Date:** executed 2026-11-25 (local time; 2026-11-24T23:31:31Z to 23:31:41Z UTC). Report version 1.0, 2026-11-25.
 - **Status:** complete. Full frozen matrix executed, 0 failed cells, 61 of 61 verification checks passed.
-- **Authorship:** Mohamed Bechir Kefi (no affiliation). An AI system was used as a research and development assistant and is not an author.
+- **Authorship:** Mohamed Bechir Kefi, independent researcher. An AI system was used as a research and development assistant and is not an author.
 - **Protocol:** `research/experiments/EXP-002/protocol.md` v1.0, SHA-256 `36fbb89207fe9900366ae5a6d1e4d3654548564bde02ab536c3e2c7b1c0d0d7b`; study protocol `research/protocol.md` v1.0, SHA-256 `f73423c0bfd6f6463b1c1cb0d316e4ddc3942306eafe6793ba866112e72a457c`.
 - **Configuration:** `experiments/EXP-002.json`, canonical SHA-256 `26e7cef89deddbb8a9d5bcdc95ae1b785f42e086a6b0e4b885731153312e9796` (file SHA-256 `278993cc19e4de08e0a4eb10479d11457f0138b81ad1ac0a4013c4b495363b51`), both as recorded in `research/freeze.json`.
 - **Code revision:** `50fbdb1af8db41c1569013166365f17379dd05bd` (tree clean at run time; `dirty: false` in the run manifest).

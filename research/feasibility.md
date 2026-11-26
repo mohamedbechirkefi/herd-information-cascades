@@ -14,15 +14,17 @@ All values below were confirmed by commands run in this session; the commands an
 
 ## 2. Tools
 
+Locations are given relative to the repository (absolute home-directory paths replaced on 2026-11-26, owner decision sheet item B9; the tools and values are unchanged).
+
 | Tool | Version | Location | Status |
 |---|---|---|---|
 | Python | 3.12.1 | `/usr/local/bin/python3` | confirmed |
-| uv | 0.9.5 (2025-10-21) | `/Users/bechir/research/labs/.tools/py/bin/uv` | confirmed; `uv lock` succeeded |
-| typst (Python package) | 0.15.0 | `/Users/bechir/research/labs/.tools/py` | confirmed; compiled a test PDF |
+| uv | 0.9.5 (2025-10-21) | `../.tools/py/bin/uv` | confirmed; `uv lock` succeeded |
+| typst (Python package) | 0.15.0 | `../.tools/py` | confirmed; compiled a test PDF |
 | pypdf | 6.20.0 | same | confirmed |
 | pillow | 11.3.0 | same | confirmed |
-| pandoc | 3.6.3 | `/Users/bechir/research/labs/.tools/pandoc` | confirmed |
-| Node | v22.23.3 | `/Users/bechir/research/helix/.tools/node/bin` | confirmed; read-only use only |
+| pandoc | 3.6.3 | `../.tools/pandoc` | confirmed |
+| Node | v22.23.3 | `../../helix/.tools/node/bin` | confirmed; read-only use only |
 | git | 2.42.1 | system | confirmed |
 | TeX (tex, pdflatex, xelatex) | none | | not installed |
 
