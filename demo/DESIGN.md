@@ -28,9 +28,10 @@ Light only: the yellow field and the flat poster colours lose their meaning on a
 ## Type
 
 - **Anybody** (variable weight and width, OFL-1.1): display. Set wide (`font-stretch` 130 to 150%) and heavy for the headline, like poster lettering; the width axis lets section titles sit narrower than the hero.
-- **Atkinson Hyperlegible Next** (variable, OFL-1.1): text, labels and figures. Designed for legibility, with clearly distinct numerals, which suits a page full of intervals. Tabular figures for numbers; no monospace face.
+- **Lexend** (variable weight, OFL-1.1): text and labels. Drawn for reading ease, with a large x-height, open shapes and generous spacing, so a dense page of rules, conditions and intervals stays easy to follow; its plain, even rhythm sits calmly under Anybody's poster lettering. Set at 16 px with 1.65 leading and weights one step lighter than before (500 for the lede, 600 for labels and buttons), because Lexend reads heavier and larger than its size suggests. Chosen in the unique-typeface round (owner request of 2026-11-26: no two labs share a family); it replaces Atkinson Hyperlegible Next.
+- **Figures.** Lexend has proportional figures only, so numbers in tables, the forest plot, the histograms, the result statistics and the sandbox strip are set in Anybody at 92% width with its tabular figures; columns of estimates and intervals line up. No monospace face.
 
-Scale (rem): 0.8125 / 0.9375 / 1.0625 body / 1.375 / 2.25 / clamp(2.4, 6vw, 4.6) hero. Body leading 1.6, measure 68ch.
+Scale (rem): 0.78 / 0.9 / 1 body / 1.18 lede / 1.3 / clamp(1.8, 3.8vw, 2.6) / clamp(2, 4.4vw, 3.6) hero. Body leading 1.65, measure 68ch.
 
 ## Layout
 

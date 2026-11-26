@@ -386,3 +386,27 @@ The owner asked for each lab demo to have its own brand, motion and premium UI. 
 
 ### Not done
 No push or deploy (coordinator's step).
+
+## 2026-11-26: unique typeface pair across the labs (owner request)
+
+Brief: `../_shared/FONT-UNIQUE-brief.md` (no two lab demos share a type family). HERD row: text face changes, Anybody with Lexend.
+
+### Decisions
+- Atkinson Hyperlegible Next replaced by Lexend variable (`@fontsource-variable/lexend` 5.3.0, OFL 1.1, resolved with `npm_config_before=2026-11-12`, saved exact; latin weight file only). Anybody 5.3.0 kept as the display face.
+- Lexend has no `tnum` feature and proportional figures, so numbers in tables (`td.num`), the forest plot axis and values, the histogram axes, the result statistics, the sandbox strip tokens and number inputs are set in Anybody at 92% width with tabular figures.
+- Type scale re-tuned for Lexend's larger x-height and heavier colour: body 16 px with 1.65 leading, lede 1.18 rem at 500, hero answer 1.1 to 1.32 rem at 500, labels, navigation and buttons at 600 (from 700), small text 0.78 to 0.9 rem.
+- The wordmark, lockups and Open Graph image use Anybody only, so no brand file was redrawn.
+- `DESIGN.md`, `README.md` third-party font notes and the footer font line updated.
+
+### Commands and actual outputs
+- `npm test`: Test Files 3 passed, Tests 69 passed (no test changed).
+- `npm run build`: index JS 257.69 kB (gzip 80.14 kB), CSS 15.28 kB, fonts 39.68 kB (Lexend) + 56.88 kB (Anybody) woff2; `dist/` 713402 bytes.
+- `node tools/a11y_check.mjs dist`: keyboard 33 of 33, `A11Y-CHECK PASS`.
+- `uv run --locked pytest -q tests/test_demo_export.py`: 6 passed.
+- Screenshots in real time over the DevTools protocol on 127.0.0.1:5246, desktop 1440 and phone 390, checked for wrapping, overflow and clipped labels; no element overflows the page at 390 or 360 px. The phone navigation scrolls horizontally as designed (scroll track with indicator).
+
+### Deviations and incidents
+- None. No number, data, fixture, test expectation, accessible name or scientific wording changed. Nothing pushed or deployed.
+
+### Next action
+Coordinator: push and redeploy `demo/dist`.

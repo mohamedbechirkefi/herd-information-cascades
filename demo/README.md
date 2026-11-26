@@ -40,5 +40,5 @@ Both fonts are self-hosted from the Fontsource npm packages (pinned in `package-
 
 | Family | Package and version | Licence | Use |
 |---|---|---|---|
-| Anybody | `@fontsource-variable/anybody` 5.3.0 (weight and width axes) | SIL Open Font License (OFL-1.1) | display type |
-| Atkinson Hyperlegible Next | `@fontsource-variable/atkinson-hyperlegible-next` 5.3.0 | SIL Open Font License (OFL-1.1) | text and figures |
+| Anybody | `@fontsource-variable/anybody` 5.3.0 (weight and width axes) | SIL Open Font License (OFL-1.1) | display type and tabular figures |
+| Lexend | `@fontsource-variable/lexend` 5.3.0 (weight axis) | SIL Open Font License (OFL-1.1) | text and labels |

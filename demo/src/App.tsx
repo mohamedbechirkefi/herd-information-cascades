@@ -76,7 +76,7 @@ export function App() {
             <p className="fine">
               Licence: HERD Source-Available Non-Commercial Research License v1.0. An AI system was used as a research and
               development assistant and is not an author. Demo: herd-information-cascades.kefimohamedbechir.workers.dev. Type:
-              Anybody and Atkinson Hyperlegible Next, both under the SIL Open Font License, self-hosted.
+              Anybody and Lexend, both under the SIL Open Font License, self-hosted.
             </p>
           </div>
         </div>
