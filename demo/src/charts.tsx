@@ -2,6 +2,7 @@
 // Hand-written SVG charts. Every chart has a plain-language description and a text
 // equivalent; uncertainty is drawn on the chart itself, never only in a tooltip.
 import type { Contrast } from "./results";
+import { useRevealOnce } from "./Brand";
 
 const pct = (x: number, lo: number, hi: number) => `${(((x - lo) / (hi - lo)) * 100).toFixed(3)}%`;
 
@@ -17,8 +18,9 @@ export function ForestPlot({ rows, lo, hi, idPrefix }: { rows: Contrast[]; lo: n
   }
   const ticks = [0, 0.05, 0.1, 0.15].filter((t) => t >= lo && t <= hi);
   const positive = (c: Contrast) => c.status === "robust" || c.status === "Holm-significant";
+  const [ref, reveal] = useRevealOnce<HTMLDivElement>();
   return (
-    <div className="forest">
+    <div ref={ref} className={`forest ${reveal}`}>
       <div className="frow faxis" aria-hidden="true">
         <span className="flabel">Cell</span>
         <div className="ftrack-axis">
@@ -30,7 +32,7 @@ export function ForestPlot({ rows, lo, hi, idPrefix }: { rows: Contrast[]; lo: n
         <span className="fvals">Estimate [95% interval]</span>
       </div>
       <ul className="forest-rows">
-        {[...cells.entries()].map(([k, cs]) => {
+        {[...cells.entries()].map(([k, cs], idx) => {
           const c0 = cs[0];
           return (
             <li key={k} className="frow" id={`${idPrefix}-${k.replace(/[^0-9a-z]+/gi, "-")}`}>
@@ -44,7 +46,7 @@ export function ForestPlot({ rows, lo, hi, idPrefix }: { rows: Contrast[]; lo: n
                   const y = c.rule === "bayesian" ? 9 : 21;
                   const cls = `${c.rule} ${positive(c) ? "solid" : "hollow"}`;
                   return (
-                    <g key={c.rule} className={cls}>
+                    <g key={c.rule} className={cls} style={{ transformOrigin: `${pct(c.estimate, lo, hi)} ${y}px`, transitionDelay: `${Math.min(idx, 12) * 40}ms` }}>
                       <line x1={pct(c.ci_low, lo, hi)} x2={pct(c.ci_high, lo, hi)} y1={y} y2={y} className="ci" />
                       <svg x={pct(c.estimate, lo, hi)} y={y} overflow="visible">
                         {c.rule === "bayesian" ? <circle r="4.5" cx="0" cy="0" className="mark" /> : <rect x="-4.2" y="-4.2" width="8.4" height="8.4" className="mark" />}
@@ -78,7 +80,7 @@ export function Histogram({ counts, total, title, tone }: { counts: number[]; to
       <figcaption>{title}</figcaption>
       <div className="hist-frame">
         <span className="hist-y" aria-hidden="true"><span>1</span><span>0.5</span><span>0</span></span>
-        <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="hist-svg" aria-hidden="true">
+        <svg key={counts.join(",")} viewBox="0 0 100 100" preserveAspectRatio="none" className="hist-svg" aria-hidden="true">
           <line x1="0" x2="100" y1="50" y2="50" className="grid" />
           {counts.map((c, i) => {
             const h = (c / total) * 100;

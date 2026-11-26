@@ -116,8 +116,10 @@ export function Sandbox() {
 
   return (
     <section id="sandbox" aria-labelledby="h-sandbox" className="sandbox">
-      <p className="stamp">Sandbox output, not a research result</p>
-      <h2 id="h-sandbox">Sandbox: watch a cascade form</h2>
+      <div className="sandbox-band">
+        <h2 id="h-sandbox">Sandbox: watch a cascade form</h2>
+        <p className="stamp">Sandbox output, not a research result</p>
+      </div>
       <p className="note">
         The sandbox runs a TypeScript port of the study's decision rules in your browser. The rules match the Python
         engine on a test fixture (identical actions and cascade flags, metrics within 1e-12), but the random draws come
@@ -207,12 +209,12 @@ function SandboxResult({ r, shown, playing, onReplay, onShowAll }: { r: SandboxS
   const n = r.settings.n;
   const casc = t.cascade.slice(0, shown).filter(Boolean).length;
   return (
-    <div className="sandbox-result">
+    <div className="sandbox-result" key={`${r.settings.seed}-${r.settings.rule}-${r.settings.q}-${r.settings.network}-${r.settings.v}-${r.settings.n}-${r.settings.episodes}-${r.settings.tie}`}>
       <h3>First episode of this run</h3>
       <p className="note">
         Hidden state: <strong>{t.theta}</strong>. Each column is one agent, in order. Top: its private signal. Middle: the{" "}
         {RULE_LABEL[r.settings.rule].toLowerCase()} agent's action. Bottom: what an independent agent with the same signal does.
-        Green cells are correct, red cells are wrong; a dashed outline marks an action nobody can see; a bar under the
+        Teal cells are correct, magenta cells are wrong; a dashed outline marks an action nobody can see; a bar under the
         middle cell marks an agent in a cascade (its action would be the same whatever its signal).
       </p>
       <div className="controls buttons">

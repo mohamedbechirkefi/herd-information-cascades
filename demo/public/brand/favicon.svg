@@ -1,0 +1,2 @@
+<!-- SPDX-License-Identifier: LicenseRef-HERD-NC-Research-1.0 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><title>HERD</title><rect width="256" height="256" rx="44" fill="#F5CF3A"/><path fill="#1B1D2A" transform="translate(32 32) scale(0.75)" d="M32 58 A36 36 0 1 0 104 58 A36 36 0 1 0 32 58 Z M152 58 A36 36 0 1 0 224 58 A36 36 0 1 0 152 58 Z M36 236 V142 A32 32 0 0 1 68 110 H68 A32 32 0 0 1 100 142 V236 Z M156 236 V142 A32 32 0 0 1 188 110 H188 A32 32 0 0 1 220 142 V236 Z M100 146 H156 V190 H100 Z"/></svg>

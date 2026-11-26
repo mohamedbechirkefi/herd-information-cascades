@@ -371,3 +371,18 @@ The owner's review: `research/publication/author_review.md` (section "Prepared f
 ### Next action
 
 The owner: B15 (articles), B16 (full-text review and sign-off of `research/publication/author_review.md`), B18 (release). The coordinator deploys the demo from `demo/dist` with `demo/wrangler.jsonc`.
+
+## 2026-11-26: demo brand identity, motion and UI redesign (owner request)
+
+The owner asked for each lab demo to have its own brand, motion and premium UI. The demo now follows `demo/DESIGN.md`: a signal-yellow poster with a line of people raising cards, a cool chalk page, teal for a correct choice and magenta for a wrong one (indigo and ochre only for the two rules in charts), Anybody and Atkinson Hyperlegible Next (Fontsource, OFL-1.1, self-hosted). New: a hand-built logo (an H made of two people sharing one bar) and wordmark in `demo/public/brand/` (audited with the logo skill's `svg_audit.py`: no issues, 100/100), favicon SVG and 32 px PNG, apple touch icon, a 1200x630 Open Graph image rendered with headless Chrome, theme colour and Open Graph tags. Hero moment: the people step into line and raise their cards, then a bracket marks the locked-in part, labelled "Illustration, not study data" with no number; the forest plot draws once when scrolled into view; histogram bars grow when a cell is chosen; the sticky navigation marker slides to the section in view; sandbox agents settle into place during the replay and the result enters with `@starting-style`. Reduced motion removes all movement. No number, data file, fixture, test or test id was changed. Wording changes: the label texts "Measured · confirmatory" and "Measured · exploratory" became "Measured, confirmatory" and "Measured, exploratory"; the sandbox legend now names the new cell colours (teal and magenta instead of green and red).
+
+### Commands and outputs
+- `npm_config_before=2026-11-12 npm install --save-exact @fontsource-variable/anybody@5.3.0 @fontsource-variable/atkinson-hyperlegible-next@5.3.0` -> `added 2 packages`.
+- `npm test` -> `Test Files 3 passed (3)`, `Tests 69 passed (69)`.
+- `npm run build` -> `dist/assets/index-*.js 257.71 kB` (gzip 80.16 kB), CSS 15.16 kB, two woff2 files 56.88 kB and 33.99 kB; whole `dist/` 707,618 bytes.
+- `node tools/a11y_check.mjs dist` -> nine PASS lines, `A11Y-CHECK PASS`.
+- `../.tools/py/bin/uv run --frozen pytest -q` -> `299 passed`.
+- Screenshots (desktop 1440 and phone 390, headless Chrome over the DevTools protocol, served locally on port 5232) were reviewed in two critique passes: headline reduced from six lines to four, caption keys redrawn to match the drawing, one duplicated section title renamed, the decorative ring on the cascade bar removed, the navigation marker darkened for contrast.
+
+### Not done
+No push or deploy (coordinator's step).

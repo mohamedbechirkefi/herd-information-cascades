@@ -3,6 +3,7 @@ import { type ReactNode, useEffect, useMemo, useState } from "react";
 import { ForestPlot, Histogram, RULE_LABEL } from "./charts";
 import { type Estimate, type Results, ResultsError, fmtEstimate, fmtInterval, loadResults } from "./results";
 import { Sandbox } from "./Sandbox";
+import { HeroQueue, QueueNav } from "./Brand";
 
 type State = { kind: "loading" } | { kind: "error"; message: string } | { kind: "ready"; results: Results };
 
@@ -17,21 +18,30 @@ export function App() {
       );
   }, []);
 
+  const ready = state.kind === "ready" ? state.results : null;
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>
-      <header className="site">
+      <QueueNav />
+      <header className="poster" id="top">
         <div className="wrap">
-          <p className="kicker">HERD · a simulation study of social learning</p>
+          <p className="poster-kicker">A simulation study of social learning</p>
           <h1>When does watching others help a group decide, and when does it lock the group into an error?</h1>
-          <nav aria-label="Sections">
-            <a href="#overview">Overview</a>
-            <a href="#results">Results</a>
-            <a href="#distribution">Distribution</a>
-            <a href="#assumptions">Assumptions</a>
-            <a href="#method">Method and limitations</a>
-            <a href="#sandbox">Sandbox</a>
-          </nav>
+          {ready && (
+            <p className="poster-answer">
+              Both, under the same rules: watching others raised average accuracy in every contrast of the main confirmatory study, and it
+              often locked whole groups into the wrong answer.
+            </p>
+          )}
+          <figure className="queue" aria-label="Illustration, not study data: a line of people locking into a wrong choice">
+            <HeroQueue />
+            <figcaption>
+              <span className="illus-label">Illustration, not study data.</span> Each person raises a card with their choice
+              (<span className="key card">wrong choice</span>); the dot is their private signal, <span className="key right">right</span>{" "}
+              or <span className="key wrong">wrong</span>. The first two signals mislead. From the third person on, everyone follows the visible lead, even with a right
+              signal: the bracket marks a group locked into the wrong answer.
+            </figcaption>
+          </figure>
         </div>
       </header>
       <main id="main" className="wrap">
@@ -45,15 +55,30 @@ export function App() {
         )}
         {state.kind === "ready" && <Published r={state.results} />}
         <Sandbox />
+        {state.kind === "ready" && <MethodSections r={state.results} />}
       </main>
       <footer className="site">
-        <div className="wrap">
-          <p>
-            Mohamed Bechir Kefi, independent researcher. Runs offline after the first load. No data about visitors is
-            collected, stored or sent anywhere. Repository:{" "}
-            <a href="https://github.com/mohamedbechirkefi/herd-information-cascades">github.com/mohamedbechirkefi/herd-information-cascades</a>. Demo:{" "}
-            <a href="https://herd-information-cascades.kefimohamedbechir.workers.dev">herd-information-cascades.kefimohamedbechir.workers.dev</a>.
-          </p>
+        <div className="wrap footer-grid">
+          <div>
+            <img src="brand/herd-lockup-chalk.svg" alt="HERD" width="675" height="256" className="footer-lockup" />
+            <p>Mohamed Bechir Kefi, independent researcher.</p>
+          </div>
+          <div>
+            <p>
+              Runs offline after the first load. No data about visitors is collected, stored or sent anywhere. Synthetic agents
+              only: nothing here is a claim about how real people decide.
+            </p>
+            <ul className="footer-links">
+              <li><a href="https://github.com/mohamedbechirkefi/herd-information-cascades">Repository on GitHub</a></li>
+              <li><a href="https://github.com/mohamedbechirkefi/herd-information-cascades/blob/main/research/paper/manuscript.md">Manuscript (preprint draft)</a></li>
+              <li><a href="https://labs.kefimohamedbechir.workers.dev">All lab studies</a></li>
+            </ul>
+            <p className="fine">
+              Licence: HERD Source-Available Non-Commercial Research License v1.0. An AI system was used as a research and
+              development assistant and is not an author. Demo: herd-information-cascades.kefimohamedbechir.workers.dev. Type:
+              Anybody and Atkinson Hyperlegible Next, both under the SIL Open Font License, self-hosted.
+            </p>
+          </div>
         </div>
       </footer>
     </>
@@ -61,7 +86,7 @@ export function App() {
 }
 
 function Label({ kind }: { kind: "confirmatory" | "exploratory" | "assumption" }) {
-  const text = { confirmatory: "Measured · confirmatory", exploratory: "Measured · exploratory", assumption: "Assumption or design setting" }[kind];
+  const text = { confirmatory: "Measured, confirmatory", exploratory: "Measured, exploratory", assumption: "Assumption or design setting" }[kind];
   return <span className={`badge ${kind}`}>{text}</span>;
 }
 
@@ -96,7 +121,7 @@ function Published({ r }: { r: Results }) {
   return (
     <>
       <section id="overview" aria-labelledby="h-overview">
-        <h2 id="h-overview">Overview</h2>
+        <h2 id="h-overview">Both answers hold at once</h2>
         <p className="paper-title">{r.title}</p>
         <p className="status-label">{r.status_label}</p>
         <p className="lede">{r.question}</p>
@@ -110,7 +135,7 @@ function Published({ r }: { r: Results }) {
       </section>
 
       <section id="results" aria-labelledby="h-results">
-        <h2 id="h-results">Published results</h2>
+        <h2 id="h-results">Evidence: the published results</h2>
         <p className="note">
           Numbers in this section come from the committed results (confirmatory runs at code revision <code>{r.code_revision.slice(0, 7)}</code>;
           other revisions under Method). They are printed exactly as in the manuscript and are separate from anything the
@@ -157,7 +182,7 @@ function Published({ r }: { r: Results }) {
             ))}
             <p className="meta">
               Report: <code>{e.report_path}</code>
-              {e.claim_ids.length > 0 && <> · Claims: {e.claim_ids.join(", ")}</>}
+              {e.claim_ids.length > 0 && <>; claims: {e.claim_ids.join(", ")}</>}
             </p>
           </article>
         ))}
@@ -165,6 +190,13 @@ function Published({ r }: { r: Results }) {
 
       <Distribution r={r} />
 
+    </>
+  );
+}
+
+function MethodSections({ r }: { r: Results }) {
+  return (
+    <>
       <section id="assumptions" aria-labelledby="h-assumptions">
         <h2 id="h-assumptions">Assumptions</h2>
         <p className="note">

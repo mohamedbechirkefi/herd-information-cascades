@@ -29,3 +29,16 @@ node tools/a11y_check.mjs dist --screenshots <folder>
 ```
 
 `tools/a11y_check.mjs` checks, over the Chrome DevTools Protocol, that the results render, text contrast in light and dark schemes, keyboard reach and visible focus, no horizontal scroll at 360 px, no running animation under reduced motion, no request to another origin, and that the page and the sandbox work after the network is cut.
+
+## Design and brand (owner request, 2026-11-26)
+
+The page has its own identity, described in `DESIGN.md`: a signal-yellow poster with a line of people raising cards, a cool chalk page, teal for a correct choice and magenta for a wrong one, indigo and ochre only for the two social rules in charts. The hero queue is a fixed drawing labelled "Illustration, not study data" and prints no number. Brand files are in `public/brand/`: the mark (`herd-mark-*.svg`, an H made of two people sharing one bar), the wordmark and lockup in ink, chalk and yellow, `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` and the Open Graph image `og.png` (rendered from an HTML page with headless Chrome). Every animation has a reduced-motion variant.
+
+## Third-party notes: fonts
+
+Both fonts are self-hosted from the Fontsource npm packages (pinned in `package-lock.json`), Latin subset only, bundled into the build; nothing is loaded from another host.
+
+| Family | Package and version | Licence | Use |
+|---|---|---|---|
+| Anybody | `@fontsource-variable/anybody` 5.3.0 (weight and width axes) | SIL Open Font License (OFL-1.1) | display type |
+| Atkinson Hyperlegible Next | `@fontsource-variable/atkinson-hyperlegible-next` 5.3.0 | SIL Open Font License (OFL-1.1) | text and figures |
